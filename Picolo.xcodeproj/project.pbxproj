@@ -1,0 +1,742 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1188D91E89C0F7D07D797882 /* Pods_PicoloUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2ABF5B36F6D0EE62558F190 /* Pods_PicoloUITests.framework */; };
+		4D02E505ECFE04EECC03421D /* Pods_Picolo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C232A7F08C8D71CB04FB7E95 /* Pods_Picolo.framework */; };
+		7093CD6421E32F1200731FB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD6321E32F1200731FB8 /* AppDelegate.swift */; };
+		7093CD6621E32F1200731FB8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD6521E32F1200731FB8 /* ViewController.swift */; };
+		7093CD6921E32F1200731FB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7093CD6721E32F1200731FB8 /* Main.storyboard */; };
+		7093CD6B21E32F1500731FB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7093CD6A21E32F1500731FB8 /* Assets.xcassets */; };
+		7093CD6E21E32F1500731FB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7093CD6C21E32F1500731FB8 /* LaunchScreen.storyboard */; };
+		7093CD7921E32F1500731FB8 /* PicoloTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD7821E32F1500731FB8 /* PicoloTests.swift */; };
+		7093CD8421E32F1500731FB8 /* PicoloUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD8321E32F1500731FB8 /* PicoloUITests.swift */; };
+		7093CD9221E3307800731FB8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7093CD9121E3307800731FB8 /* GoogleService-Info.plist */; };
+		7093CD9421E3325B00731FB8 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD9321E3325B00731FB8 /* Extension.swift */; };
+		F5B3792C1AF606C2EC220651 /* Pods_PicoloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1740A3F9DE64FC2F37B5CB7C /* Pods_PicoloTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7093CD7521E32F1500731FB8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7093CD5821E32F1200731FB8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7093CD5F21E32F1200731FB8;
+			remoteInfo = Picolo;
+		};
+		7093CD8021E32F1500731FB8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7093CD5821E32F1200731FB8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7093CD5F21E32F1200731FB8;
+			remoteInfo = Picolo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		013BF7F588579772A852F64E /* Pods-Picolo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Picolo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Picolo/Pods-Picolo.debug.xcconfig"; sourceTree = "<group>"; };
+		0A851D0B9D6E1B974E655246 /* Pods-PicoloUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicoloUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PicoloUITests/Pods-PicoloUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		1740A3F9DE64FC2F37B5CB7C /* Pods_PicoloTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicoloTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		55804BC0C255E50DF74809CD /* Pods-PicoloTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicoloTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PicoloTests/Pods-PicoloTests.release.xcconfig"; sourceTree = "<group>"; };
+		7093CD6021E32F1200731FB8 /* Picolo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picolo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7093CD6321E32F1200731FB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7093CD6521E32F1200731FB8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7093CD6821E32F1200731FB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7093CD6A21E32F1500731FB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7093CD6D21E32F1500731FB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7093CD6F21E32F1500731FB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7093CD7421E32F1500731FB8 /* PicoloTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicoloTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7093CD7821E32F1500731FB8 /* PicoloTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicoloTests.swift; sourceTree = "<group>"; };
+		7093CD7A21E32F1500731FB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7093CD7F21E32F1500731FB8 /* PicoloUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicoloUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7093CD8321E32F1500731FB8 /* PicoloUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicoloUITests.swift; sourceTree = "<group>"; };
+		7093CD8521E32F1500731FB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7093CD9121E3307800731FB8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7093CD9321E3325B00731FB8 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		80317E3AFB10DCE38F0C4674 /* Pods-PicoloUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicoloUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PicoloUITests/Pods-PicoloUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C232A7F08C8D71CB04FB7E95 /* Pods_Picolo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Picolo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3EF445873C2C28B7E16E1D6 /* Pods-PicoloTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicoloTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PicoloTests/Pods-PicoloTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F2ABF5B36F6D0EE62558F190 /* Pods_PicoloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicoloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9A5F87326F6A50F38587C38 /* Pods-Picolo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Picolo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Picolo/Pods-Picolo.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7093CD5D21E32F1200731FB8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D02E505ECFE04EECC03421D /* Pods_Picolo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7093CD7121E32F1500731FB8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5B3792C1AF606C2EC220651 /* Pods_PicoloTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7093CD7C21E32F1500731FB8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1188D91E89C0F7D07D797882 /* Pods_PicoloUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7093CD5721E32F1200731FB8 = {
+			isa = PBXGroup;
+			children = (
+				7093CD6221E32F1200731FB8 /* Picolo */,
+				7093CD7721E32F1500731FB8 /* PicoloTests */,
+				7093CD8221E32F1500731FB8 /* PicoloUITests */,
+				7093CD6121E32F1200731FB8 /* Products */,
+				EB76743F59B2B0E9624D2B98 /* Pods */,
+				A6B98A9E89238724E31522CE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		7093CD6121E32F1200731FB8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7093CD6021E32F1200731FB8 /* Picolo.app */,
+				7093CD7421E32F1500731FB8 /* PicoloTests.xctest */,
+				7093CD7F21E32F1500731FB8 /* PicoloUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7093CD6221E32F1200731FB8 /* Picolo */ = {
+			isa = PBXGroup;
+			children = (
+				7093CD6321E32F1200731FB8 /* AppDelegate.swift */,
+				7093CD6521E32F1200731FB8 /* ViewController.swift */,
+				7093CD9321E3325B00731FB8 /* Extension.swift */,
+				7093CD6721E32F1200731FB8 /* Main.storyboard */,
+				7093CD6A21E32F1500731FB8 /* Assets.xcassets */,
+				7093CD6C21E32F1500731FB8 /* LaunchScreen.storyboard */,
+				7093CD6F21E32F1500731FB8 /* Info.plist */,
+				7093CD9121E3307800731FB8 /* GoogleService-Info.plist */,
+			);
+			path = Picolo;
+			sourceTree = "<group>";
+		};
+		7093CD7721E32F1500731FB8 /* PicoloTests */ = {
+			isa = PBXGroup;
+			children = (
+				7093CD7821E32F1500731FB8 /* PicoloTests.swift */,
+				7093CD7A21E32F1500731FB8 /* Info.plist */,
+			);
+			path = PicoloTests;
+			sourceTree = "<group>";
+		};
+		7093CD8221E32F1500731FB8 /* PicoloUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7093CD8321E32F1500731FB8 /* PicoloUITests.swift */,
+				7093CD8521E32F1500731FB8 /* Info.plist */,
+			);
+			path = PicoloUITests;
+			sourceTree = "<group>";
+		};
+		A6B98A9E89238724E31522CE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C232A7F08C8D71CB04FB7E95 /* Pods_Picolo.framework */,
+				1740A3F9DE64FC2F37B5CB7C /* Pods_PicoloTests.framework */,
+				F2ABF5B36F6D0EE62558F190 /* Pods_PicoloUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EB76743F59B2B0E9624D2B98 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				013BF7F588579772A852F64E /* Pods-Picolo.debug.xcconfig */,
+				F9A5F87326F6A50F38587C38 /* Pods-Picolo.release.xcconfig */,
+				E3EF445873C2C28B7E16E1D6 /* Pods-PicoloTests.debug.xcconfig */,
+				55804BC0C255E50DF74809CD /* Pods-PicoloTests.release.xcconfig */,
+				0A851D0B9D6E1B974E655246 /* Pods-PicoloUITests.debug.xcconfig */,
+				80317E3AFB10DCE38F0C4674 /* Pods-PicoloUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7093CD5F21E32F1200731FB8 /* Picolo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7093CD8821E32F1500731FB8 /* Build configuration list for PBXNativeTarget "Picolo" */;
+			buildPhases = (
+				FC08B6C38D85D4629FB66DA1 /* [CP] Check Pods Manifest.lock */,
+				7093CD5C21E32F1200731FB8 /* Sources */,
+				7093CD5D21E32F1200731FB8 /* Frameworks */,
+				7093CD5E21E32F1200731FB8 /* Resources */,
+				BB926428D91E33268D017545 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Picolo;
+			productName = Picolo;
+			productReference = 7093CD6021E32F1200731FB8 /* Picolo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7093CD7321E32F1500731FB8 /* PicoloTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7093CD8B21E32F1500731FB8 /* Build configuration list for PBXNativeTarget "PicoloTests" */;
+			buildPhases = (
+				AF60A2BAD51A26C5CF7E9418 /* [CP] Check Pods Manifest.lock */,
+				7093CD7021E32F1500731FB8 /* Sources */,
+				7093CD7121E32F1500731FB8 /* Frameworks */,
+				7093CD7221E32F1500731FB8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7093CD7621E32F1500731FB8 /* PBXTargetDependency */,
+			);
+			name = PicoloTests;
+			productName = PicoloTests;
+			productReference = 7093CD7421E32F1500731FB8 /* PicoloTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7093CD7E21E32F1500731FB8 /* PicoloUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7093CD8E21E32F1500731FB8 /* Build configuration list for PBXNativeTarget "PicoloUITests" */;
+			buildPhases = (
+				621BE674CD4942C64274B965 /* [CP] Check Pods Manifest.lock */,
+				7093CD7B21E32F1500731FB8 /* Sources */,
+				7093CD7C21E32F1500731FB8 /* Frameworks */,
+				7093CD7D21E32F1500731FB8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7093CD8121E32F1500731FB8 /* PBXTargetDependency */,
+			);
+			name = PicoloUITests;
+			productName = PicoloUITests;
+			productReference = 7093CD7F21E32F1500731FB8 /* PicoloUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7093CD5821E32F1200731FB8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Ricky Adi Kuncoro";
+				TargetAttributes = {
+					7093CD5F21E32F1200731FB8 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					7093CD7321E32F1500731FB8 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 7093CD5F21E32F1200731FB8;
+					};
+					7093CD7E21E32F1500731FB8 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 7093CD5F21E32F1200731FB8;
+					};
+				};
+			};
+			buildConfigurationList = 7093CD5B21E32F1200731FB8 /* Build configuration list for PBXProject "Picolo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7093CD5721E32F1200731FB8;
+			productRefGroup = 7093CD6121E32F1200731FB8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7093CD5F21E32F1200731FB8 /* Picolo */,
+				7093CD7321E32F1500731FB8 /* PicoloTests */,
+				7093CD7E21E32F1500731FB8 /* PicoloUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7093CD5E21E32F1200731FB8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7093CD6E21E32F1500731FB8 /* LaunchScreen.storyboard in Resources */,
+				7093CD9221E3307800731FB8 /* GoogleService-Info.plist in Resources */,
+				7093CD6B21E32F1500731FB8 /* Assets.xcassets in Resources */,
+				7093CD6921E32F1200731FB8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7093CD7221E32F1500731FB8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7093CD7D21E32F1500731FB8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		621BE674CD4942C64274B965 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PicoloUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF60A2BAD51A26C5CF7E9418 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PicoloTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB926428D91E33268D017545 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Picolo/Pods-Picolo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Picolo/Pods-Picolo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC08B6C38D85D4629FB66DA1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Picolo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7093CD5C21E32F1200731FB8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7093CD9421E3325B00731FB8 /* Extension.swift in Sources */,
+				7093CD6621E32F1200731FB8 /* ViewController.swift in Sources */,
+				7093CD6421E32F1200731FB8 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7093CD7021E32F1500731FB8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7093CD7921E32F1500731FB8 /* PicoloTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7093CD7B21E32F1500731FB8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7093CD8421E32F1500731FB8 /* PicoloUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7093CD7621E32F1500731FB8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7093CD5F21E32F1200731FB8 /* Picolo */;
+			targetProxy = 7093CD7521E32F1500731FB8 /* PBXContainerItemProxy */;
+		};
+		7093CD8121E32F1500731FB8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7093CD5F21E32F1200731FB8 /* Picolo */;
+			targetProxy = 7093CD8021E32F1500731FB8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7093CD6721E32F1200731FB8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7093CD6821E32F1200731FB8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7093CD6C21E32F1500731FB8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7093CD6D21E32F1500731FB8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7093CD8621E32F1500731FB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7093CD8721E32F1500731FB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7093CD8921E32F1500731FB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 013BF7F588579772A852F64E /* Pods-Picolo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BW6L62Q584;
+				INFOPLIST_FILE = Picolo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.receh.Picolo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7093CD8A21E32F1500731FB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9A5F87326F6A50F38587C38 /* Pods-Picolo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BW6L62Q584;
+				INFOPLIST_FILE = Picolo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.receh.Picolo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7093CD8C21E32F1500731FB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3EF445873C2C28B7E16E1D6 /* Pods-PicoloTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BW6L62Q584;
+				INFOPLIST_FILE = PicoloTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.receh.PicoloTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Picolo.app/Picolo";
+			};
+			name = Debug;
+		};
+		7093CD8D21E32F1500731FB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55804BC0C255E50DF74809CD /* Pods-PicoloTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BW6L62Q584;
+				INFOPLIST_FILE = PicoloTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.receh.PicoloTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Picolo.app/Picolo";
+			};
+			name = Release;
+		};
+		7093CD8F21E32F1500731FB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A851D0B9D6E1B974E655246 /* Pods-PicoloUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BW6L62Q584;
+				INFOPLIST_FILE = PicoloUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.receh.PicoloUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Picolo;
+			};
+			name = Debug;
+		};
+		7093CD9021E32F1500731FB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80317E3AFB10DCE38F0C4674 /* Pods-PicoloUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BW6L62Q584;
+				INFOPLIST_FILE = PicoloUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.receh.PicoloUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Picolo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7093CD5B21E32F1200731FB8 /* Build configuration list for PBXProject "Picolo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7093CD8621E32F1500731FB8 /* Debug */,
+				7093CD8721E32F1500731FB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7093CD8821E32F1500731FB8 /* Build configuration list for PBXNativeTarget "Picolo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7093CD8921E32F1500731FB8 /* Debug */,
+				7093CD8A21E32F1500731FB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7093CD8B21E32F1500731FB8 /* Build configuration list for PBXNativeTarget "PicoloTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7093CD8C21E32F1500731FB8 /* Debug */,
+				7093CD8D21E32F1500731FB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7093CD8E21E32F1500731FB8 /* Build configuration list for PBXNativeTarget "PicoloUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7093CD8F21E32F1500731FB8 /* Debug */,
+				7093CD9021E32F1500731FB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7093CD5821E32F1200731FB8 /* Project object */;
+}
