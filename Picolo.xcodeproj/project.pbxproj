@@ -7,18 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1188D91E89C0F7D07D797882 /* Pods_PicoloUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2ABF5B36F6D0EE62558F190 /* Pods_PicoloUITests.framework */; };
 		4D02E505ECFE04EECC03421D /* Pods_Picolo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C232A7F08C8D71CB04FB7E95 /* Pods_Picolo.framework */; };
 		7093CD6421E32F1200731FB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD6321E32F1200731FB8 /* AppDelegate.swift */; };
-		7093CD6621E32F1200731FB8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD6521E32F1200731FB8 /* ViewController.swift */; };
+		7093CD6621E32F1200731FB8 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD6521E32F1200731FB8 /* SignUpController.swift */; };
 		7093CD6921E32F1200731FB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7093CD6721E32F1200731FB8 /* Main.storyboard */; };
 		7093CD6B21E32F1500731FB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7093CD6A21E32F1500731FB8 /* Assets.xcassets */; };
 		7093CD6E21E32F1500731FB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7093CD6C21E32F1500731FB8 /* LaunchScreen.storyboard */; };
-		7093CD7921E32F1500731FB8 /* PicoloTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD7821E32F1500731FB8 /* PicoloTests.swift */; };
-		7093CD8421E32F1500731FB8 /* PicoloUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD8321E32F1500731FB8 /* PicoloUITests.swift */; };
 		7093CD9221E3307800731FB8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7093CD9121E3307800731FB8 /* GoogleService-Info.plist */; };
 		7093CD9421E3325B00731FB8 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD9321E3325B00731FB8 /* Extension.swift */; };
-		F5B3792C1AF606C2EC220651 /* Pods_PicoloTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1740A3F9DE64FC2F37B5CB7C /* Pods_PicoloTests.framework */; };
+		7093CD9621E357D900731FB8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD9521E357D900731FB8 /* MainTabBarController.swift */; };
+		7093CD9821E3588500731FB8 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD9721E3588500731FB8 /* UserProfileViewController.swift */; };
+		7093CD9B21E35EFB00731FB8 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD9A21E35EFB00731FB8 /* UserProfileHeader.swift */; };
+		7093CD9F21E37DF800731FB8 /* CustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD9E21E37DF800731FB8 /* CustomLayout.swift */; };
+		7093CDA221E385F900731FB8 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CDA121E385F900731FB8 /* LoginController.swift */; };
+		7093CDA621E3C2AF00731FB8 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CDA521E3C2AF00731FB8 /* PhotoSelectorController.swift */; };
+		7093CDA821E3D09000731FB8 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CDA721E3D09000731FB8 /* PhotoSelectorCell.swift */; };
+		7093CDAA21E3D7EC00731FB8 /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CDA921E3D7EC00731FB8 /* PhotoSelectorHeader.swift */; };
+		7093CDAC21E3E33400731FB8 /* SharePhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CDAB21E3E33400731FB8 /* SharePhotoController.swift */; };
+		7093CDAF21E4502200731FB8 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CDAE21E4502200731FB8 /* Post.swift */; };
+		7093CDB121E451A700731FB8 /* UserProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CDB021E451A700731FB8 /* UserProfilePhotoCell.swift */; };
+		7093CDB321E4554000731FB8 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CDB221E4554000731FB8 /* CustomImageView.swift */; };
+		7093CDB621E45BA100731FB8 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CDB521E45BA100731FB8 /* HomeController.swift */; };
+		7093CDB821E45C8E00731FB8 /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CDB721E45C8E00731FB8 /* HomePostCell.swift */; };
+		7093CDBA21E4BBC400731FB8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CDB921E4BBC400731FB8 /* User.swift */; };
+		7093CDBC21E4C1CF00731FB8 /* Firebase Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CDBB21E4C1CF00731FB8 /* Firebase Utils.swift */; };
+		7093CDBF21E4D50D00731FB8 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CDBE21E4D50D00731FB8 /* SearchController.swift */; };
+		7093CDC121E4E15200731FB8 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CDC021E4E15200731FB8 /* SearchCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,27 +54,37 @@
 
 /* Begin PBXFileReference section */
 		013BF7F588579772A852F64E /* Pods-Picolo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Picolo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Picolo/Pods-Picolo.debug.xcconfig"; sourceTree = "<group>"; };
-		0A851D0B9D6E1B974E655246 /* Pods-PicoloUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicoloUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PicoloUITests/Pods-PicoloUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1740A3F9DE64FC2F37B5CB7C /* Pods_PicoloTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicoloTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		55804BC0C255E50DF74809CD /* Pods-PicoloTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicoloTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PicoloTests/Pods-PicoloTests.release.xcconfig"; sourceTree = "<group>"; };
 		7093CD6021E32F1200731FB8 /* Picolo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picolo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7093CD6321E32F1200731FB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7093CD6521E32F1200731FB8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7093CD6521E32F1200731FB8 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		7093CD6821E32F1200731FB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7093CD6A21E32F1500731FB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7093CD6D21E32F1500731FB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7093CD6F21E32F1500731FB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7093CD7421E32F1500731FB8 /* PicoloTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicoloTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7093CD7821E32F1500731FB8 /* PicoloTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicoloTests.swift; sourceTree = "<group>"; };
-		7093CD7A21E32F1500731FB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7093CD7F21E32F1500731FB8 /* PicoloUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicoloUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7093CD8321E32F1500731FB8 /* PicoloUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicoloUITests.swift; sourceTree = "<group>"; };
-		7093CD8521E32F1500731FB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7093CD9121E3307800731FB8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7093CD9321E3325B00731FB8 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
-		80317E3AFB10DCE38F0C4674 /* Pods-PicoloUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicoloUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PicoloUITests/Pods-PicoloUITests.release.xcconfig"; sourceTree = "<group>"; };
+		7093CD9521E357D900731FB8 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		7093CD9721E3588500731FB8 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		7093CD9A21E35EFB00731FB8 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
+		7093CD9E21E37DF800731FB8 /* CustomLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
+		7093CDA121E385F900731FB8 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		7093CDA521E3C2AF00731FB8 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
+		7093CDA721E3D09000731FB8 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
+		7093CDA921E3D7EC00731FB8 /* PhotoSelectorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeader.swift; sourceTree = "<group>"; };
+		7093CDAB21E3E33400731FB8 /* SharePhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoController.swift; sourceTree = "<group>"; };
+		7093CDAE21E4502200731FB8 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		7093CDB021E451A700731FB8 /* UserProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCell.swift; sourceTree = "<group>"; };
+		7093CDB221E4554000731FB8 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		7093CDB521E45BA100731FB8 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		7093CDB721E45C8E00731FB8 /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
+		7093CDB921E4BBC400731FB8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7093CDBB21E4C1CF00731FB8 /* Firebase Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase Utils.swift"; sourceTree = "<group>"; };
+		7093CDBE21E4D50D00731FB8 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		7093CDC021E4E15200731FB8 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		C232A7F08C8D71CB04FB7E95 /* Pods_Picolo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Picolo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E3EF445873C2C28B7E16E1D6 /* Pods-PicoloTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicoloTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PicoloTests/Pods-PicoloTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F2ABF5B36F6D0EE62558F190 /* Pods_PicoloUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicoloUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A5F87326F6A50F38587C38 /* Pods-Picolo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Picolo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Picolo/Pods-Picolo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,7 +102,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5B3792C1AF606C2EC220651 /* Pods_PicoloTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +109,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1188D91E89C0F7D07D797882 /* Pods_PicoloUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,8 +119,6 @@
 			isa = PBXGroup;
 			children = (
 				7093CD6221E32F1200731FB8 /* Picolo */,
-				7093CD7721E32F1500731FB8 /* PicoloTests */,
-				7093CD8221E32F1500731FB8 /* PicoloUITests */,
 				7093CD6121E32F1200731FB8 /* Products */,
 				EB76743F59B2B0E9624D2B98 /* Pods */,
 				A6B98A9E89238724E31522CE /* Frameworks */,
@@ -119,8 +139,14 @@
 			isa = PBXGroup;
 			children = (
 				7093CD6321E32F1200731FB8 /* AppDelegate.swift */,
-				7093CD6521E32F1200731FB8 /* ViewController.swift */,
-				7093CD9321E3325B00731FB8 /* Extension.swift */,
+				7093CD9521E357D900731FB8 /* MainTabBarController.swift */,
+				7093CDAD21E4501100731FB8 /* Models */,
+				7093CDBD21E4D4F700731FB8 /* Search */,
+				7093CDB421E45B9300731FB8 /* Home */,
+				7093CDA421E3C28C00731FB8 /* AddPhoto */,
+				7093CDA021E385E400731FB8 /* Login */,
+				7093CD9921E35EE700731FB8 /* UserProfile */,
+				7093CDA321E3B62200731FB8 /* Utils */,
 				7093CD6721E32F1200731FB8 /* Main.storyboard */,
 				7093CD6A21E32F1500731FB8 /* Assets.xcassets */,
 				7093CD6C21E32F1500731FB8 /* LaunchScreen.storyboard */,
@@ -130,22 +156,72 @@
 			path = Picolo;
 			sourceTree = "<group>";
 		};
-		7093CD7721E32F1500731FB8 /* PicoloTests */ = {
+		7093CD9921E35EE700731FB8 /* UserProfile */ = {
 			isa = PBXGroup;
 			children = (
-				7093CD7821E32F1500731FB8 /* PicoloTests.swift */,
-				7093CD7A21E32F1500731FB8 /* Info.plist */,
+				7093CD9721E3588500731FB8 /* UserProfileViewController.swift */,
+				7093CD9A21E35EFB00731FB8 /* UserProfileHeader.swift */,
+				7093CDB021E451A700731FB8 /* UserProfilePhotoCell.swift */,
+				7093CD9E21E37DF800731FB8 /* CustomLayout.swift */,
 			);
-			path = PicoloTests;
+			path = UserProfile;
 			sourceTree = "<group>";
 		};
-		7093CD8221E32F1500731FB8 /* PicoloUITests */ = {
+		7093CDA021E385E400731FB8 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				7093CD8321E32F1500731FB8 /* PicoloUITests.swift */,
-				7093CD8521E32F1500731FB8 /* Info.plist */,
+				7093CD6521E32F1200731FB8 /* SignUpController.swift */,
+				7093CDA121E385F900731FB8 /* LoginController.swift */,
 			);
-			path = PicoloUITests;
+			path = Login;
+			sourceTree = "<group>";
+		};
+		7093CDA321E3B62200731FB8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7093CD9321E3325B00731FB8 /* Extension.swift */,
+				7093CDB221E4554000731FB8 /* CustomImageView.swift */,
+				7093CDBB21E4C1CF00731FB8 /* Firebase Utils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		7093CDA421E3C28C00731FB8 /* AddPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				7093CDA521E3C2AF00731FB8 /* PhotoSelectorController.swift */,
+				7093CDAB21E3E33400731FB8 /* SharePhotoController.swift */,
+				7093CDA921E3D7EC00731FB8 /* PhotoSelectorHeader.swift */,
+				7093CDA721E3D09000731FB8 /* PhotoSelectorCell.swift */,
+			);
+			path = AddPhoto;
+			sourceTree = "<group>";
+		};
+		7093CDAD21E4501100731FB8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7093CDAE21E4502200731FB8 /* Post.swift */,
+				7093CDB921E4BBC400731FB8 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7093CDB421E45B9300731FB8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				7093CDB521E45BA100731FB8 /* HomeController.swift */,
+				7093CDB721E45C8E00731FB8 /* HomePostCell.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		7093CDBD21E4D4F700731FB8 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				7093CDBE21E4D50D00731FB8 /* SearchController.swift */,
+				7093CDC021E4E15200731FB8 /* SearchCell.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		A6B98A9E89238724E31522CE /* Frameworks */ = {
@@ -163,10 +239,6 @@
 			children = (
 				013BF7F588579772A852F64E /* Pods-Picolo.debug.xcconfig */,
 				F9A5F87326F6A50F38587C38 /* Pods-Picolo.release.xcconfig */,
-				E3EF445873C2C28B7E16E1D6 /* Pods-PicoloTests.debug.xcconfig */,
-				55804BC0C255E50DF74809CD /* Pods-PicoloTests.release.xcconfig */,
-				0A851D0B9D6E1B974E655246 /* Pods-PicoloUITests.debug.xcconfig */,
-				80317E3AFB10DCE38F0C4674 /* Pods-PicoloUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -197,7 +269,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7093CD8B21E32F1500731FB8 /* Build configuration list for PBXNativeTarget "PicoloTests" */;
 			buildPhases = (
-				AF60A2BAD51A26C5CF7E9418 /* [CP] Check Pods Manifest.lock */,
 				7093CD7021E32F1500731FB8 /* Sources */,
 				7093CD7121E32F1500731FB8 /* Frameworks */,
 				7093CD7221E32F1500731FB8 /* Resources */,
@@ -216,7 +287,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7093CD8E21E32F1500731FB8 /* Build configuration list for PBXNativeTarget "PicoloUITests" */;
 			buildPhases = (
-				621BE674CD4942C64274B965 /* [CP] Check Pods Manifest.lock */,
 				7093CD7B21E32F1500731FB8 /* Sources */,
 				7093CD7C21E32F1500731FB8 /* Frameworks */,
 				7093CD7D21E32F1500731FB8 /* Resources */,
@@ -303,50 +373,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		621BE674CD4942C64274B965 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PicoloUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AF60A2BAD51A26C5CF7E9418 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PicoloTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		BB926428D91E33268D017545 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -356,14 +382,18 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Picolo/Pods-Picolo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,8 +431,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				7093CD9421E3325B00731FB8 /* Extension.swift in Sources */,
-				7093CD6621E32F1200731FB8 /* ViewController.swift in Sources */,
+				7093CDB821E45C8E00731FB8 /* HomePostCell.swift in Sources */,
+				7093CD9F21E37DF800731FB8 /* CustomLayout.swift in Sources */,
+				7093CD9821E3588500731FB8 /* UserProfileViewController.swift in Sources */,
+				7093CDA621E3C2AF00731FB8 /* PhotoSelectorController.swift in Sources */,
+				7093CDB321E4554000731FB8 /* CustomImageView.swift in Sources */,
+				7093CDAF21E4502200731FB8 /* Post.swift in Sources */,
+				7093CD6621E32F1200731FB8 /* SignUpController.swift in Sources */,
+				7093CD9B21E35EFB00731FB8 /* UserProfileHeader.swift in Sources */,
+				7093CDAC21E3E33400731FB8 /* SharePhotoController.swift in Sources */,
+				7093CDC121E4E15200731FB8 /* SearchCell.swift in Sources */,
+				7093CDAA21E3D7EC00731FB8 /* PhotoSelectorHeader.swift in Sources */,
+				7093CDBF21E4D50D00731FB8 /* SearchController.swift in Sources */,
+				7093CDA221E385F900731FB8 /* LoginController.swift in Sources */,
+				7093CD9621E357D900731FB8 /* MainTabBarController.swift in Sources */,
+				7093CDB621E45BA100731FB8 /* HomeController.swift in Sources */,
+				7093CDBC21E4C1CF00731FB8 /* Firebase Utils.swift in Sources */,
+				7093CDBA21E4BBC400731FB8 /* User.swift in Sources */,
+				7093CDB121E451A700731FB8 /* UserProfilePhotoCell.swift in Sources */,
 				7093CD6421E32F1200731FB8 /* AppDelegate.swift in Sources */,
+				7093CDA821E3D09000731FB8 /* PhotoSelectorCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,7 +458,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7093CD7921E32F1500731FB8 /* PicoloTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,7 +465,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7093CD8421E32F1500731FB8 /* PicoloUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,7 +659,6 @@
 		};
 		7093CD8C21E32F1500731FB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E3EF445873C2C28B7E16E1D6 /* Pods-PicoloTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -635,7 +680,6 @@
 		};
 		7093CD8D21E32F1500731FB8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 55804BC0C255E50DF74809CD /* Pods-PicoloTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -657,7 +701,6 @@
 		};
 		7093CD8F21E32F1500731FB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A851D0B9D6E1B974E655246 /* Pods-PicoloUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -678,7 +721,6 @@
 		};
 		7093CD9021E32F1500731FB8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 80317E3AFB10DCE38F0C4674 /* Pods-PicoloUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

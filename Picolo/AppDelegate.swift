@@ -18,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        
+        window = UIWindow()
+        window?.tintColor = UIColor.rgb(red: 255, green: 150, blue: 123)
+        window?.rootViewController = MainTabBarController()
         return true
     }
 

@@ -7,17 +7,8 @@ target 'Picolo' do
 
   # Pods for Picolo
     pod 'Firebase/Core'
-
-
-
-  target 'PicoloTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'PicoloUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+    pod 'Firebase/Auth'
+    pod 'Firebase/Database'
+    pod 'Firebase/Storage'
 
 end
