@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4D02E505ECFE04EECC03421D /* Pods_Picolo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C232A7F08C8D71CB04FB7E95 /* Pods_Picolo.framework */; };
+		5A697B0521E86EB50010C52C /* HomePostDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A697B0421E86EB50010C52C /* HomePostDetail.swift */; };
+		5A697B0721E887D20010C52C /* HomePostDetailARSCN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A697B0621E887D20010C52C /* HomePostDetailARSCN.swift */; };
+		5A697B0921E889EB0010C52C /* HomePostImagePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A697B0821E889EB0010C52C /* HomePostImagePreview.swift */; };
 		7093CD6421E32F1200731FB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD6321E32F1200731FB8 /* AppDelegate.swift */; };
 		7093CD6621E32F1200731FB8 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD6521E32F1200731FB8 /* SignUpController.swift */; };
 		7093CD6921E32F1200731FB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7093CD6721E32F1200731FB8 /* Main.storyboard */; };
@@ -55,6 +58,9 @@
 /* Begin PBXFileReference section */
 		013BF7F588579772A852F64E /* Pods-Picolo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Picolo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Picolo/Pods-Picolo.debug.xcconfig"; sourceTree = "<group>"; };
 		1740A3F9DE64FC2F37B5CB7C /* Pods_PicoloTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicoloTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A697B0421E86EB50010C52C /* HomePostDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostDetail.swift; sourceTree = "<group>"; };
+		5A697B0621E887D20010C52C /* HomePostDetailARSCN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostDetailARSCN.swift; sourceTree = "<group>"; };
+		5A697B0821E889EB0010C52C /* HomePostImagePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostImagePreview.swift; sourceTree = "<group>"; };
 		7093CD6021E32F1200731FB8 /* Picolo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picolo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7093CD6321E32F1200731FB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7093CD6521E32F1200731FB8 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -211,6 +217,9 @@
 			children = (
 				7093CDB521E45BA100731FB8 /* HomeController.swift */,
 				7093CDB721E45C8E00731FB8 /* HomePostCell.swift */,
+				5A697B0421E86EB50010C52C /* HomePostDetail.swift */,
+				5A697B0821E889EB0010C52C /* HomePostImagePreview.swift */,
+				5A697B0621E887D20010C52C /* HomePostDetailARSCN.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -431,6 +440,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7093CD9421E3325B00731FB8 /* Extension.swift in Sources */,
+				5A697B0521E86EB50010C52C /* HomePostDetail.swift in Sources */,
 				7093CDB821E45C8E00731FB8 /* HomePostCell.swift in Sources */,
 				7093CD9F21E37DF800731FB8 /* CustomLayout.swift in Sources */,
 				7093CD9821E3588500731FB8 /* UserProfileViewController.swift in Sources */,
@@ -446,7 +456,9 @@
 				7093CDA221E385F900731FB8 /* LoginController.swift in Sources */,
 				7093CD9621E357D900731FB8 /* MainTabBarController.swift in Sources */,
 				7093CDB621E45BA100731FB8 /* HomeController.swift in Sources */,
+				5A697B0921E889EB0010C52C /* HomePostImagePreview.swift in Sources */,
 				7093CDBC21E4C1CF00731FB8 /* Firebase Utils.swift in Sources */,
+				5A697B0721E887D20010C52C /* HomePostDetailARSCN.swift in Sources */,
 				7093CDBA21E4BBC400731FB8 /* User.swift in Sources */,
 				7093CDB121E451A700731FB8 /* UserProfilePhotoCell.swift in Sources */,
 				7093CD6421E32F1200731FB8 /* AppDelegate.swift in Sources */,
