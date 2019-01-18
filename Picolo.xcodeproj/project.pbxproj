@@ -11,6 +11,7 @@
 		5A697B0521E86EB50010C52C /* HomePostDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A697B0421E86EB50010C52C /* HomePostDetail.swift */; };
 		5A697B0721E887D20010C52C /* HomePostDetailARSCN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A697B0621E887D20010C52C /* HomePostDetailARSCN.swift */; };
 		5A697B0921E889EB0010C52C /* HomePostImagePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A697B0821E889EB0010C52C /* HomePostImagePreview.swift */; };
+		5A697B0E21EC6CE40010C52C /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A697B0D21EC6CE40010C52C /* art.scnassets */; };
 		7093CD6421E32F1200731FB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD6321E32F1200731FB8 /* AppDelegate.swift */; };
 		7093CD6621E32F1200731FB8 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD6521E32F1200731FB8 /* SignUpController.swift */; };
 		7093CD6921E32F1200731FB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7093CD6721E32F1200731FB8 /* Main.storyboard */; };
@@ -61,6 +62,7 @@
 		5A697B0421E86EB50010C52C /* HomePostDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostDetail.swift; sourceTree = "<group>"; };
 		5A697B0621E887D20010C52C /* HomePostDetailARSCN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostDetailARSCN.swift; sourceTree = "<group>"; };
 		5A697B0821E889EB0010C52C /* HomePostImagePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostImagePreview.swift; sourceTree = "<group>"; };
+		5A697B0D21EC6CE40010C52C /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		7093CD6021E32F1200731FB8 /* Picolo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picolo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7093CD6321E32F1200731FB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7093CD6521E32F1200731FB8 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				7093CD9921E35EE700731FB8 /* UserProfile */,
 				7093CDA321E3B62200731FB8 /* Utils */,
 				7093CD6721E32F1200731FB8 /* Main.storyboard */,
+				5A697B0D21EC6CE40010C52C /* art.scnassets */,
 				7093CD6A21E32F1500731FB8 /* Assets.xcassets */,
 				7093CD6C21E32F1500731FB8 /* LaunchScreen.storyboard */,
 				7093CD6F21E32F1500731FB8 /* Info.plist */,
@@ -360,6 +363,7 @@
 			files = (
 				7093CD6E21E32F1500731FB8 /* LaunchScreen.storyboard in Resources */,
 				7093CD9221E3307800731FB8 /* GoogleService-Info.plist in Resources */,
+				5A697B0E21EC6CE40010C52C /* art.scnassets in Resources */,
 				7093CD6B21E32F1500731FB8 /* Assets.xcassets in Resources */,
 				7093CD6921E32F1200731FB8 /* Main.storyboard in Resources */,
 			);

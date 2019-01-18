@@ -11,6 +11,7 @@ import UIKit
 
 struct Post {
     let imageHeight: CGFloat
+    let imageWidth: CGFloat
     let imageUrl: String
     let user: User
     let title: String
@@ -20,5 +21,6 @@ struct Post {
         self.imageUrl = dictionary["imageUrl"] as? String ?? ""
         self.title = dictionary["caption"] as? String ?? ""
         self.imageHeight = dictionary["imgHeight"] as? CGFloat ?? 0
+        self.imageWidth = dictionary["imgWidth"] as? CGFloat ?? 0
     }
 }
