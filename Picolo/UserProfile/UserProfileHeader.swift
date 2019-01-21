@@ -19,7 +19,6 @@ class UserProfileHeader: UICollectionViewCell {
             descLabel.text = user?.username
             
             
-            
         }
     }
     

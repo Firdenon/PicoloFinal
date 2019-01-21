@@ -19,7 +19,6 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "My Profile"
         collectionView.backgroundColor = .white
         
         collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerId")
@@ -30,12 +29,41 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
         }
         
         fetchUser()
-        setupLogOut()
+        setupNavBar()
         //fetchOrderedPost()
     }
     
-    fileprivate func setupLogOut() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(handleLogout))
+    fileprivate func setupNavBar() {
+        guard let currentLoginId = Auth.auth().currentUser?.uid else {return}
+    
+        if currentLoginId == userId || userId == nil {
+            //edit
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(handleLogout))
+            self.navigationItem.title = "My Profile"
+        } else {
+            
+            guard let userUid = userId else {return}
+            
+            Database.database().reference().child("following").child(currentLoginId).child(userUid).observeSingleEvent(of: .value, with: { (snapshot) in
+                if let isFollowing = snapshot.value as? Int, isFollowing == 1 {
+                    
+                    let rightbutton = UIBarButtonItem(title: "Unfollow", style: .plain, target: self, action: #selector(self.handleFollow))
+                    rightbutton.tintColor = .lightGray
+                    self.navigationItem.rightBarButtonItem = rightbutton
+                    self.navigationItem.title = "Someone Profile"
+                    
+                } else {
+                    
+                    let rightbutton = UIBarButtonItem(title: "Follow", style: .plain, target: self, action: #selector(self.handleFollow))
+                    rightbutton.tintColor = self.view.tintColor
+                    self.navigationItem.rightBarButtonItem = rightbutton
+                    self.navigationItem.title = "Followed Profile"
+            
+                }
+            }) { (err) in
+                print("Failed to check")
+            }
+        }
     }
     
     @objc func handleLogout() {
@@ -59,6 +87,50 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func handleFollow() {
+        guard let currentId = Auth.auth().currentUser?.uid else {return}
+
+        if navigationItem.rightBarButtonItem?.title == "Unfollow" {
+            print("unfollowed")
+            
+            //unfollow
+            guard let userUid = userId else {return}
+            Database.database().reference().child("following").child(currentId).child(userUid).removeValue { (err, ref) in
+                if let err = err {
+                    print("Failed to unfollow user: \(err.localizedDescription)")
+                    return
+                }
+                print("Succes unfollow user: \(userUid)")
+                
+                DispatchQueue.main.async {
+                    let rightbutton = UIBarButtonItem(title: "Follow", style: .plain, target: self, action: #selector(self.handleFollow))
+                    rightbutton.tintColor = self.view.tintColor
+                    self.navigationItem.rightBarButtonItem = rightbutton
+                    self.navigationItem.title = "Someone Profile"
+                }
+            }
+        } else {
+            
+            //follow
+            let ref = Database.database().reference().child("following").child(currentId)
+            let values = [userId: 1]
+            ref.updateChildValues(values) { (err, ref) in
+                if let err = err {
+                    print("Failed to follow user: \(err.localizedDescription)")
+                }
+                
+                print("Succesfully followed user: \(self.userId ?? "")")
+                
+                DispatchQueue.main.async {
+                    let rightbutton = UIBarButtonItem(title: "Unfollow", style: .plain, target: self, action: #selector(self.handleFollow))
+                    rightbutton.tintColor = .lightGray
+                    self.navigationItem.rightBarButtonItem = rightbutton
+                    self.navigationItem.title = "Followed Profile"
+                }
+            }
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
