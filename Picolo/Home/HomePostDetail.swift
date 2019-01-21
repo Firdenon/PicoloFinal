@@ -58,6 +58,14 @@ class HomePostDetail: UIViewController{
         return iv
     }()
     
+    let arButton: UIButton = {
+        let btn = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
+        btn.backgroundColor = .green
+        btn.setTitle("AR Button", for: .normal)
+        btn.addTarget(self, action: #selector(goToAR), for: .touchUpInside)
+        return btn
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,12 +80,14 @@ class HomePostDetail: UIViewController{
         view.addSubview(usernameLabel)
         view.addSubview(photoImageView)
         view.addSubview(profileImageView)
+        view.addSubview(arButton)
         
         
         photoImageView.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: 0,height: 200)
         profileImageView.setAnchor(top: photoImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: 50,height: 50)
         titleLable.setAnchor(top: photoImageView.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
         usernameLabel.setAnchor(top: titleLable.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        arButton.setAnchor(top: profileImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
     }
     
     @objc func tapImageDetail(){
@@ -85,5 +95,12 @@ class HomePostDetail: UIViewController{
         let vc = HomePostImagePreview()
         vc.post = post
         self.present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func goToAR() {
+        let arScene = HomePostDetailARSCN()
+        arScene.post = post
+        navigationController?.pushViewController(arScene, animated: true)
+        
     }
 }

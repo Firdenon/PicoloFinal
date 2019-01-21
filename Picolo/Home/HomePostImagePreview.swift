@@ -27,7 +27,6 @@ class HomePostImagePreview: UIViewController{
         return iv
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
