@@ -14,12 +14,13 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
     
     let cellId = "cellId"
     
+    var userId: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.title = "My Profile"
         collectionView.backgroundColor = .white
-        fetchUser()
         
         collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerId")
         collectionView.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: cellId)
@@ -28,8 +29,9 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
             layout.delegate = self
         }
         
+        fetchUser()
         setupLogOut()
-        fetchOrderedPost()
+        //fetchOrderedPost()
     }
     
     fileprivate func setupLogOut() {
@@ -105,18 +107,21 @@ class UserProfileViewController: UICollectionViewController, UICollectionViewDel
     
     fileprivate func fetchUser() {
         
-        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let uid = userId ?? (Auth.auth().currentUser?.uid ?? "")
+        
+        //guard let uid = Auth.auth().currentUser?.uid else {return}
         
         Database.fetchUserWithUid(uid: uid) { (user) in
             self.user = user
             self.collectionView.reloadData()
+            self.fetchOrderedPost()
         }
     }
     
     var posts = [Post]()
     
     fileprivate func fetchOrderedPost() {
-        guard let uid = Auth.auth().currentUser?.uid else {return}
+        guard let uid = self.user?.uid else {return}
         let ref = Database.database().reference().child("posts").child(uid)
         ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
             
