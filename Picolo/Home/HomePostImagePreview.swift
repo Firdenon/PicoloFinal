@@ -29,7 +29,6 @@ class HomePostImagePreview: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .black
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swiped))
         let tapRecog = UITapGestureRecognizer(target: self, action: #selector(tapped))
@@ -40,6 +39,7 @@ class HomePostImagePreview: UIViewController{
         view.addSubview(photoImageView)
         photoImageView.setAnchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
     }
+    
     @objc func swiped(){
         print("Ke Swipe")
         dismiss(animated: true, completion: nil)

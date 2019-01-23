@@ -12,6 +12,9 @@
 		5A697B0721E887D20010C52C /* HomePostDetailARSCN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A697B0621E887D20010C52C /* HomePostDetailARSCN.swift */; };
 		5A697B0921E889EB0010C52C /* HomePostImagePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A697B0821E889EB0010C52C /* HomePostImagePreview.swift */; };
 		5A697B0E21EC6CE40010C52C /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A697B0D21EC6CE40010C52C /* art.scnassets */; };
+		7092BB7E21F810ED0092DD1E /* SubcriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB7D21F810ED0092DD1E /* SubcriptionController.swift */; };
+		7092BB8021F812A10092DD1E /* SubscriptionPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB7F21F812A10092DD1E /* SubscriptionPost.swift */; };
+		7092BB8221F815CF0092DD1E /* SubscriptionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB8121F815CF0092DD1E /* SubscriptionHeader.swift */; };
 		7093CD6421E32F1200731FB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD6321E32F1200731FB8 /* AppDelegate.swift */; };
 		7093CD6621E32F1200731FB8 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD6521E32F1200731FB8 /* SignUpController.swift */; };
 		7093CD6921E32F1200731FB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7093CD6721E32F1200731FB8 /* Main.storyboard */; };
@@ -22,7 +25,6 @@
 		7093CD9621E357D900731FB8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD9521E357D900731FB8 /* MainTabBarController.swift */; };
 		7093CD9821E3588500731FB8 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD9721E3588500731FB8 /* UserProfileViewController.swift */; };
 		7093CD9B21E35EFB00731FB8 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD9A21E35EFB00731FB8 /* UserProfileHeader.swift */; };
-		7093CD9F21E37DF800731FB8 /* CustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD9E21E37DF800731FB8 /* CustomLayout.swift */; };
 		7093CDA221E385F900731FB8 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CDA121E385F900731FB8 /* LoginController.swift */; };
 		7093CDA621E3C2AF00731FB8 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CDA521E3C2AF00731FB8 /* PhotoSelectorController.swift */; };
 		7093CDA821E3D09000731FB8 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CDA721E3D09000731FB8 /* PhotoSelectorCell.swift */; };
@@ -63,6 +65,9 @@
 		5A697B0621E887D20010C52C /* HomePostDetailARSCN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostDetailARSCN.swift; sourceTree = "<group>"; };
 		5A697B0821E889EB0010C52C /* HomePostImagePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostImagePreview.swift; sourceTree = "<group>"; };
 		5A697B0D21EC6CE40010C52C /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		7092BB7D21F810ED0092DD1E /* SubcriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcriptionController.swift; sourceTree = "<group>"; };
+		7092BB7F21F812A10092DD1E /* SubscriptionPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPost.swift; sourceTree = "<group>"; };
+		7092BB8121F815CF0092DD1E /* SubscriptionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionHeader.swift; sourceTree = "<group>"; };
 		7093CD6021E32F1200731FB8 /* Picolo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picolo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7093CD6321E32F1200731FB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7093CD6521E32F1200731FB8 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -77,7 +82,6 @@
 		7093CD9521E357D900731FB8 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		7093CD9721E3588500731FB8 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		7093CD9A21E35EFB00731FB8 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
-		7093CD9E21E37DF800731FB8 /* CustomLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
 		7093CDA121E385F900731FB8 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		7093CDA521E3C2AF00731FB8 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		7093CDA721E3D09000731FB8 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
@@ -123,6 +127,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7092BB7C21F810CE0092DD1E /* Subscription */ = {
+			isa = PBXGroup;
+			children = (
+				7092BB7D21F810ED0092DD1E /* SubcriptionController.swift */,
+				7092BB7F21F812A10092DD1E /* SubscriptionPost.swift */,
+				7092BB8121F815CF0092DD1E /* SubscriptionHeader.swift */,
+			);
+			path = Subscription;
+			sourceTree = "<group>";
+		};
 		7093CD5721E32F1200731FB8 = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +162,7 @@
 			children = (
 				7093CD6321E32F1200731FB8 /* AppDelegate.swift */,
 				7093CD9521E357D900731FB8 /* MainTabBarController.swift */,
+				7092BB7C21F810CE0092DD1E /* Subscription */,
 				7093CDAD21E4501100731FB8 /* Models */,
 				7093CDBD21E4D4F700731FB8 /* Search */,
 				7093CDB421E45B9300731FB8 /* Home */,
@@ -171,7 +186,6 @@
 				7093CD9721E3588500731FB8 /* UserProfileViewController.swift */,
 				7093CD9A21E35EFB00731FB8 /* UserProfileHeader.swift */,
 				7093CDB021E451A700731FB8 /* UserProfilePhotoCell.swift */,
-				7093CD9E21E37DF800731FB8 /* CustomLayout.swift */,
 			);
 			path = UserProfile;
 			sourceTree = "<group>";
@@ -397,6 +411,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Picolo/Pods-Picolo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/PinterestLayout/PinterestLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -406,6 +421,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PinterestLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -446,13 +462,13 @@
 				7093CD9421E3325B00731FB8 /* Extension.swift in Sources */,
 				5A697B0521E86EB50010C52C /* HomePostDetail.swift in Sources */,
 				7093CDB821E45C8E00731FB8 /* HomePostCell.swift in Sources */,
-				7093CD9F21E37DF800731FB8 /* CustomLayout.swift in Sources */,
 				7093CD9821E3588500731FB8 /* UserProfileViewController.swift in Sources */,
 				7093CDA621E3C2AF00731FB8 /* PhotoSelectorController.swift in Sources */,
 				7093CDB321E4554000731FB8 /* CustomImageView.swift in Sources */,
 				7093CDAF21E4502200731FB8 /* Post.swift in Sources */,
 				7093CD6621E32F1200731FB8 /* SignUpController.swift in Sources */,
 				7093CD9B21E35EFB00731FB8 /* UserProfileHeader.swift in Sources */,
+				7092BB8221F815CF0092DD1E /* SubscriptionHeader.swift in Sources */,
 				7093CDAC21E3E33400731FB8 /* SharePhotoController.swift in Sources */,
 				7093CDC121E4E15200731FB8 /* SearchCell.swift in Sources */,
 				7093CDAA21E3D7EC00731FB8 /* PhotoSelectorHeader.swift in Sources */,
@@ -464,8 +480,10 @@
 				7093CDBC21E4C1CF00731FB8 /* Firebase Utils.swift in Sources */,
 				5A697B0721E887D20010C52C /* HomePostDetailARSCN.swift in Sources */,
 				7093CDBA21E4BBC400731FB8 /* User.swift in Sources */,
+				7092BB7E21F810ED0092DD1E /* SubcriptionController.swift in Sources */,
 				7093CDB121E451A700731FB8 /* UserProfilePhotoCell.swift in Sources */,
 				7093CD6421E32F1200731FB8 /* AppDelegate.swift in Sources */,
+				7092BB8021F812A10092DD1E /* SubscriptionPost.swift in Sources */,
 				7093CDA821E3D09000731FB8 /* PhotoSelectorCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

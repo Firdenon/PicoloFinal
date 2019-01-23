@@ -9,22 +9,49 @@
 import Foundation
 import UIKit
 import Firebase
+import PinterestLayout
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let cellId = "cellId"
+    var posts = [Post](){
+        didSet{
+            self.collectionView.collectionViewLayout.invalidateLayout()
+            self.collectionView.reloadData()
+            self.collectionView.collectionViewLayout.invalidateLayout()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let name = SharePhotoController.updateFeedNotificationName
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: name, object: nil)
         
         collectionView.backgroundColor = .white
-        
         collectionView.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
         
+        let refresControl = UIRefreshControl()
+        refresControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView.refreshControl = refresControl
+        if let layout = collectionView?.collectionViewLayout as? PinterestLayout {
+            layout.delegate = self
+            layout.cellPadding = 10
+            layout.numberOfColumns = 2
+        }
         setupNavItems()
-        
-        fetchPost()
-        
+        fetchAllPost()
+    }
+    
+    @objc func handleUpdateFeed(){
+        handleRefresh()
+    }
+    
+    @objc func handleRefresh() {
+        print("Handle Refresh.....")
+        posts.removeAll()
+        fetchAllPost()
     }
     
     fileprivate func setupNavItems() {
@@ -36,64 +63,60 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         navigationController?.pushViewController(searchController, animated: true)
     }
     
-    var posts = [Post]()
-    
-    fileprivate func fetchPost() {
-        guard let uid = Auth.auth().currentUser?.uid else {return}
-        
-        Database.fetchUserWithUid(uid: uid) { (user) in
-            self.fetchPostWithUser(user: user)
+    fileprivate func fetchAllPost() {
+        Database.database().reference().child("users").observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let userIdDict = snapshot.value as? [String:Any] else {return}
+            userIdDict.forEach({ (key, value) in
+                Database.fetchUserWithUid(uid: key, completion: { (user) in
+                    self.fetchPostWithUser(user: user)
+                })
+            })
+            self.collectionView.collectionViewLayout.invalidateLayout()
+            self.collectionView.reloadData()
+            
+        }) { (err) in
+            print("Failed to fetch all user id: \(err)")
         }
     }
     
     fileprivate func fetchPostWithUser(user: User) {
-        
         let ref = Database.database().reference().child("posts").child(user.uid)
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            
+            self.collectionView.refreshControl?.endRefreshing()
             guard let dictionaries = snapshot.value as? [String:Any] else {return}
             dictionaries.forEach({ (key, value) in
-                
                 guard let dictionary = value as? [String:Any] else {return}
-                
                 let post = Post(user: user, dictionary: dictionary)
+                
                 self.posts.append(post)
             })
             
+            self.posts.sort(by: { (p1, p2) -> Bool in
+                return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+            })
+            self.collectionView.collectionViewLayout.invalidateLayout()
             self.collectionView.reloadData()
-            
+            self.collectionView.collectionViewLayout.invalidateLayout()
         }) { (err) in
             print("Failed to fetch post: \(err.localizedDescription)")
         }
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (view.frame.width - 30) / 2, height: 320)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    
+
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return posts.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-    }
-    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomePostCell
-        
         cell.post = posts[indexPath.item]
-        cell.layer.cornerRadius = 10
-        cell.layer.masksToBounds = true
-    
+        cell.backgroundColor = .lightGray
+        cell.layer.shadowColor = UIColor.black.cgColor
+        cell.layer.shadowOffset = CGSize(width: 0, height: 0.1)
+        cell.layer.shadowRadius = 2.0
+        cell.layer.shadowOpacity = 0.5
+        cell.layer.masksToBounds = false
+        cell.clipsToBounds = false
+        cell.layer.cornerRadius = 20
         return cell
     }
     
@@ -101,6 +124,21 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let detail = HomePostDetail()
         detail.post = posts[indexPath.item]
         navigationController?.pushViewController(detail, animated: true)
-        
     }
+}
+
+extension HomeController: PinterestLayoutDelegate {
+    func collectionView(collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath, withWidth: CGFloat) -> CGFloat {
+        let imageHeight = posts[indexPath.item].imageHeight
+        let imageWidth = posts[indexPath.item].imageWidth
+        let lebaryangditentukan:CGFloat = (375 / 2) - 20
+        let x = imageWidth / lebaryangditentukan
+        let panjang = imageHeight / x
+        return panjang
+    }
+    
+    func collectionView(collectionView: UICollectionView, heightForAnnotationAtIndexPath indexPath: IndexPath, withWidth: CGFloat) -> CGFloat {
+        return 0
+    }
+    
 }

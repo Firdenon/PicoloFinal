@@ -14,12 +14,9 @@ class HomePostDetail: UIViewController{
         didSet{
             guard let imageURL = post?.imageUrl else {return}
             photoImageView.loadImage(urlString: imageURL)
-            
             titleLable.text = post?.title
-            
             guard let usernameText = post?.user.username else {return}
             usernameLabel.text = "by " + (usernameText)
-            
             guard let profileImageUrl = post?.user.profileImageUrl else {return}
             profileImageView.loadImage(urlString: profileImageUrl)
         }
@@ -46,7 +43,6 @@ class HomePostDetail: UIViewController{
         iv.contentMode = .scaleAspectFill
         iv.backgroundColor = .lightGray
         iv.clipsToBounds = true
-        
         return iv
     }()
     
@@ -68,12 +64,10 @@ class HomePostDetail: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //Mark Tap Recognizer
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapImageDetail))
         photoImageView.isUserInteractionEnabled = true
         photoImageView.addGestureRecognizer(tap)
-        
         //mark View
         view.backgroundColor = .white
         view.addSubview(titleLable)
@@ -81,8 +75,6 @@ class HomePostDetail: UIViewController{
         view.addSubview(photoImageView)
         view.addSubview(profileImageView)
         view.addSubview(arButton)
-        
-        
         photoImageView.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: 0,height: 200)
         profileImageView.setAnchor(top: photoImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: 50,height: 50)
         titleLable.setAnchor(top: photoImageView.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)

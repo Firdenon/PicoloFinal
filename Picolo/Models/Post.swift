@@ -15,6 +15,7 @@ struct Post {
     let imageUrl: String
     let user: User
     let title: String
+    let creationDate: Date
     
     init(user:User, dictionary: [String:Any]) {
         self.user = user
@@ -22,5 +23,8 @@ struct Post {
         self.title = dictionary["caption"] as? String ?? ""
         self.imageHeight = dictionary["imgHeight"] as? CGFloat ?? 0
         self.imageWidth = dictionary["imgWidth"] as? CGFloat ?? 0
+        
+        let secondFrom1970 = dictionary["creationDate"] as? Double ?? 0
+        self.creationDate = Date(timeIntervalSince1970: secondFrom1970)
     }
 }

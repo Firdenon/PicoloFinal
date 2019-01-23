@@ -17,22 +17,15 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         didSet{
             guard let imageURL = post?.imageUrl else {return}
             print(imageURL)
-            
             let imageWidth = post?.imageWidth
             print(imageWidth)
-            
             let imageHeight = post?.imageHeight
             print(imageHeight)
-            
             imagePost.loadImage(urlString: (post?.imageUrl)!)
-            
 //            photoImageView.loadImage(urlString: imageURL)
-//            
 //            titleLable.text = post?.title
-//            
 //            guard let usernameText = post?.user.username else {return}
 //            usernameLabel.text = "by " + (usernameText)
-//            
 //            guard let profileImageUrl = post?.user.profileImageUrl else {return}
 //            profileImageView.loadImage(urlString: profileImageUrl)
         }

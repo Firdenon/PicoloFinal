@@ -15,20 +15,20 @@ class UserProfilePhotoCell: UICollectionViewCell {
         didSet {
             guard let imageUrl = post?.imageUrl else {return}
             photoImageView.loadImage(urlString: imageUrl)
+            //photoImageView.image = imageChace[imageUrl]
         }
     }
     
     let photoImageView: CustomImageView = {
         let iv = CustomImageView()
         iv.backgroundColor = .lightGray
-        iv.contentMode = .scaleAspectFit
-        //iv.clipsToBounds = true
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
         return iv
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         addSubview(photoImageView)
         photoImageView.setAnchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
     }
