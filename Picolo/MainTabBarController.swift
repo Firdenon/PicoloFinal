@@ -59,6 +59,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         //Upload Photo
         let plusNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "Upload Unselected"), selectedImage: #imageLiteral(resourceName: "plus_photo"))
         //User Profile
+        
+        
         let userProfileViewController = UserProfileViewController(collectionViewLayout: PinterestLayout())
         
         
@@ -67,7 +69,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         userProfileNavController.tabBarItem.selectedImage = #imageLiteral(resourceName: "Profile Selected")
         
         
-        let loginNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "gear"), selectedImage: #imageLiteral(resourceName: "noun_Tag_1948126 Copy"), rootViewController: LoginController())
+        let loginNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "gear"), selectedImage: #imageLiteral(resourceName: "noun_Tag_1948126 Copy"), rootViewController: AuthBoarding())
         
         
         tabBar.tintColor = UIColor.rgb(red: 255, green: 150, blue: 123)

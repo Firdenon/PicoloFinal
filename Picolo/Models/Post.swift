@@ -10,12 +10,17 @@ import Foundation
 import UIKit
 
 struct Post {
+    
+    var id : String?
+    
     let imageHeight: CGFloat
     let imageWidth: CGFloat
     let imageUrl: String
     let user: User
     let title: String
     let creationDate: Date
+    
+    var hasLiked = false
     
     init(user:User, dictionary: [String:Any]) {
         self.user = user

@@ -24,7 +24,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.hideKeyboardWhenTappedAround()
         let name = SharePhotoController.updateFeedNotificationName
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: name, object: nil)
@@ -86,17 +86,32 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             guard let dictionaries = snapshot.value as? [String:Any] else {return}
             dictionaries.forEach({ (key, value) in
                 guard let dictionary = value as? [String:Any] else {return}
-                let post = Post(user: user, dictionary: dictionary)
+                var post = Post(user: user, dictionary: dictionary)
+                post.id = key
                 
-                self.posts.append(post)
-            })
+                guard let uid = Auth.auth().currentUser?.uid else {return}
             
-            self.posts.sort(by: { (p1, p2) -> Bool in
-                return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+                Database.database().reference().child("likes").child(key).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    if let value = snapshot.value as? Int, value == 1 {
+                        post.hasLiked = true
+                    } else {
+                        post.hasLiked = false
+                    }
+                    
+                    self.posts.append(post)
+                    self.posts.sort(by: { (p1, p2) -> Bool in
+                        return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+                    })
+                    
+                    self.collectionView.collectionViewLayout.invalidateLayout()
+                    self.collectionView.reloadData()
+                    self.collectionView.collectionViewLayout.invalidateLayout()
+                    
+                }, withCancel: { (err) in
+                    print("Failed to fetch like info for post")
+                })
             })
-            self.collectionView.collectionViewLayout.invalidateLayout()
-            self.collectionView.reloadData()
-            self.collectionView.collectionViewLayout.invalidateLayout()
         }) { (err) in
             print("Failed to fetch post: \(err.localizedDescription)")
         }

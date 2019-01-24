@@ -50,18 +50,23 @@ class UserProfileViewController: UICollectionViewController{
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(handleLogout))
             self.navigationItem.title = "My Profile"
         } else {
+            
             guard let userUid = userId else {return}
             Database.database().reference().child("following").child(currentLoginId).child(userUid).observeSingleEvent(of: .value, with: { (snapshot) in
                 if let isFollowing = snapshot.value as? Int, isFollowing == 1 {
                     let rightbutton = UIBarButtonItem(title: "Unfollow", style: .plain, target: self, action: #selector(self.handleFollow))
                     rightbutton.tintColor = .lightGray
-                    self.navigationItem.rightBarButtonItem = rightbutton
-                    self.navigationItem.title = "Someone Profile"
+                    DispatchQueue.main.async {
+                        self.navigationItem.rightBarButtonItem = rightbutton
+                        self.navigationItem.title = "Followed Profile"
+                    }
                 } else {
                     let rightbutton = UIBarButtonItem(title: "Follow", style: .plain, target: self, action: #selector(self.handleFollow))
                     rightbutton.tintColor = self.view.tintColor
-                    self.navigationItem.rightBarButtonItem = rightbutton
-                    self.navigationItem.title = "Followed Profile"
+                    DispatchQueue.main.async {
+                        self.navigationItem.rightBarButtonItem = rightbutton
+                        self.navigationItem.title = "Someone Profile"
+                    }
                 }
             }) { (err) in
                 print("Failed to check")
@@ -145,6 +150,12 @@ class UserProfileViewController: UICollectionViewController{
         cell.clipsToBounds = false
         cell.layer.cornerRadius = 20
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detail = HomePostDetail()
+        detail.post = posts[indexPath.item]
+        navigationController?.pushViewController(detail, animated: true)
     }
     
     var user: User?

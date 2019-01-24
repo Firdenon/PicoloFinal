@@ -75,6 +75,22 @@ class LoginController: UIViewController {
         return bt
     }()
     
+    let cancelButton: UIButton = {
+        let bt = UIButton(type: .system)
+        bt.setTitle("Cancel", for: .normal)
+        bt.backgroundColor = UIColor.rgb(red: 255, green: 150, blue: 123)
+        bt.layer.cornerRadius = 5
+        bt.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        bt.setTitleColor(.white, for: .normal)
+        bt.isEnabled = true
+        bt.addTarget(self, action: #selector(handleCancel), for: .touchUpInside)
+        return bt
+    }()
+    
+    @objc func handleCancel() {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @objc func handleLogin() {
         guard let email = emailTextfield.text else {return}
         guard let password = passwordTextfield.text else {return}
@@ -96,6 +112,7 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .white
         view.addSubview(logoContainer)
@@ -106,7 +123,7 @@ class LoginController: UIViewController {
     }
     
     fileprivate func setupInputField() {
-        let stackView = UIStackView(arrangedSubviews: [emailTextfield,passwordTextfield,loginButton])
+        let stackView = UIStackView(arrangedSubviews: [emailTextfield,passwordTextfield,loginButton,cancelButton])
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
         stackView.spacing = 10

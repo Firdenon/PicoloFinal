@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class HomePostDetail: UIViewController{
     
@@ -16,9 +17,18 @@ class HomePostDetail: UIViewController{
             photoImageView.loadImage(urlString: imageURL)
             titleLable.text = post?.title
             guard let usernameText = post?.user.username else {return}
-            usernameLabel.text = "by " + (usernameText)
+            guard let postUserId = post?.user.uid else {return}
+            guard let uid = Auth.auth().currentUser?.uid else {return}
+            
+            if postUserId == uid {
+                usernameLabel.text = "by me"
+            } else {
+                usernameLabel.text = "by " + (usernameText)
+            }
             guard let profileImageUrl = post?.user.profileImageUrl else {return}
             profileImageView.loadImage(urlString: profileImageUrl)
+            
+            likeButton.setImage(post?.hasLiked == true ? #imageLiteral(resourceName: "Done").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "like ").withRenderingMode(.alwaysOriginal), for: .normal)
         }
     }
     
@@ -62,6 +72,47 @@ class HomePostDetail: UIViewController{
         return btn
     }()
     
+    let likeButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setImage(#imageLiteral(resourceName: "like ").withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.addTarget(self, action: #selector(handelLike), for: .touchUpInside)
+        return btn
+    }()
+    
+    @objc func handelLike() {
+        print("liked")
+        guard let postId = post?.id else {return}
+        
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let values = [uid:post?.hasLiked == true ? 0 : 1]
+        Database.database().reference().child("likes").child(postId).updateChildValues(values) { (err, _) in
+            if let err = err {
+                print("Failed to like post: \(err.localizedDescription)")
+                return
+            }
+            
+            print("Succesfully liked post")
+            
+            self.post?.hasLiked = !(self.post?.hasLiked)!
+        }
+    }
+    
+    let commentButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setImage(#imageLiteral(resourceName: "gear").withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.addTarget(self, action: #selector(handleComment), for: .touchUpInside)
+        return btn
+    }()
+    
+    @objc func handleComment() {
+        print("handle Comment")
+        
+        let commentsController = CommentsController(collectionViewLayout: UICollectionViewFlowLayout())
+        commentsController.post = post
+        
+        navigationController?.pushViewController(commentsController, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //Mark Tap Recognizer
@@ -75,18 +126,29 @@ class HomePostDetail: UIViewController{
         view.addSubview(photoImageView)
         view.addSubview(profileImageView)
         view.addSubview(arButton)
+        
+        view.addSubview(likeButton)
+        view.addSubview(commentButton)
+        
         photoImageView.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: 0,height: 200)
         profileImageView.setAnchor(top: photoImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: 50,height: 50)
         titleLable.setAnchor(top: photoImageView.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
         usernameLabel.setAnchor(top: titleLable.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
         arButton.setAnchor(top: profileImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        
+        likeButton.setAnchor(top: arButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 0)
+        
+        commentButton.setAnchor(top: likeButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 0)
+        
     }
     
     @objc func tapImageDetail(){
         print("1")
         let vc = HomePostImagePreview()
         vc.post = post
-        self.present(vc, animated: true, completion: nil)
+        navigationController?.pushViewController(vc, animated: true)
+        
+        //self.present(vc, animated: true, completion: nil)
     }
     
     @objc func goToAR() {

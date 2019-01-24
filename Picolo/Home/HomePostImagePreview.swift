@@ -30,24 +30,44 @@ class HomePostImagePreview: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        
+        
+        
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swiped))
         let tapRecog = UITapGestureRecognizer(target: self, action: #selector(tapped))
         swipeGesture.direction = .down
         photoImageView.isUserInteractionEnabled = true
         photoImageView.addGestureRecognizer(tapRecog)
-        photoImageView.addGestureRecognizer(swipeGesture)
+        //photoImageView.addGestureRecognizer(swipeGesture)
         view.addSubview(photoImageView)
         photoImageView.setAnchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+        tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.isNavigationBarHidden = false
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     @objc func swiped(){
         print("Ke Swipe")
-        dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func tapped(){
         print("Tapped")
-        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

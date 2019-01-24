@@ -98,6 +98,8 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         guard let userName = userNameTextfield.text, userName.characters.count > 0 else {return}
         guard let password = passwordTextfield.text, password.characters.count > 0 else {return}
     
+        signUpButton.isEnabled = false
+        
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if let error = error {
                 print("failed to create user: \(error)")
@@ -154,6 +156,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         view.backgroundColor = .white
         view.addSubview(photoButton)
         photoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true

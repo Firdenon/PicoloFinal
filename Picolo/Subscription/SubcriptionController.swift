@@ -111,6 +111,12 @@ class SubscriptionController: UICollectionViewController, UICollectionViewDelega
         return cell
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detail = HomePostDetail()
+        detail.post = posts[indexPath.item]
+        navigationController?.pushViewController(detail, animated: true)
+    }
+    
 }
 
 extension SubscriptionController: PinterestLayoutDelegate {

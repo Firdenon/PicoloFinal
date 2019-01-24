@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
+import PinterestLayout
 
 class SearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     
@@ -51,10 +52,9 @@ class SearchController: UICollectionViewController, UICollectionViewDelegateFlow
         searchBar.resignFirstResponder()
         let user = filteredUsers[indexPath.item]
         print(user.username)
-        let userProfileController = UserProfileViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let userProfileController = UserProfileViewController(collectionViewLayout: PinterestLayout())
         userProfileController.userId = user.uid
         navigationController?.pushViewController(userProfileController, animated: true)
-        
     }
     
     fileprivate func fetchUsers(){

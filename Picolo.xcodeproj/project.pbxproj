@@ -15,6 +15,10 @@
 		7092BB7E21F810ED0092DD1E /* SubcriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB7D21F810ED0092DD1E /* SubcriptionController.swift */; };
 		7092BB8021F812A10092DD1E /* SubscriptionPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB7F21F812A10092DD1E /* SubscriptionPost.swift */; };
 		7092BB8221F815CF0092DD1E /* SubscriptionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB8121F815CF0092DD1E /* SubscriptionHeader.swift */; };
+		7092BB8421F854740092DD1E /* AuthBoarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB8321F854740092DD1E /* AuthBoarding.swift */; };
+		7092BB8621F991D20092DD1E /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB8521F991D20092DD1E /* CommentsController.swift */; };
+		7092BB8821FA193D0092DD1E /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB8721FA193D0092DD1E /* CommentsCell.swift */; };
+		7092BB8A21FA1D610092DD1E /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB8921FA1D610092DD1E /* Comment.swift */; };
 		7093CD6421E32F1200731FB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD6321E32F1200731FB8 /* AppDelegate.swift */; };
 		7093CD6621E32F1200731FB8 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD6521E32F1200731FB8 /* SignUpController.swift */; };
 		7093CD6921E32F1200731FB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7093CD6721E32F1200731FB8 /* Main.storyboard */; };
@@ -68,6 +72,10 @@
 		7092BB7D21F810ED0092DD1E /* SubcriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcriptionController.swift; sourceTree = "<group>"; };
 		7092BB7F21F812A10092DD1E /* SubscriptionPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPost.swift; sourceTree = "<group>"; };
 		7092BB8121F815CF0092DD1E /* SubscriptionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionHeader.swift; sourceTree = "<group>"; };
+		7092BB8321F854740092DD1E /* AuthBoarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBoarding.swift; sourceTree = "<group>"; };
+		7092BB8521F991D20092DD1E /* CommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
+		7092BB8721FA193D0092DD1E /* CommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
+		7092BB8921FA1D610092DD1E /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		7093CD6021E32F1200731FB8 /* Picolo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picolo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7093CD6321E32F1200731FB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7093CD6521E32F1200731FB8 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -162,6 +170,7 @@
 			children = (
 				7093CD6321E32F1200731FB8 /* AppDelegate.swift */,
 				7093CD9521E357D900731FB8 /* MainTabBarController.swift */,
+				7092BB8321F854740092DD1E /* AuthBoarding.swift */,
 				7092BB7C21F810CE0092DD1E /* Subscription */,
 				7093CDAD21E4501100731FB8 /* Models */,
 				7093CDBD21E4D4F700731FB8 /* Search */,
@@ -225,6 +234,7 @@
 			children = (
 				7093CDAE21E4502200731FB8 /* Post.swift */,
 				7093CDB921E4BBC400731FB8 /* User.swift */,
+				7092BB8921FA1D610092DD1E /* Comment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -237,6 +247,8 @@
 				5A697B0421E86EB50010C52C /* HomePostDetail.swift */,
 				5A697B0821E889EB0010C52C /* HomePostImagePreview.swift */,
 				5A697B0621E887D20010C52C /* HomePostDetailARSCN.swift */,
+				7092BB8521F991D20092DD1E /* CommentsController.swift */,
+				7092BB8721FA193D0092DD1E /* CommentsCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -466,10 +478,13 @@
 				7093CDA621E3C2AF00731FB8 /* PhotoSelectorController.swift in Sources */,
 				7093CDB321E4554000731FB8 /* CustomImageView.swift in Sources */,
 				7093CDAF21E4502200731FB8 /* Post.swift in Sources */,
+				7092BB8421F854740092DD1E /* AuthBoarding.swift in Sources */,
 				7093CD6621E32F1200731FB8 /* SignUpController.swift in Sources */,
+				7092BB8621F991D20092DD1E /* CommentsController.swift in Sources */,
 				7093CD9B21E35EFB00731FB8 /* UserProfileHeader.swift in Sources */,
 				7092BB8221F815CF0092DD1E /* SubscriptionHeader.swift in Sources */,
 				7093CDAC21E3E33400731FB8 /* SharePhotoController.swift in Sources */,
+				7092BB8821FA193D0092DD1E /* CommentsCell.swift in Sources */,
 				7093CDC121E4E15200731FB8 /* SearchCell.swift in Sources */,
 				7093CDAA21E3D7EC00731FB8 /* PhotoSelectorHeader.swift in Sources */,
 				7093CDBF21E4D50D00731FB8 /* SearchController.swift in Sources */,
@@ -481,6 +496,7 @@
 				5A697B0721E887D20010C52C /* HomePostDetailARSCN.swift in Sources */,
 				7093CDBA21E4BBC400731FB8 /* User.swift in Sources */,
 				7092BB7E21F810ED0092DD1E /* SubcriptionController.swift in Sources */,
+				7092BB8A21FA1D610092DD1E /* Comment.swift in Sources */,
 				7093CDB121E451A700731FB8 /* UserProfilePhotoCell.swift in Sources */,
 				7093CD6421E32F1200731FB8 /* AppDelegate.swift in Sources */,
 				7092BB8021F812A10092DD1E /* SubscriptionPost.swift in Sources */,
