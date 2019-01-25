@@ -77,8 +77,8 @@ class SubscriptionController: UICollectionViewController, UICollectionViewDelega
             guard let dictionaries = snapshot.value as? [String:Any] else {return}
             dictionaries.forEach({ (key, value) in
                 guard let dictionary = value as? [String:Any] else {return}
-                let post = Post(user: user, dictionary: dictionary)
-                
+                var post = Post(user: user, dictionary: dictionary)
+                post.id = key
                 self.posts.append(post)
             })
             

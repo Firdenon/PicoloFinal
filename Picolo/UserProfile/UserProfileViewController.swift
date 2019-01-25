@@ -129,7 +129,6 @@ class UserProfileViewController: UICollectionViewController{
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("=========ATUR ULANG POSTS==========")
         return posts.count
     }
     
@@ -179,7 +178,8 @@ class UserProfileViewController: UICollectionViewController{
         ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
             guard let dictionary = snapshot.value as? [String:Any] else {return}
             guard let user = self.user else {return}
-            let post = Post(user: user, dictionary: dictionary)
+            var post = Post(user: user, dictionary: dictionary)
+            post.id = snapshot.key
             self.posts.insert(post, at: 0)
             print("tambahin")
             //self.posts.append(post)
