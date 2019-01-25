@@ -62,26 +62,23 @@ extension UIView {
     }
 }
 
-extension UIImage{
-    func loadImage(urlString: String) -> Data? {
-        print("Loading image..........")
-        
-        var tampungData = Data()
-        
-        guard let url = URL(string: urlString) else {return nil}
-        
-        URLSession.shared.dataTask(with: url) { (data, response, err) in
-            if let err = err {
-                print("Failed to fetch post image: \(err.localizedDescription)")
-            }
-            
-            guard let imgData = data else {return}
-            
-            let photoImage = UIImage(data: imgData)
-            
-            imageChace[url.absoluteString] = photoImage
-            tampungData = data!
-            }.resume()
-        return tampungData
-    }
-}
+//extension UIImage{
+//    func loadImage(urlString: String) -> UIImage?{
+//        print("Loading image..........")
+//
+//        guard let url = URL(string: urlString) else {return nil}
+//
+//        URLSession.shared.dataTask(with: url) { (data, response, err) in
+//            if let err = err {
+//                print("Failed to fetch post image: \(err.localizedDescription)")
+//            }
+//
+//            guard let imgData = data else {return}
+//
+//            let photoImage = UIImage(data: imgData)
+//
+//            imageChace[url.absoluteString] = photoImage
+//
+//            }.resume()
+//    }
+//}

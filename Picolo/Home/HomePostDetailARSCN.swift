@@ -21,7 +21,8 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
             print(imageWidth)
             let imageHeight = post?.imageHeight
             print(imageHeight)
-            imagePost.loadImage(urlString: (post?.imageUrl)!)
+            imagePost.loadImage(urlString: imageURL)
+            image = imagePost.image
 //            photoImageView.loadImage(urlString: imageURL)
 //            titleLable.text = post?.title
 //            guard let usernameText = post?.user.username else {return}
@@ -36,11 +37,39 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         return sc
     }()
     
+    var instructionLabel:UILabel = {
+        let tl = UILabel()
+        tl.text = "Detecting Plane"
+        tl.font = UIFont(name: "Avenir-medium", size: 18)
+        tl.textColor = UIColor.black
+        return tl
+    }()
     
-    var imagePost = UIImage()
+    let resetButton: UIButton = {
+        let btn = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
+        btn.backgroundColor = .green
+        btn.setTitle("Reset", for: .normal)
+        btn.addTarget(self, action: #selector(reset), for: .touchUpInside)
+        return btn
+    }()
     
+    let backButton: UIButton = {
+        let btn = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
+        btn.backgroundColor = .green
+        btn.setTitle("Back", for: .normal)
+        btn.addTarget(self, action: #selector(back), for: .touchUpInside)
+        return btn
+    }()
+    
+    var imagePost = CustomImageView()
+    var image : UIImage?
     
     var flag = true
+    var flagplane:Bool = false
+    var flagplace:Bool = false
+    
+    let nodeGambar = SCNNode()
+    let nodePlane = SCNNode()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,26 +78,30 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         
         sceneView.delegate = self
         view.addSubview(sceneView)
+        view.addSubview(instructionLabel)
+        view.addSubview(backButton)
+        view.addSubview(resetButton)
+        
         sceneView.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        instructionLabel.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        instructionLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        backButton.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        resetButton.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        
+        instructionLabel.text = "Detecting Plane"
+        flagplane = false
+        flagplace = false
         
         
-//        let cube = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.01)
-//        let material = SCNMaterial()
-//
-//        material.diffuse.contents = UIColor.red
-//        cube.materials = [material]
-//
-//        let node = SCNNode()
-//        node.position = SCNVector3(x: 0,y: 0.1, z: -0.5)
-//        node.geometry = cube
-//
-//        sceneView.scene.rootNode.addChildNode(node)
         sceneView.autoenablesDefaultLighting = true
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        navigationController?.isNavigationBarHidden = true
+        tabBarController?.tabBar.isHidden = true
         
         if ARWorldTrackingConfiguration.isSupported{
             let configuration = ARWorldTrackingConfiguration()
@@ -82,29 +115,30 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = false
+        tabBarController?.tabBar.isHidden = false
         sceneView.session.pause()
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        if anchor is ARPlaneAnchor {
-            
+        if anchor is ARPlaneAnchor && flagplane == false {
+            instructionLabel.text = "Plane Detected, Place Image"
             let planeAnchor = anchor as! ARPlaneAnchor
             
             let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
             
-            let planeNode = SCNNode()
-            
-            planeNode.position = SCNVector3(x: planeAnchor.center.x, y: 0, z: planeAnchor.center.z)
-            planeNode.eulerAngles.x = -.pi/2
+            nodePlane.position = SCNVector3(x: planeAnchor.center.x, y: 0, z: planeAnchor.center.z)
+            nodePlane.eulerAngles.x = -.pi/2
             
             let gridMaterial = SCNMaterial()
             gridMaterial.diffuse.contents = UIImage(named: "art.scnassets/grid.png")
             
             plane.materials = [gridMaterial]
             
-            planeNode.geometry = plane
+            nodePlane.geometry = plane
             
-            node.addChildNode(planeNode)
+            node.addChildNode(nodePlane)
+            flagplane = true
             print("planeAnchor X : \(planeAnchor.extent.x)")
             print("planeAnchor z : \(planeAnchor.extent.z)")
         }
@@ -114,41 +148,78 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first{
-            let touchLocation = touch.location(in: sceneView)
-            
-            let results = sceneView.hitTest(touchLocation, types: .existingPlaneUsingExtent)
-            
-            if let hitResult = results.first{
+        if flagplace == false {
+            if let touch = touches.first{
+                instructionLabel.text = "Relocate The Image"
+                let touchLocation = touch.location(in: sceneView)
                 
-//                let cube = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.01)
-//                let material = SCNMaterial()
-//                material.diffuse.contents = UIColor.red
-//                cube.materials = [material]
+                let results = sceneView.hitTest(touchLocation, types: .existingPlaneUsingExtent)
                 
-                let imagePlane = SCNPlane(width: 0.5, height: 0.5)
-//                let imageMaterial = SCNMaterial()
-//                imageMaterial.diffuse.contents = imagePost
-//                imagePlane.materials = [imageMaterial]
-                let node = SCNNode()
-                node.position = SCNVector3(
-                    x: hitResult.worldTransform.columns.3.x,
-                    y: hitResult.worldTransform.columns.3.y,
-                    z: hitResult.worldTransform.columns.3.z)
-                //node.eulerAngles.x = -.pi/2
-                
-                let gridMaterial = SCNMaterial()
-                gridMaterial.diffuse.contents = UIColor.red
-                imagePlane.materials = [gridMaterial]
-                
-//                node.geometry = cube
-                
-                node.geometry = imagePlane
-                sceneView.scene.rootNode.addChildNode(node)
+                if let hitResult = results.first{
+                    
+    //                let cube = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.01)
+    //                let material = SCNMaterial()
+    //                material.diffuse.contents = UIColor.red
+    //                cube.materials = [material]
+                    
+                    let imagePlane = SCNPlane(width: 0.5, height: 0.5)
+    //                let imageMaterial = SCNMaterial()
+    //                imageMaterial.diffuse.contents = imagePost
+    //                imagePlane.materials = [imageMaterial]
+                    
+                    nodeGambar.position = SCNVector3(
+                        x: hitResult.worldTransform.columns.3.x,
+                        y: hitResult.worldTransform.columns.3.y,
+                        z: hitResult.worldTransform.columns.3.z)
+                    //node.eulerAngles.x = -.pi/2
+                    
+                    let gridMaterial = SCNMaterial()
+                    gridMaterial.diffuse.contents = image
+                    imagePlane.materials = [gridMaterial]
+                    
+    //                node.geometry = cube
+                    
+                    nodeGambar.geometry = imagePlane
+                    sceneView.scene.rootNode.addChildNode(nodeGambar)
+                    nodePlane.geometry = nil
+                    flagplace = true
+                }
             }
+        }
+        
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if flagplace == true {
+            //get the current touch point
+            guard let currentTouchPoint = touches.first?.location(in: self.sceneView),
+                
+            //get the next feature point Etc
+            let hitTest = sceneView.hitTest(currentTouchPoint,types: .existingPlane).first else {return}
+            
+            //convert to world coordinates
+            let worldTransform = hitTest.worldTransform
+            
+            //set the new position
+            let newPosition = SCNVector3(worldTransform.columns.3.x,
+                                         worldTransform.columns.3.y,
+                                         worldTransform.columns.3.z)
+            
+            //apply to the node
+            nodeGambar.position = newPosition
+            
         }
     }
     
+    @objc func reset(){
+        self.sceneView.scene.rootNode.enumerateChildNodes{(existingNode,_) in existingNode.removeFromParentNode()}
+        viewDidLoad()
+    }
+    
+    @objc func back(){
+        print("back kepencet")
+        navigationController?.popViewController(animated: true)
+    }
     
 //    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
 //        if anchor is ARPlaneAnchor {
