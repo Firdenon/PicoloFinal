@@ -105,7 +105,8 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
             planeNode.geometry = plane
             
             node.addChildNode(planeNode)
-            
+            print("planeAnchor X : \(planeAnchor.extent.x)")
+            print("planeAnchor z : \(planeAnchor.extent.z)")
         }
         else{
             return
@@ -125,26 +126,23 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
 //                material.diffuse.contents = UIColor.red
 //                cube.materials = [material]
                 
-                let imagePlane = SCNPlane(width: 100, height: 100)
+                let imagePlane = SCNPlane(width: 0.5, height: 0.5)
 //                let imageMaterial = SCNMaterial()
 //                imageMaterial.diffuse.contents = imagePost
 //                imagePlane.materials = [imageMaterial]
-                
-                let gridMaterial = SCNMaterial()
-                gridMaterial.diffuse.contents = UIImage(named: "art.scnassets/ump45.jpg")
-                imagePlane.materials = [gridMaterial]
-                
-                
                 let node = SCNNode()
                 node.position = SCNVector3(
                     x: hitResult.worldTransform.columns.3.x,
                     y: hitResult.worldTransform.columns.3.y,
                     z: hitResult.worldTransform.columns.3.z)
-                node.eulerAngles.x = -.pi/2
+                //node.eulerAngles.x = -.pi/2
                 
-                
+                let gridMaterial = SCNMaterial()
+                gridMaterial.diffuse.contents = UIColor.red
+                imagePlane.materials = [gridMaterial]
                 
 //                node.geometry = cube
+                
                 node.geometry = imagePlane
                 sceneView.scene.rootNode.addChildNode(node)
             }
