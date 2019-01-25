@@ -29,7 +29,7 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
     
     var comments = [Comment]()
     
-    fileprivate func fetchComments() {
+    func fetchComments() {
         
         guard let postId = self.post?.id else {return}
         
