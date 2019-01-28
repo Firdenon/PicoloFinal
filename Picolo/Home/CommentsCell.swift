@@ -16,7 +16,9 @@ class CommentsCell: UICollectionViewCell {
             let attributedText = NSMutableAttributedString(string: comment.user.username + "\n", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
             attributedText.append(NSAttributedString(string: comment.text, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]))
             textView.attributedText = attributedText
-            profileImageView.loadImage(urlString: comment.user.profileImageUrl)
+            profileImageView.loadImage(urlString: comment.user.profileImageUrl){
+                
+            }
         }
     }
     

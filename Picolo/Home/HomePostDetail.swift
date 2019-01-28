@@ -14,7 +14,9 @@ class HomePostDetail: UIViewController{
     var post: Post?{
         didSet{
             guard let imageURL = post?.imageUrl else {return}
-            photoImageView.loadImage(urlString: imageURL)
+            photoImageView.loadImage(urlString: imageURL){
+                
+            }
             titleLable.text = post?.title
             guard let usernameText = post?.user.username else {return}
             guard let postUserId = post?.user.uid else {return}
@@ -26,11 +28,17 @@ class HomePostDetail: UIViewController{
                 usernameLabel.text = "by " + (usernameText)
             }
             guard let profileImageUrl = post?.user.profileImageUrl else {return}
-            profileImageView.loadImage(urlString: profileImageUrl)
-            
+            profileImageView.loadImage(urlString: profileImageUrl){
+                DispatchQueue.main.async {
+                    self.arButton.isEnabled = true
+                }
+            }
             likeButton.setImage(post?.hasLiked == true ? #imageLiteral(resourceName: "Done").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "like ").withRenderingMode(.alwaysOriginal), for: .normal)
+
         }
     }
+    
+    var loaded:Bool = false
     
     var titleLable:UILabel = {
         let tl = UILabel()
@@ -50,7 +58,7 @@ class HomePostDetail: UIViewController{
     
     let photoImageView: CustomImageView = {
         let iv = CustomImageView()
-        iv.contentMode = .scaleAspectFill
+        iv.contentMode = .scaleAspectFit
         iv.backgroundColor = .lightGray
         iv.clipsToBounds = true
         return iv
@@ -69,6 +77,7 @@ class HomePostDetail: UIViewController{
         btn.backgroundColor = .green
         btn.setTitle("AR Button", for: .normal)
         btn.addTarget(self, action: #selector(goToAR), for: .touchUpInside)
+        btn.isEnabled = false
         return btn
     }()
     
@@ -78,6 +87,12 @@ class HomePostDetail: UIViewController{
         btn.addTarget(self, action: #selector(handelLike), for: .touchUpInside)
         return btn
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if photoImageView.image != nil {
+            arButton.isEnabled = true
+        }
+    }
     
     @objc func handelLike() {
         print("liked")
@@ -130,7 +145,7 @@ class HomePostDetail: UIViewController{
         view.addSubview(likeButton)
         view.addSubview(commentButton)
         
-        photoImageView.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: 0,height: 200)
+        photoImageView.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width : view.frame.width, height: ((post?.imageHeight)!) * (view.frame.width / ((post?.imageHeight)!)))
         profileImageView.setAnchor(top: photoImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: 50,height: 50)
         titleLable.setAnchor(top: photoImageView.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
         usernameLabel.setAnchor(top: titleLable.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
@@ -152,6 +167,7 @@ class HomePostDetail: UIViewController{
     }
     
     @objc func goToAR() {
+        print("go to AR")
         let arScene = HomePostDetailARSCN()
         arScene.post = post
         navigationController?.pushViewController(arScene, animated: true)

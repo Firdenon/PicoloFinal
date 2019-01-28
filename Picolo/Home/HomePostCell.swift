@@ -14,7 +14,9 @@ class HomePostCell: UICollectionViewCell {
     var post: Post? {
         didSet{
             guard let imagePostUrl = post?.imageUrl else {return}
-            photoImageView.loadImage(urlString: imagePostUrl)
+            photoImageView.loadImage(urlString: imagePostUrl){
+                
+            }
         }
     }
     

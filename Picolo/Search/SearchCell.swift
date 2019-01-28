@@ -15,9 +15,13 @@ class SearchCell: UICollectionViewCell {
         didSet {
             userNameLabel.text = user?.username
             guard let profileImageUrl = user?.profileImageUrl else {return}
-            profileImageView.loadImage(urlString: profileImageUrl)
+            profileImageView.loadImage(urlString: profileImageUrl) {
+                
+            }
         }
     }
+    
+    
     
     let profileImageView: CustomImageView = {
         let iv = CustomImageView()

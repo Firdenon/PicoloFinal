@@ -14,7 +14,9 @@ class UserProfilePhotoCell: UICollectionViewCell {
     var post: Post? {
         didSet {
             guard let imageUrl = post?.imageUrl else {return}
-            photoImageView.loadImage(urlString: imageUrl)
+            photoImageView.loadImage(urlString: imageUrl) {
+                
+            }
             //photoImageView.image = imageChace[imageUrl]
         }
     }

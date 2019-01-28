@@ -13,7 +13,8 @@ var imageChace = [String : UIImage]()
 
 class CustomImageView: UIImageView {
     var lastUrlUsedToLoadImage: String?
-    func loadImage(urlString: String) {
+    
+    func loadImage(urlString: String, completion: @escaping () -> ()) {
         lastUrlUsedToLoadImage = urlString
         self.image = nil
         if let chacedImage = imageChace[urlString] {
@@ -31,9 +32,11 @@ class CustomImageView: UIImageView {
             guard let imgData = data else {return}
             let photoImage = UIImage(data: imgData)
             imageChace[url.absoluteString] = photoImage
+            completion()
             DispatchQueue.main.async {
                 self.image = photoImage
             }
             }.resume()
+        
     }
 }

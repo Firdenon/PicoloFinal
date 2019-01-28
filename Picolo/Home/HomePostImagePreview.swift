@@ -14,7 +14,9 @@ class HomePostImagePreview: UIViewController{
     var post: Post?{
         didSet{
             guard let imageURL = post?.imageUrl else {return}
-            photoImageView.loadImage(urlString: imageURL)
+            photoImageView.loadImage(urlString: imageURL){
+                
+            }
         }
     }
     

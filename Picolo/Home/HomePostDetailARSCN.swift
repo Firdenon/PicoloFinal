@@ -21,7 +21,9 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
             print(imageWidth)
             let imageHeight = post?.imageHeight
             print(imageHeight)
-            imagePost.loadImage(urlString: imageURL)
+            imagePost.loadImage(urlString: imageURL){
+                
+            }
             image = imagePost.image
 //            photoImageView.loadImage(urlString: imageURL)
 //            titleLable.text = post?.title
@@ -71,6 +73,8 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
     let nodeGambar = SCNNode()
     let nodePlane = SCNNode()
     
+    let configuration = ARWorldTrackingConfiguration()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -104,7 +108,6 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         tabBarController?.tabBar.isHidden = true
         
         if ARWorldTrackingConfiguration.isSupported{
-            let configuration = ARWorldTrackingConfiguration()
             configuration.planeDetection = [.vertical]
             sceneView.session.run(configuration)
         }
@@ -212,61 +215,25 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
     }
     
     @objc func reset(){
-        self.sceneView.scene.rootNode.enumerateChildNodes{(existingNode,_) in existingNode.removeFromParentNode()}
-        viewDidLoad()
+//        self.sceneView.scene.rootNode.enumerateChildNodes{(existingNode,_) in existingNode.removeFromParentNode()}
+//        viewDidLoad()
+        sceneView.session.pause()
+        sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+            node.removeFromParentNode()
+        }
+        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+        DispatchQueue.main.async {
+            
+            self.instructionLabel.text = "Detecting Plane"
+        }
+        flagplane = false
+        flagplace = false
+        
+        
     }
     
     @objc func back(){
         print("back kepencet")
         navigationController?.popViewController(animated: true)
     }
-    
-//    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-//        if anchor is ARPlaneAnchor {
-//            let planeAnchor = anchor as! ARPlaneAnchor
-//            let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
-//
-//            //attach plane anchor to node
-//            let planeNode = SCNNode()
-//            planeNode.position = SCNVector3(planeAnchor.center.x, 0, planeAnchor.center.z)
-//            planeNode.eulerAngles.x = -.pi/2
-//
-//            //adding material to plane anchor
-//            let gridMaterial = SCNMaterial()
-//            gridMaterial.diffuse.contents = UIImage(named: "ARassets.scnassets/grid.png")
-//            plane.materials = [gridMaterial]
-//            planeNode.geometry = plane
-//
-//            //add plane node to node as child node
-//            node.addChildNode(planeNode)
-//
-//            let newConf = ARWorldTrackingConfiguration()
-//            newConf.planeDetection = [.horizontal, .vertical]
-//        } else {
-//            //return if doesn't find plane
-//            return
-//        }
-//    }
-    
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        if flag == false { return } else {
-//            if let touch = touches.first {
-//                let touchLocation = touch.location(in: sceneView)
-//                let result = sceneView.hitTest(touchLocation, types: .existingPlaneUsingGeometry)
-//                if let hitResult = result.first {
-//                    let hasil = arrayOfStand[Int(objectStepper.value)]
-//                    hasil.position = SCNVector3(
-//                            hitResult.worldTransform.columns.3.x,
-//                            hitResult.worldTransform.columns.3.y,
-//                            hitResult.worldTransform.columns.3.z)
-//
-//                        //hasil.eulerAngles.x = -.pi/2
-//                        sceneView.scene.rootNode.addChildNode(hasil)
-//                        //print(arrayOfImage[Int(objectStepper.value)].nama)
-//                }
-//            }
-//        }
-//    }
-//
-    
 }
