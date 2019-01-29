@@ -82,7 +82,6 @@ class HomePostDetail: UIViewController{
     
     let arButton: UIButton = {
         let btn = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
-        btn.backgroundColor = .green
         btn.setImage(#imageLiteral(resourceName: "ARKit_Glyph_Button (1)"), for: .normal)
         btn.addTarget(self, action: #selector(goToAR), for: .touchUpInside)
         btn.isEnabled = false

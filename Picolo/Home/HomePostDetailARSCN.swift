@@ -43,22 +43,22 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         let tl = UILabel()
         tl.text = "Detecting Plane"
         tl.font = UIFont(name: "Avenir-medium", size: 18)
+        tl.textAlignment = .center
+        tl.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         tl.textColor = UIColor.black
         return tl
     }()
     
     let resetButton: UIButton = {
         let btn = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
-        btn.backgroundColor = .green
-        btn.setImage(#imageLiteral(resourceName: "noun_reset_2068171"), for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "Group 3"), for: .normal)
         btn.addTarget(self, action: #selector(reset), for: .touchUpInside)
         return btn
     }()
     
     let backButton: UIButton = {
         let btn = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
-        btn.backgroundColor = .green
-        btn.setImage(#imageLiteral(resourceName: "Line 2"), for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "Group 2"), for: .normal)
         btn.addTarget(self, action: #selector(back), for: .touchUpInside)
         return btn
     }()
@@ -87,10 +87,10 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         view.addSubview(resetButton)
         
         sceneView.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
-        instructionLabel.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        instructionLabel.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 120, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
         instructionLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        backButton.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
-        resetButton.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        backButton.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 57, paddingLeft: 20, paddingBottom: 0, paddingRight: 0)
+        resetButton.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 57, paddingLeft: 0, paddingBottom: 0, paddingRight: 20)
         
         instructionLabel.text = "Detecting Plane"
         flagplane = false
