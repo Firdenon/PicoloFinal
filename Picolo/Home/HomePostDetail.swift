@@ -56,6 +56,14 @@ class HomePostDetail: UIViewController{
         return lb
     }()
     
+    let descriptionText: UILabel = {
+       let tv = UILabel()
+        tv.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu elit risus. "
+        tv.textColor = UIColor.black
+        tv.font = UIFont.systemFont(ofSize: 14)
+        return tv
+    }()
+    
     let photoImageView: CustomImageView = {
         let iv = CustomImageView()
         iv.contentMode = .scaleAspectFit
@@ -75,7 +83,7 @@ class HomePostDetail: UIViewController{
     let arButton: UIButton = {
         let btn = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
         btn.backgroundColor = .green
-        btn.setTitle("AR Button", for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "ARKit_Glyph_Button (1)"), for: .normal)
         btn.addTarget(self, action: #selector(goToAR), for: .touchUpInside)
         btn.isEnabled = false
         return btn
@@ -141,19 +149,22 @@ class HomePostDetail: UIViewController{
         view.addSubview(photoImageView)
         view.addSubview(profileImageView)
         view.addSubview(arButton)
+        view.addSubview(descriptionText)
         
         view.addSubview(likeButton)
         view.addSubview(commentButton)
         
         photoImageView.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width : view.frame.width, height: ((post?.imageHeight)!) * (view.frame.width / ((post?.imageHeight)!)))
-        profileImageView.setAnchor(top: photoImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: 50,height: 50)
-        titleLable.setAnchor(top: photoImageView.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
-        usernameLabel.setAnchor(top: titleLable.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
-        arButton.setAnchor(top: profileImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        profileImageView.setAnchor(top: photoImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop:20, paddingLeft: 20, paddingBottom: 0, paddingRight: 0,width: 50,height: 50)
+        titleLable.setAnchor(top: photoImageView.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 6.5, paddingBottom: 0, paddingRight: 0)
+        usernameLabel.setAnchor(top: titleLable.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 9, paddingBottom: 0, paddingRight: 0)
+        arButton.setAnchor(top: photoImageView.bottomAnchor, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 20)
         
-        likeButton.setAnchor(top: arButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 0)
+        likeButton.setAnchor(top: profileImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 10, paddingBottom: 0, paddingRight: 0)
         
-        commentButton.setAnchor(top: likeButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 0)
+        commentButton.setAnchor(top: profileImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 101, paddingBottom: 0, paddingRight: 0)
+        
+        descriptionText.setAnchor(top: commentButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 20, paddingBottom: 0, paddingRight: 20)
         
     }
     

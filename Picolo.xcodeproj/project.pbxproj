@@ -12,6 +12,7 @@
 		5A697B0721E887D20010C52C /* HomePostDetailARSCN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A697B0621E887D20010C52C /* HomePostDetailARSCN.swift */; };
 		5A697B0921E889EB0010C52C /* HomePostImagePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A697B0821E889EB0010C52C /* HomePostImagePreview.swift */; };
 		5A697B0E21EC6CE40010C52C /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A697B0D21EC6CE40010C52C /* art.scnassets */; };
+		5AFD649821FF064D006990B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AFD649721FF064D006990B7 /* Assets.xcassets */; };
 		7092BB7E21F810ED0092DD1E /* SubcriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB7D21F810ED0092DD1E /* SubcriptionController.swift */; };
 		7092BB8021F812A10092DD1E /* SubscriptionPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB7F21F812A10092DD1E /* SubscriptionPost.swift */; };
 		7092BB8221F815CF0092DD1E /* SubscriptionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB8121F815CF0092DD1E /* SubscriptionHeader.swift */; };
@@ -22,7 +23,6 @@
 		7093CD6421E32F1200731FB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD6321E32F1200731FB8 /* AppDelegate.swift */; };
 		7093CD6621E32F1200731FB8 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD6521E32F1200731FB8 /* SignUpController.swift */; };
 		7093CD6921E32F1200731FB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7093CD6721E32F1200731FB8 /* Main.storyboard */; };
-		7093CD6B21E32F1500731FB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7093CD6A21E32F1500731FB8 /* Assets.xcassets */; };
 		7093CD6E21E32F1500731FB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7093CD6C21E32F1500731FB8 /* LaunchScreen.storyboard */; };
 		7093CD9221E3307800731FB8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7093CD9121E3307800731FB8 /* GoogleService-Info.plist */; };
 		7093CD9421E3325B00731FB8 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD9321E3325B00731FB8 /* Extension.swift */; };
@@ -69,6 +69,7 @@
 		5A697B0621E887D20010C52C /* HomePostDetailARSCN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostDetailARSCN.swift; sourceTree = "<group>"; };
 		5A697B0821E889EB0010C52C /* HomePostImagePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostImagePreview.swift; sourceTree = "<group>"; };
 		5A697B0D21EC6CE40010C52C /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		5AFD649721FF064D006990B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7092BB7D21F810ED0092DD1E /* SubcriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcriptionController.swift; sourceTree = "<group>"; };
 		7092BB7F21F812A10092DD1E /* SubscriptionPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPost.swift; sourceTree = "<group>"; };
 		7092BB8121F815CF0092DD1E /* SubscriptionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionHeader.swift; sourceTree = "<group>"; };
@@ -80,7 +81,6 @@
 		7093CD6321E32F1200731FB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7093CD6521E32F1200731FB8 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		7093CD6821E32F1200731FB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7093CD6A21E32F1500731FB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7093CD6D21E32F1500731FB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7093CD6F21E32F1500731FB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7093CD7421E32F1500731FB8 /* PicoloTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicoloTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,8 +181,8 @@
 				7093CDA321E3B62200731FB8 /* Utils */,
 				7093CD6721E32F1200731FB8 /* Main.storyboard */,
 				5A697B0D21EC6CE40010C52C /* art.scnassets */,
-				7093CD6A21E32F1500731FB8 /* Assets.xcassets */,
 				7093CD6C21E32F1500731FB8 /* LaunchScreen.storyboard */,
+				5AFD649721FF064D006990B7 /* Assets.xcassets */,
 				7093CD6F21E32F1500731FB8 /* Info.plist */,
 				7093CD9121E3307800731FB8 /* GoogleService-Info.plist */,
 			);
@@ -390,8 +390,8 @@
 				7093CD6E21E32F1500731FB8 /* LaunchScreen.storyboard in Resources */,
 				7093CD9221E3307800731FB8 /* GoogleService-Info.plist in Resources */,
 				5A697B0E21EC6CE40010C52C /* art.scnassets in Resources */,
-				7093CD6B21E32F1500731FB8 /* Assets.xcassets in Resources */,
 				7093CD6921E32F1200731FB8 /* Main.storyboard in Resources */,
+				5AFD649821FF064D006990B7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

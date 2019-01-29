@@ -50,7 +50,7 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
     let resetButton: UIButton = {
         let btn = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
         btn.backgroundColor = .green
-        btn.setTitle("Reset", for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "noun_reset_2068171"), for: .normal)
         btn.addTarget(self, action: #selector(reset), for: .touchUpInside)
         return btn
     }()
@@ -58,7 +58,7 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
     let backButton: UIButton = {
         let btn = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
         btn.backgroundColor = .green
-        btn.setTitle("Back", for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "Line 2"), for: .normal)
         btn.addTarget(self, action: #selector(back), for: .touchUpInside)
         return btn
     }()
