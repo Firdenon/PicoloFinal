@@ -79,15 +79,27 @@ class SubscriptionController: UICollectionViewController, UICollectionViewDelega
                 guard let dictionary = value as? [String:Any] else {return}
                 var post = Post(user: user, dictionary: dictionary)
                 post.id = key
-                self.posts.append(post)
+                
+                guard let uid = Auth.auth().currentUser?.uid else {return}
+                Database.database().reference().child("likes").child(key).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    if let value = snapshot.value as? Int, value == 1 {
+                        post.hasLiked = true
+                    } else {
+                        post.hasLiked = false
+                    }
+                    
+                    self.posts.append(post)
+                    self.posts.sort(by: { (p1, p2) -> Bool in
+                        return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+                    })
+                    self.collectionView.collectionViewLayout.invalidateLayout()
+                    self.collectionView.reloadData()
+                    self.collectionView.collectionViewLayout.invalidateLayout()
+                }, withCancel: { (err) in
+                    print("Failed to fetch like info for post")
+                })
             })
-            
-            self.posts.sort(by: { (p1, p2) -> Bool in
-                return p1.creationDate.compare(p2.creationDate) == .orderedDescending
-            })
-            self.collectionView.collectionViewLayout.invalidateLayout()
-            self.collectionView.reloadData()
-            self.collectionView.collectionViewLayout.invalidateLayout()
         }) { (err) in
             print("Failed to fetch post: \(err.localizedDescription)")
         }

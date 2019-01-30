@@ -31,6 +31,7 @@ class UserProfileViewController: UICollectionViewController{
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerId")
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "first")
         collectionView.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: cellId)
         if let layout = collectionView?.collectionViewLayout as? PinterestLayout {
             layout.delegate = self
@@ -129,7 +130,7 @@ class UserProfileViewController: UICollectionViewController{
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return posts.count
+        return (posts.count + 1)
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -138,23 +139,43 @@ class UserProfileViewController: UICollectionViewController{
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfilePhotoCell
-        cell.post = posts[indexPath.item]
-        //cell.labelTest.text = "\(indexPath.item)"
-        cell.backgroundColor = .lightGray
-        cell.layer.shadowColor = UIColor.black.cgColor
-        cell.layer.shadowOffset = CGSize(width: 0, height: 0.1)
-        cell.layer.shadowRadius = 2.0
-        cell.layer.shadowOpacity = 0.5
-        cell.layer.masksToBounds = false
-        cell.clipsToBounds = false
-        cell.layer.cornerRadius = 20
+        let firstCell = collectionView.dequeueReusableCell(withReuseIdentifier: "first", for: indexPath)
+        
+        if indexPath.row == 0 {
+            firstCell.backgroundColor = .lightGray
+            firstCell.layer.shadowColor = UIColor.black.cgColor
+            firstCell.layer.shadowOffset = CGSize(width: 0, height: 0.1)
+            firstCell.layer.shadowRadius = 2.0
+            firstCell.layer.shadowOpacity = 0.5
+            firstCell.layer.masksToBounds = false
+            firstCell.clipsToBounds = false
+            return firstCell
+        } else {
+            cell.post = posts[indexPath.item - 1]
+            //cell.labelTest.text = "\(indexPath.item)"
+            cell.backgroundColor = .lightGray
+            cell.layer.shadowColor = UIColor.black.cgColor
+            cell.layer.shadowOffset = CGSize(width: 0, height: 0.1)
+            cell.layer.shadowRadius = 2.0
+            cell.layer.shadowOpacity = 0.5
+            cell.layer.masksToBounds = false
+            cell.clipsToBounds = false
+            cell.layer.cornerRadius = 20
+        }
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detail = HomePostDetail()
-        detail.post = posts[indexPath.item]
-        navigationController?.pushViewController(detail, animated: true)
+        
+        if indexPath.row == 0 {
+            let photoSelectorController = PhotoSelectorController(collectionViewLayout: UICollectionViewFlowLayout())
+            let navController = UINavigationController(rootViewController: photoSelectorController)
+            present(navController, animated: true, completion: nil)
+        } else {
+            let detail = HomePostDetail()
+            detail.post = posts[indexPath.item - 1]
+            navigationController?.pushViewController(detail, animated: true)
+        }
     }
     
     var user: User?
@@ -180,13 +201,26 @@ class UserProfileViewController: UICollectionViewController{
             guard let user = self.user else {return}
             var post = Post(user: user, dictionary: dictionary)
             post.id = snapshot.key
-            self.posts.insert(post, at: 0)
-            print("tambahin")
-            //self.posts.append(post)
-            DispatchQueue.main.async {
-                self.collectionView.collectionViewLayout.invalidateLayout()
-                self.collectionView.reloadData()
-            }
+            
+            guard let uid = Auth.auth().currentUser?.uid else {return}
+            
+            Database.database().reference().child("likes").child(snapshot.key).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if let value = snapshot.value as? Int, value == 1 {
+                    post.hasLiked = true
+                } else {
+                    post.hasLiked = false
+                }
+                
+                self.posts.insert(post, at: 0)
+                DispatchQueue.main.async {
+                    self.collectionView.collectionViewLayout.invalidateLayout()
+                    self.collectionView.reloadData()
+                }
+            }, withCancel: { (err) in
+                print("Failed to fetch like info for post")
+            })
+            
         }) { (err) in
             print("Failed to fetch ordered post")
         }
@@ -195,11 +229,18 @@ class UserProfileViewController: UICollectionViewController{
 
 extension UserProfileViewController: PinterestLayoutDelegate {
     func collectionView(collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath, withWidth: CGFloat) -> CGFloat {
-        let imageHeight = posts[indexPath.item].imageHeight
-        let imageWidth = posts[indexPath.item].imageWidth
-        let lebaryangditentukan:CGFloat = (375 / 2) - 20
-        let x = imageWidth / lebaryangditentukan
-        let panjang = imageHeight / x
+        
+        let panjang: CGFloat
+        
+        if indexPath.row == 0 {
+            return (375 / 2)
+        } else {
+            let imageHeight = posts[indexPath.item - 1].imageHeight
+            let imageWidth = posts[indexPath.item - 1].imageWidth
+            let lebaryangditentukan:CGFloat = (375 / 2) - 20
+            let x = imageWidth / lebaryangditentukan
+            panjang = imageHeight / x
+        }
         return panjang
     }
     
