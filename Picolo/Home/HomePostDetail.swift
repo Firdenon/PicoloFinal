@@ -35,12 +35,18 @@ class HomePostDetail: UIViewController{
                 }
             }
             likeButton.setImage(post?.hasLiked == true ? #imageLiteral(resourceName: "Shape copy").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "Shape").withRenderingMode(.alwaysOriginal), for: .normal)
-            
         }
     }
     
     var loaded:Bool = false
-    var likeCount:Int?
+    var likeCount:Int? {
+        didSet{
+            DispatchQueue.main.async {
+                self.likeLable.text = self.likeCount?.description
+            }
+        }
+    }
+    
     var commentCount:Int?
     
     var titleLable:UILabel = {
@@ -53,7 +59,7 @@ class HomePostDetail: UIViewController{
     
     var likeLable:UILabel = {
         let tl = UILabel()
-        tl.text = "title"
+        tl.text = "0"
         tl.font = UIFont(name: "Avenir-medium", size: 18)
         tl.textColor = UIColor.black
         return tl
@@ -127,7 +133,6 @@ class HomePostDetail: UIViewController{
                 print(counts)
                 self.likeCount = counts["likesCount"] as? Int
                 print("Like Count : \(self.likeCount)")
-                
             }
         }
     }
@@ -150,23 +155,25 @@ class HomePostDetail: UIViewController{
                     var count = data["likesCount"] as! Int
                     if self.post?.hasLiked == true {
                         count += 1
+                        if self.likeCount == nil {
+                            self.likeCount = count
+                        } else {
+                            self.likeCount! += 1
+                        }
                     } else {
                         count -= 1
+                        if self.likeCount == nil {
+                            self.likeCount = count
+                        } else {
+                            self.likeCount! -= 1
+                        }
                     }
                     data["likesCount"] = count
                     currentData.value = data
                     return TransactionResult.success(withValue: currentData)
-                    self.fetchLikeCount()
-                    DispatchQueue.main.async {
-                        guard let string = self.likeCount?.description else {return}
-                        self.likeLable.text = string
-                    }
-                    
                 }
                 return TransactionResult.success(withValue: currentData)
             })
-            
-            
             print("Succesfully liked post")
             
             self.post?.hasLiked = !(self.post?.hasLiked)!

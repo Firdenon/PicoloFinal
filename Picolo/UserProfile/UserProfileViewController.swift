@@ -17,8 +17,26 @@ class UserProfileViewController: UICollectionViewController{
     var userId: String?
     let currentLoginId = Auth.auth().currentUser?.uid ?? nil
     
-    var followersCount: Int?
-    var followingCount: Int?
+    var followersCount: Int?{
+        didSet{
+            if let header = self.header {
+                DispatchQueue.main.async {
+                    header.followersCount = self.followersCount
+                }
+            }
+        }
+    }
+    var followingCount: Int?{
+        didSet{
+            if let header = self.header {
+                DispatchQueue.main.async {
+                    header.followingsCount = self.followingCount
+                }
+            }
+        }
+    }
+    
+    var header: UserProfileHeader?
     
     var posts = [Post]() {
         didSet {
@@ -302,7 +320,6 @@ class UserProfileViewController: UICollectionViewController{
                 count += 1
                 data["followingsCount"] = count
                 currentData.value = data
-                
                 let moreRef = Database.database().reference().child("followCount").child(someoneUid)
                 moreRef.runTransactionBlock({ (currentData) -> TransactionResult in
                     if var data = currentData.value as? [String:Any] {
@@ -310,6 +327,11 @@ class UserProfileViewController: UICollectionViewController{
                         count += 1
                         data["followersCount"] = count
                         currentData.value = data
+                        if self.followersCount == nil {
+                            self.followersCount = count
+                        } else {
+                            self.followersCount! += 1
+                        }
                         return TransactionResult.success(withValue: currentData)
                     }
                     return TransactionResult.success(withValue: currentData)
@@ -330,7 +352,6 @@ class UserProfileViewController: UICollectionViewController{
                 count -= 1
                 data["followingsCount"] = count
                 currentData.value = data
-                
                 let moreRef = Database.database().reference().child("followCount").child(someoneUid)
                 moreRef.runTransactionBlock({ (currentData) -> TransactionResult in
                     if var data = currentData.value as? [String:Any] {
@@ -338,6 +359,11 @@ class UserProfileViewController: UICollectionViewController{
                         count -= 1
                         data["followersCount"] = count
                         currentData.value = data
+                        if self.followersCount == nil {
+                            self.followersCount = count
+                        } else {
+                            self.followersCount! -= 1
+                        }
                         return TransactionResult.success(withValue: currentData)
                     }
                     return TransactionResult.success(withValue: currentData)
@@ -347,10 +373,6 @@ class UserProfileViewController: UICollectionViewController{
             return TransactionResult.success(withValue: currentData)
         }
     }
-    
-    
-    
-    
 }
 
 extension UserProfileViewController: PinterestLayoutDelegate {
@@ -383,11 +405,11 @@ extension UserProfileViewController: PinterestLayoutDelegate {
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerId", for: indexPath) as! UserProfileHeader
-        header.user = self.user
-        header.followersCount = self.followersCount
-        header.followingsCount = self.followingCount
-        return header
+        self.header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerId", for: indexPath) as! UserProfileHeader
+        self.header!.user = self.user
+        self.header!.followersCount = self.followersCount
+        self.header!.followingsCount = self.followingCount
+        return self.header!
     }
     
     func collectionView(collectionView: UICollectionView, sizeForSectionHeaderViewForSection section: Int) -> CGSize {
