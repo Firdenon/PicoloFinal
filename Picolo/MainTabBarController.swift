@@ -43,6 +43,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
             isLogin = true
             setupViewControllers()
         }
+        print(#function)
     }
     
     override func viewWillAppear(_ animated: Bool) {

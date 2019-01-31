@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+class GlobalVariable{
+//    static var flagOpen: = 0
+}

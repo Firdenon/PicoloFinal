@@ -12,6 +12,11 @@
 		5A697B0721E887D20010C52C /* HomePostDetailARSCN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A697B0621E887D20010C52C /* HomePostDetailARSCN.swift */; };
 		5A697B0921E889EB0010C52C /* HomePostImagePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A697B0821E889EB0010C52C /* HomePostImagePreview.swift */; };
 		5A697B0E21EC6CE40010C52C /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A697B0D21EC6CE40010C52C /* art.scnassets */; };
+		5AF685DE2202CE8900E24A51 /* Landing1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF685DD2202CE8900E24A51 /* Landing1ViewController.swift */; };
+		5AF685E02202CEB400E24A51 /* Landing2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF685DF2202CEB400E24A51 /* Landing2ViewController.swift */; };
+		5AF685E22202CED000E24A51 /* Landing3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF685E12202CED000E24A51 /* Landing3ViewController.swift */; };
+		5AF685E42202CEEF00E24A51 /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF685E32202CEEF00E24A51 /* LandingPageViewController.swift */; };
+		5AF685E62202D6E300E24A51 /* GlobalVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF685E52202D6E300E24A51 /* GlobalVariable.swift */; };
 		5AFD649821FF064D006990B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AFD649721FF064D006990B7 /* Assets.xcassets */; };
 		7092BB7E21F810ED0092DD1E /* SubcriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB7D21F810ED0092DD1E /* SubcriptionController.swift */; };
 		7092BB8021F812A10092DD1E /* SubscriptionPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB7F21F812A10092DD1E /* SubscriptionPost.swift */; };
@@ -69,6 +74,11 @@
 		5A697B0621E887D20010C52C /* HomePostDetailARSCN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostDetailARSCN.swift; sourceTree = "<group>"; };
 		5A697B0821E889EB0010C52C /* HomePostImagePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostImagePreview.swift; sourceTree = "<group>"; };
 		5A697B0D21EC6CE40010C52C /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		5AF685DD2202CE8900E24A51 /* Landing1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landing1ViewController.swift; sourceTree = "<group>"; };
+		5AF685DF2202CEB400E24A51 /* Landing2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landing2ViewController.swift; sourceTree = "<group>"; };
+		5AF685E12202CED000E24A51 /* Landing3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landing3ViewController.swift; sourceTree = "<group>"; };
+		5AF685E32202CEEF00E24A51 /* LandingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageViewController.swift; sourceTree = "<group>"; };
+		5AF685E52202D6E300E24A51 /* GlobalVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariable.swift; sourceTree = "<group>"; };
 		5AFD649721FF064D006990B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7092BB7D21F810ED0092DD1E /* SubcriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcriptionController.swift; sourceTree = "<group>"; };
 		7092BB7F21F812A10092DD1E /* SubscriptionPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPost.swift; sourceTree = "<group>"; };
@@ -171,6 +181,11 @@
 				7093CD6321E32F1200731FB8 /* AppDelegate.swift */,
 				7093CD9521E357D900731FB8 /* MainTabBarController.swift */,
 				7092BB8321F854740092DD1E /* AuthBoarding.swift */,
+				5AF685E52202D6E300E24A51 /* GlobalVariable.swift */,
+				5AF685DD2202CE8900E24A51 /* Landing1ViewController.swift */,
+				5AF685DF2202CEB400E24A51 /* Landing2ViewController.swift */,
+				5AF685E12202CED000E24A51 /* Landing3ViewController.swift */,
+				5AF685E32202CEEF00E24A51 /* LandingPageViewController.swift */,
 				7092BB7C21F810CE0092DD1E /* Subscription */,
 				7093CDAD21E4501100731FB8 /* Models */,
 				7093CDBD21E4D4F700731FB8 /* Search */,
@@ -475,6 +490,9 @@
 				5A697B0521E86EB50010C52C /* HomePostDetail.swift in Sources */,
 				7093CDB821E45C8E00731FB8 /* HomePostCell.swift in Sources */,
 				7093CD9821E3588500731FB8 /* UserProfileViewController.swift in Sources */,
+				5AF685DE2202CE8900E24A51 /* Landing1ViewController.swift in Sources */,
+				5AF685E22202CED000E24A51 /* Landing3ViewController.swift in Sources */,
+				5AF685E02202CEB400E24A51 /* Landing2ViewController.swift in Sources */,
 				7093CDA621E3C2AF00731FB8 /* PhotoSelectorController.swift in Sources */,
 				7093CDB321E4554000731FB8 /* CustomImageView.swift in Sources */,
 				7093CDAF21E4502200731FB8 /* Post.swift in Sources */,
@@ -489,10 +507,12 @@
 				7093CDAA21E3D7EC00731FB8 /* PhotoSelectorHeader.swift in Sources */,
 				7093CDBF21E4D50D00731FB8 /* SearchController.swift in Sources */,
 				7093CDA221E385F900731FB8 /* LoginController.swift in Sources */,
+				5AF685E62202D6E300E24A51 /* GlobalVariable.swift in Sources */,
 				7093CD9621E357D900731FB8 /* MainTabBarController.swift in Sources */,
 				7093CDB621E45BA100731FB8 /* HomeController.swift in Sources */,
 				5A697B0921E889EB0010C52C /* HomePostImagePreview.swift in Sources */,
 				7093CDBC21E4C1CF00731FB8 /* Firebase Utils.swift in Sources */,
+				5AF685E42202CEEF00E24A51 /* LandingPageViewController.swift in Sources */,
 				5A697B0721E887D20010C52C /* HomePostDetailARSCN.swift in Sources */,
 				7093CDBA21E4BBC400731FB8 /* User.swift in Sources */,
 				7092BB7E21F810ED0092DD1E /* SubcriptionController.swift in Sources */,
