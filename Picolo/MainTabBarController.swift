@@ -13,6 +13,7 @@ import PinterestLayout
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     var isLogin: Bool = false
+    var prevController: UIViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()

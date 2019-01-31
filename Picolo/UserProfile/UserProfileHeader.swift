@@ -21,6 +21,24 @@ class UserProfileHeader: UICollectionViewCell {
         }
     }
     
+    var followingsCount: Int? {
+        didSet {
+            guard let string = followingsCount?.description else {return}
+            let attributed = NSMutableAttributedString(string: string + "\n", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14),NSAttributedString.Key.foregroundColor : UIColor.white])
+            attributed.append(NSAttributedString(string: "following", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]))
+            followingLabel.attributedText = attributed
+        }
+    }
+    
+    var followersCount: Int? {
+        didSet{
+            guard let string = followersCount?.description else {return}
+            let attributed = NSMutableAttributedString(string: string + "\n", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14),NSAttributedString.Key.foregroundColor : UIColor.white])
+            attributed.append(NSAttributedString(string: "followers", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]))
+            followsLabel.attributedText = attributed
+        }
+    }
+    
     let profileImageView: CustomImageView = {
         let iv = CustomImageView()
         iv.backgroundColor = .lightGray
@@ -55,16 +73,16 @@ class UserProfileHeader: UICollectionViewCell {
         return lb
     }()
     
-    let postLabel: UILabel = {
-        let lb = UILabel()
-        let attributed = NSMutableAttributedString(string: "0\n", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14),NSAttributedString.Key.foregroundColor : UIColor.white])
-        attributed.append(NSAttributedString(string: "post", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]))
-        lb.attributedText = attributed
-        lb.textAlignment = .center
-        lb.numberOfLines = 0
-        lb.backgroundColor = UIColor.rgb(red: 255, green: 150, blue: 123)
-        return lb
-    }()
+//    let postLabel: UILabel = {
+//        let lb = UILabel()
+//        let attributed = NSMutableAttributedString(string: "0\n", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14),NSAttributedString.Key.foregroundColor : UIColor.white])
+//        attributed.append(NSAttributedString(string: "post", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]))
+//        lb.attributedText = attributed
+//        lb.textAlignment = .center
+//        lb.numberOfLines = 0
+//        lb.backgroundColor = UIColor.rgb(red: 255, green: 150, blue: 123)
+//        return lb
+//    }()
     
     let followsLabel: UILabel = {
         let lb = UILabel()
@@ -101,7 +119,7 @@ class UserProfileHeader: UICollectionViewCell {
     }
     
     fileprivate func setupBottomToolbar() {
-        let stackview = UIStackView(arrangedSubviews: [postLabel,followsLabel,followingLabel])
+        let stackview = UIStackView(arrangedSubviews: [followsLabel,followingLabel])
         stackview.axis = .horizontal
         stackview.distribution = .fillEqually
         addSubview(stackview)
