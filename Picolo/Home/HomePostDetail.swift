@@ -20,12 +20,13 @@ class HomePostDetail: UIViewController{
             titleLable.text = post?.title
             guard let usernameText = post?.user.username else {return}
             guard let postUserId = post?.user.uid else {return}
-            guard let uid = Auth.auth().currentUser?.uid else {return}
+            let uid = Auth.auth().currentUser?.uid
             
             if postUserId == uid {
                 usernameLabel.text = "by me"
             } else {
                 usernameLabel.text = "by " + (usernameText)
+                print(usernameLabel.text)
             }
             guard let profileImageUrl = post?.user.profileImageUrl else {return}
             profileImageView.loadImage(urlString: profileImageUrl){
