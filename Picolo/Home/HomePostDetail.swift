@@ -33,7 +33,7 @@ class HomePostDetail: UIViewController{
                     self.arButton.isEnabled = true
                 }
             }
-            likeButton.setImage(post?.hasLiked == true ? #imageLiteral(resourceName: "Done").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "like ").withRenderingMode(.alwaysOriginal), for: .normal)
+            likeButton.setImage(post?.hasLiked == true ? #imageLiteral(resourceName: "Shape copy").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "Shape").withRenderingMode(.alwaysOriginal), for: .normal)
 
         }
     }
@@ -90,7 +90,7 @@ class HomePostDetail: UIViewController{
     
     let likeButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setImage(#imageLiteral(resourceName: "like ").withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "Shape").withRenderingMode(.alwaysOriginal), for: .normal)
         btn.addTarget(self, action: #selector(handelLike), for: .touchUpInside)
         return btn
     }()
@@ -121,7 +121,7 @@ class HomePostDetail: UIViewController{
     
     let commentButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setImage(#imageLiteral(resourceName: "gear").withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "Comment").withRenderingMode(.alwaysOriginal), for: .normal)
         btn.addTarget(self, action: #selector(handleComment), for: .touchUpInside)
         return btn
     }()
