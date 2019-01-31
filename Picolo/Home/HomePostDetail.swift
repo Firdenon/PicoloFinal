@@ -35,13 +35,31 @@ class HomePostDetail: UIViewController{
                 }
             }
             likeButton.setImage(post?.hasLiked == true ? #imageLiteral(resourceName: "Shape copy").withRenderingMode(.alwaysOriginal) : #imageLiteral(resourceName: "Shape").withRenderingMode(.alwaysOriginal), for: .normal)
-
+            
         }
     }
     
     var loaded:Bool = false
+    var likeCount:Int?
+    var commentCount:Int?
     
     var titleLable:UILabel = {
+        let tl = UILabel()
+        tl.text = "title"
+        tl.font = UIFont(name: "Avenir-medium", size: 18)
+        tl.textColor = UIColor.black
+        return tl
+    }()
+    
+    var likeLable:UILabel = {
+        let tl = UILabel()
+        tl.text = "title"
+        tl.font = UIFont(name: "Avenir-medium", size: 18)
+        tl.textColor = UIColor.black
+        return tl
+    }()
+    
+    var commentLable:UILabel = {
         let tl = UILabel()
         tl.text = "title"
         tl.font = UIFont(name: "Avenir-medium", size: 18)
@@ -102,6 +120,18 @@ class HomePostDetail: UIViewController{
         }
     }
     
+    func fetchLikeCount(){
+        guard let postId = post?.id else {return}
+        Database.database().reference().child("likeCount").child(postId).observeSingleEvent(of: .value) { (snapshot) in
+            if let counts = snapshot.value as? [String: Any] {
+                print(counts)
+                self.likeCount = counts["likesCount"] as? Int
+                print("Like Count : \(self.likeCount)")
+                
+            }
+        }
+    }
+    
     @objc func handelLike() {
         print("liked")
         guard let postId = post?.id else {return}
@@ -126,6 +156,12 @@ class HomePostDetail: UIViewController{
                     data["likesCount"] = count
                     currentData.value = data
                     return TransactionResult.success(withValue: currentData)
+                    self.fetchLikeCount()
+                    DispatchQueue.main.async {
+                        guard let string = self.likeCount?.description else {return}
+                        self.likeLable.text = string
+                    }
+                    
                 }
                 return TransactionResult.success(withValue: currentData)
             })
@@ -171,6 +207,9 @@ class HomePostDetail: UIViewController{
         view.addSubview(likeButton)
         view.addSubview(commentButton)
         
+        view.addSubview(likeLable)
+        view.addSubview(commentLable)
+        
         photoImageView.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width : view.frame.width, height: ((post?.imageHeight)!) * (view.frame.width / ((post?.imageHeight)!)))
         profileImageView.setAnchor(top: photoImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop:20, paddingLeft: 20, paddingBottom: 0, paddingRight: 0,width: 50,height: 50)
         titleLable.setAnchor(top: photoImageView.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 6.5, paddingBottom: 0, paddingRight: 0)
@@ -182,6 +221,10 @@ class HomePostDetail: UIViewController{
         commentButton.setAnchor(top: profileImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 101, paddingBottom: 0, paddingRight: 0)
         
         descriptionText.setAnchor(top: commentButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 20, paddingBottom: 0, paddingRight: 20)
+        
+        likeLable.setAnchor(top: profileImageView.bottomAnchor, left: likeButton.rightAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 10, paddingBottom: 0, paddingRight: 0)
+        
+        fetchLikeCount()
         
     }
     
