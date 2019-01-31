@@ -89,16 +89,30 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 var post = Post(user: user, dictionary: dictionary)
                 post.id = key
                 
-                guard let uid = Auth.auth().currentUser?.uid else {return}
-            
-                Database.database().reference().child("likes").child(key).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                if Auth.auth().currentUser?.uid != nil {
+                    guard let uid = Auth.auth().currentUser?.uid else {return}
                     
-                    if let value = snapshot.value as? Int, value == 1 {
-                        post.hasLiked = true
-                    } else {
-                        post.hasLiked = false
-                    }
-                    
+                    Database.database().reference().child("likes").child(key).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                        
+                        if let value = snapshot.value as? Int, value == 1 {
+                            post.hasLiked = true
+                        } else {
+                            post.hasLiked = false
+                        }
+                        
+                        self.posts.append(post)
+                        self.posts.sort(by: { (p1, p2) -> Bool in
+                            return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+                        })
+                        
+                        self.collectionView.collectionViewLayout.invalidateLayout()
+                        self.collectionView.reloadData()
+                        self.collectionView.collectionViewLayout.invalidateLayout()
+                        
+                    }, withCancel: { (err) in
+                        print("Failed to fetch like info for post")
+                    })
+                } else {
                     self.posts.append(post)
                     self.posts.sort(by: { (p1, p2) -> Bool in
                         return p1.creationDate.compare(p2.creationDate) == .orderedDescending
@@ -107,10 +121,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                     self.collectionView.collectionViewLayout.invalidateLayout()
                     self.collectionView.reloadData()
                     self.collectionView.collectionViewLayout.invalidateLayout()
-                    
-                }, withCancel: { (err) in
-                    print("Failed to fetch like info for post")
-                })
+                }
             })
         }) { (err) in
             print("Failed to fetch post: \(err.localizedDescription)")
