@@ -51,9 +51,9 @@ class UserProfileViewController: UICollectionViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        fetchUser()
-        setupNavBar()
-        fetchFollowCount()
+//        fetchUser()
+//        setupNavBar()
+//        fetchFollowCount()
         collectionView.reloadData()
     }
     
@@ -204,7 +204,9 @@ class UserProfileViewController: UICollectionViewController{
         
         if currentLoginId == userId || userId == nil {
             if indexPath.row == 0 {
-                let photoSelectorController = PhotoSelectorController(collectionViewLayout: UICollectionViewFlowLayout())
+                let layout = UICollectionViewFlowLayout()
+                layout.sectionHeadersPinToVisibleBounds = true
+                let photoSelectorController = PhotoSelectorController(collectionViewLayout: layout)
                 let navController = UINavigationController(rootViewController: photoSelectorController)
                 present(navController, animated: true, completion: nil)
             } else {

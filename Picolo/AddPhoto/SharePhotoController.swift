@@ -89,10 +89,21 @@ class SharePhotoController: UIViewController {
                 print("Failed to save post to DB: \(err.localizedDescription)")
                 return
             }
-            print("Successfully saved post to DB")
-            self.dismiss(animated: true, completion: nil)
-            
-            NotificationCenter.default.post(name: SharePhotoController.updateFeedNotificationName, object: nil)
+            guard let postKey = ref.key else {return}
+            let likeDictionary = ["likesCount" : 0]
+            let likeValue = [postKey:likeDictionary]
+            let moreRef = Database.database().reference().child("likeCount")
+            moreRef.updateChildValues(likeValue, withCompletionBlock: { (err, ref) in
+                if let err = err {
+                    print("Failed to add likeCount: \(err.localizedDescription)")
+                    return
+                } else {
+                    print("Successfully saved post to DB")
+                    self.dismiss(animated: true, completion: nil)
+                    NotificationCenter.default.post(name: SharePhotoController.updateFeedNotificationName, object: nil)
+                }
+            })
+           
         }
     }
 }

@@ -114,6 +114,23 @@ class HomePostDetail: UIViewController{
                 return
             }
             
+            let moreRef = Database.database().reference().child("likeCount").child(postId)
+            moreRef.runTransactionBlock({ (currentData) -> TransactionResult in
+                if var data = currentData.value as? [String:Any] {
+                    var count = data["likesCount"] as! Int
+                    if self.post?.hasLiked == true {
+                        count += 1
+                    } else {
+                        count -= 1
+                    }
+                    data["likesCount"] = count
+                    currentData.value = data
+                    return TransactionResult.success(withValue: currentData)
+                }
+                return TransactionResult.success(withValue: currentData)
+            })
+            
+            
             print("Succesfully liked post")
             
             self.post?.hasLiked = !(self.post?.hasLiked)!
