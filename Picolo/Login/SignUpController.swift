@@ -130,10 +130,19 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
                             print("Failed to save user info into db: \(err)")
                             return
                         } else {
-                            print("Succesfuly save user info into db")
-                            guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {return}
-                            maintabBarController.setupViewControllers()
-                            self.dismiss(animated: true, completion: nil)
+                            let followDictionary = ["followersCount" : 0, "followingsCount" : 0]
+                            let followValue = [uid:followDictionary]
+                            Database.database().reference().child("followCount").updateChildValues(followValue, withCompletionBlock: { (err, ref) in
+                                if let err = err {
+                                    print("Failed to init followCount: \(err.localizedDescription)")
+                                    return
+                                } else {
+                                    print("Succesfuly save user info into db")
+                                    guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {return}
+                                    maintabBarController.setupViewControllers()
+                                    self.dismiss(animated: true, completion: nil)
+                                }
+                            })
                         }
                     })
                 })
