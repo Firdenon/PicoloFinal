@@ -47,7 +47,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         userProfileNavController.tabBarItem.image = #imageLiteral(resourceName: "Profile Unselected")
         userProfileNavController.tabBarItem.selectedImage = #imageLiteral(resourceName: "Profile Selected")
         
-        let loginNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "gear"), selectedImage: #imageLiteral(resourceName: "noun_Tag_1948126 Copy"), rootViewController: AuthBoarding())
+        let loginNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "Profile Unselected"), selectedImage: #imageLiteral(resourceName: "Profile Selected"), rootViewController: AuthBoarding())
         
         tabBar.tintColor = UIColor.rgb(red: 255, green: 150, blue: 123)
         

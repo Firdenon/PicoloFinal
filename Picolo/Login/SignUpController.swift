@@ -11,9 +11,12 @@ import Firebase
 
 class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    var imageEdited = false
+    
     let photoButton: UIButton = {
         let bt = UIButton()
-        bt.backgroundColor = .lightGray
+        bt.backgroundColor = .clear
+        bt.setImage(#imageLiteral(resourceName: "Blank Profile Picture"), for: .normal)
         bt.addTarget(self, action: #selector(handlePlusPhoto), for: .touchUpInside)
         return bt
     }()
@@ -35,6 +38,14 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         photoButton.layer.masksToBounds = true
         photoButton.layer.borderColor = UIColor.black.cgColor
         photoButton.layer.borderWidth = 3
+        imageEdited = true
+        handleTextInputChange()
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        imageEdited = false
+        handleTextInputChange()
         dismiss(animated: true, completion: nil)
     }
     
@@ -44,6 +55,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
+        tf.keyboardType = .emailAddress
         tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
@@ -54,6 +66,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
+        tf.keyboardType = .alphabet
         tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
@@ -65,6 +78,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
+        tf.keyboardType = .alphabet
         tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
@@ -72,19 +86,28 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
     @objc func handleTextInputChange() {
         let isFormValid = emailTextfield.text?.count ?? 0 > 0 && userNameTextfield.text?.count ?? 0 > 0 &&
             passwordTextfield.text?.count ?? 0 > 0
-        if isFormValid {
-            signUpButton.backgroundColor = UIColor.rgb(red: 255, green: 200, blue: 120)
+        
+        if isFormValid && imageEdited {
+            signUpButton.backgroundColor = UIColor.rgb(red: 255, green: 150, blue: 123)
             signUpButton.isEnabled = true
         } else {
-            signUpButton.backgroundColor = UIColor.rgb(red: 255, green: 150, blue: 123)
+            signUpButton.backgroundColor = .lightGray
             signUpButton.isEnabled = false
         }
     }
     
-    let signUpButton: UIButton = {
-        let bt = UIButton(type: .system)
+    let warningLabel: UILabel = {
+        let lb = UILabel()
+        lb.text = ""
+        lb.textColor = UIColor.rgb(red: 255, green: 0, blue: 0)
+        lb.textAlignment = .center
+        return lb
+    }()
+    
+    let signUpButton: LoadingButton = {
+        let bt = LoadingButton(type: .system)
         bt.setTitle("Sign Up", for: .normal)
-        bt.backgroundColor = UIColor.rgb(red: 255, green: 150, blue: 123)
+        bt.backgroundColor = .lightGray
         bt.layer.cornerRadius = 5
         bt.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         bt.setTitleColor(.white, for: .normal)
@@ -97,12 +120,15 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         guard let email = emailTextfield.text, email.characters.count > 0 else {return}
         guard let userName = userNameTextfield.text, userName.characters.count > 0 else {return}
         guard let password = passwordTextfield.text, password.characters.count > 0 else {return}
-    
+        
         signUpButton.isEnabled = false
+        signUpButton.showLoading()
         
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if let error = error {
                 print("failed to create user: \(error)")
+                self.signUpButton.hideLoading()
+                self.warningLabel.text = "\(error.localizedDescription)"
                 return
             }
             print("succesfully created user:\(user?.user.uid)")
@@ -113,11 +139,15 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
             storageRef.putData(uploaData, metadata: nil, completion: { (metadata, err) in
                 if let err = err {
                     print("Failed to upload Profile: \(err.localizedDescription)")
+                    self.signUpButton.hideLoading()
+                    self.warningLabel.text = "\(err.localizedDescription)"
                     return
                 }
                 storageRef.downloadURL(completion: { (downloadUrl, err) in
                     if let err = err {
                         print("Failed to fetch downloadUrl: \(err.localizedDescription)")
+                        self.signUpButton.hideLoading()
+                        self.warningLabel.text = "\(err.localizedDescription)"
                         return
                     }
                     guard let profileImageUrl = downloadUrl?.absoluteString else {return}
@@ -128,6 +158,8 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
                     Database.database().reference().child("users").updateChildValues(value, withCompletionBlock: { (err, ref) in
                         if let err = err {
                             print("Failed to save user info into db: \(err)")
+                            self.signUpButton.hideLoading()
+                            self.warningLabel.text = "\(err.localizedDescription)"
                             return
                         } else {
                             let followDictionary = ["followersCount" : 0, "followingsCount" : 0]
@@ -135,6 +167,8 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
                             Database.database().reference().child("followCount").updateChildValues(followValue, withCompletionBlock: { (err, ref) in
                                 if let err = err {
                                     print("Failed to init followCount: \(err.localizedDescription)")
+                                    self.signUpButton.hideLoading()
+                                    self.warningLabel.text = "\(err.localizedDescription)"
                                     return
                                 } else {
                                     print("Succesfuly save user info into db")
@@ -174,12 +208,12 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
     }
     
     fileprivate func setupInputField() {
-        let stackView = UIStackView(arrangedSubviews: [userNameTextfield, emailTextfield, passwordTextfield, signUpButton])
+        let stackView = UIStackView(arrangedSubviews: [userNameTextfield, emailTextfield, passwordTextfield, warningLabel, signUpButton])
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
         stackView.spacing = 10
         view.addSubview(stackView)
-        stackView.setAnchor(top: photoButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 20, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 200)
+        stackView.setAnchor(top: photoButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 20, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 300)
         view.addSubview(alreadyHaveAccountButton)
         alreadyHaveAccountButton.setAnchor(top: nil, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor , right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
     }
