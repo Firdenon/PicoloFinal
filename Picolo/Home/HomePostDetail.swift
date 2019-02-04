@@ -81,11 +81,16 @@ class HomePostDetail: UIViewController{
         return lb
     }()
     
-    let descriptionText: UILabel = {
-       let tv = UILabel()
-        tv.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu elit risus. "
-        tv.textColor = UIColor.black
-        tv.font = UIFont.systemFont(ofSize: 14)
+    let descriptionText: UITextView = {
+        let tv = UITextView()
+        tv.translatesAutoresizingMaskIntoConstraints = true
+        tv.textAlignment = .left
+        tv.textColor = UIColor.orange
+        tv.font = UIFont(name:"Avenir-medium",size:16)
+        tv.isEditable = false
+        tv.isScrollEnabled = false
+        tv.isSelectable = false
+        tv.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus aliquam nisl at tortor egestas vestibulum. Mauris egestas dui id nisl viverra finibus. Sed finibus, justo eu scelerisque interdum, enim lorem congue est, ac sagittis diam velit in erat. Vivamus ac sagittis augue. Phasellus dapibus ligula facilisis hendrerit porttitor. Sed eget convallis sapien. In hac habitasse platea dictumst."
         return tv
     }()
     
@@ -186,6 +191,12 @@ class HomePostDetail: UIViewController{
         btn.addTarget(self, action: #selector(handleComment), for: .touchUpInside)
         return btn
     }()
+    let commentButton2: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setImage(#imageLiteral(resourceName: "Comment").withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.addTarget(self, action: #selector(handleComment), for: .touchUpInside)
+        return btn
+    }()
     
     @objc func handleComment() {
         print("handle Comment")
@@ -213,6 +224,7 @@ class HomePostDetail: UIViewController{
         
         view.addSubview(likeButton)
         view.addSubview(commentButton)
+        view.addSubview(commentButton2)
         
         view.addSubview(likeLable)
         view.addSubview(commentLable)
@@ -226,10 +238,11 @@ class HomePostDetail: UIViewController{
         likeButton.setAnchor(top: profileImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 10, paddingBottom: 0, paddingRight: 0)
         
         commentButton.setAnchor(top: profileImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 101, paddingBottom: 0, paddingRight: 0)
-        
-        descriptionText.setAnchor(top: commentButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 20, paddingBottom: 0, paddingRight: 20)
+        commentButton2.setAnchor(top: profileImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 101, paddingBottom: 0, paddingRight: 0)
         
         likeLable.setAnchor(top: profileImageView.bottomAnchor, left: likeButton.rightAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 10, paddingBottom: 0, paddingRight: 0)
+        
+        descriptionText.setAnchor(top: commentButton2.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 103, paddingRight: 20)
         
         fetchLikeCount()
         
