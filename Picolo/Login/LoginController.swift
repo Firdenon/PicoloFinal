@@ -13,8 +13,17 @@ class LoginController: UIViewController {
     
     let logoContainer: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.rgb(red: 255, green: 150, blue: 123)
+        view.backgroundColor = .clear
         return view
+    }()
+    
+    let logoLabel: UILabel = {
+        let lb = UILabel()
+        lb.text = "PicColo"
+        lb.font = UIFont(name: "Avenir-Black", size: 50)
+        lb.textColor = UIColor.rgb(red: 255, green: 150, blue: 123)
+        lb.textAlignment = .center
+        return lb
     }()
     
     let signUpButton: UIButton = {
@@ -55,18 +64,26 @@ class LoginController: UIViewController {
     @objc func handleTextInputChange() {
         let isFormValid = emailTextfield.text?.count ?? 0 > 0 && passwordTextfield.text?.count ?? 0 > 0
         if isFormValid {
-            loginButton.backgroundColor = UIColor.rgb(red: 255, green: 200, blue: 120)
+            loginButton.backgroundColor = UIColor.rgb(red: 255, green: 150, blue: 123)
             loginButton.isEnabled = true
         } else {
-            loginButton.backgroundColor = UIColor.rgb(red: 255, green: 150, blue: 123)
+            loginButton.backgroundColor = .lightGray
             loginButton.isEnabled = false
         }
     }
     
-    let loginButton: UIButton = {
-        let bt = UIButton(type: .system)
+    let warningLabel: UILabel = {
+        let lb = UILabel()
+        lb.text = ""
+        lb.textColor = UIColor.rgb(red: 255, green: 0, blue: 0)
+        lb.textAlignment = .center
+        return lb
+    }()
+
+    let loginButton: LoadingButton = {
+        let bt = LoadingButton(type: .system)
         bt.setTitle("Login", for: .normal)
-        bt.backgroundColor = UIColor.rgb(red: 255, green: 150, blue: 123)
+        bt.backgroundColor = .lightGray
         bt.layer.cornerRadius = 5
         bt.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         bt.setTitleColor(.white, for: .normal)
@@ -77,11 +94,9 @@ class LoginController: UIViewController {
     
     let cancelButton: UIButton = {
         let bt = UIButton(type: .system)
-        bt.setTitle("Cancel", for: .normal)
-        bt.backgroundColor = UIColor.rgb(red: 255, green: 150, blue: 123)
+        bt.setImage(#imageLiteral(resourceName: "Chevron").withRenderingMode(.alwaysOriginal), for: .normal)
         bt.layer.cornerRadius = 5
-        bt.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        bt.setTitleColor(.white, for: .normal)
+        
         bt.isEnabled = true
         bt.addTarget(self, action: #selector(handleCancel), for: .touchUpInside)
         return bt
@@ -92,11 +107,15 @@ class LoginController: UIViewController {
     }
     
     @objc func handleLogin() {
+        print("loginCuy")
         guard let email = emailTextfield.text else {return}
         guard let password = passwordTextfield.text else {return}
+        loginButton.showLoading()
         Auth.auth().signIn(withEmail: email, password: password) { (user, err) in
             if let err = err {
                 print("Failed to Sign in with email: \(err.localizedDescription)")
+                self.loginButton.hideLoading()
+                self.warningLabel.text = "Wrong email or password"
                 return
             }
             print("Succesfully logged back in with user: \(user?.user.uid ?? "")")
@@ -116,18 +135,25 @@ class LoginController: UIViewController {
         navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .white
         view.addSubview(logoContainer)
-        logoContainer.setAnchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 300)
+        logoContainer.setAnchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 200)
+        logoContainer.addSubview(cancelButton)
+        cancelButton.setAnchor(top: logoContainer.safeAreaLayoutGuide.topAnchor, left: logoContainer.leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 20, height: 20)
+        logoContainer.addSubview(logoLabel)
+        logoLabel.setAnchor(top: cancelButton.bottomAnchor, left: logoContainer.leftAnchor, bottom: logoContainer.bottomAnchor, right: logoContainer.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        
+        
         view.addSubview(signUpButton)
         signUpButton.setAnchor(top: nil, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
         setupInputField()
     }
     
     fileprivate func setupInputField() {
-        let stackView = UIStackView(arrangedSubviews: [emailTextfield,passwordTextfield,loginButton,cancelButton])
+        let stackView = UIStackView(arrangedSubviews: [emailTextfield,passwordTextfield,warningLabel,loginButton])
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
         stackView.spacing = 10
         view.addSubview(stackView)
-        stackView.setAnchor(top: logoContainer.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 40, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 140)
+        stackView.setAnchor(top: logoContainer.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 20, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 230)
     }
 }
+
