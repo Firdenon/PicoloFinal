@@ -20,8 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         
-        let userDefaults = UserDefaults.standard
-        if userDefaults.bool(forKey: "hasRunBefore") == false {
+        var userDefaults = UserDefaults.standard
+        
+        if !userDefaults.bool(forKey: "hasRunBefore") {
+            
             print("The app is launching for the first time. Setting UserDefaults...")
             
             do {
@@ -30,21 +32,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
             }
             // Update the flag indicator
-            userDefaults.set(true, forKey: "hasRunBefore")
-            userDefaults.synchronize() // This forces the app to update userDefaults
+            
+            //            userDefaults.synchronize() // This forces the app to update userDefaults
             
             // Run code here for the first launch
             window?.rootViewController = LandingPageViewController()
             window?.makeKeyAndVisible()
             window?.tintColor = UIColor.rgb(red: 255, green: 150, blue: 123)
-            
-        } else {
+        }else{
             print("The app has been launched before. Loading UserDefaults...")
             // Run code here for every other launch but the first
             window?.rootViewController = MainTabBarController()
             window?.makeKeyAndVisible()
             window?.tintColor = UIColor.rgb(red: 255, green: 150, blue: 123)
         }
+        
+ 
         
         
         

@@ -32,13 +32,13 @@ class LandingPageViewController: UIPageViewController, UIPageViewControllerDeleg
         
         //pageControl
         self.pageControl.frame = CGRect()
-        self.pageControl.currentPageIndicatorTintColor = UIColor.black
+        self.pageControl.currentPageIndicatorTintColor = UIColor.orange
         self.pageControl.pageIndicatorTintColor = UIColor.lightGray
         self.pageControl.numberOfPages = self.pages.count
         self.view.addSubview(self.pageControl)
         
         self.pageControl.translatesAutoresizingMaskIntoConstraints = false
-        self.pageControl.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -5).isActive = true
+        self.pageControl.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -75).isActive = true
         self.pageControl.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -20).isActive = true
         self.pageControl.heightAnchor.constraint(equalToConstant: 20).isActive = true
         self.pageControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
