@@ -52,11 +52,13 @@ class SubscriptionController: UICollectionViewController, UICollectionViewDelega
     }
     
     fileprivate func fetchAllPost() {
-        
         guard let uid = Auth.auth().currentUser?.uid else {return}
         
         Database.database().reference().child("following").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let userIdDict = snapshot.value as? [String:Any] else {return}
+            guard let userIdDict = snapshot.value as? [String:Any] else {
+                self.collectionView.refreshControl?.endRefreshing()
+                return
+            }
             userIdDict.forEach({ (key, value) in
                 Database.fetchUserWithUid(uid: key, completion: { (user) in
                     self.fetchPostWithUser(user: user)
@@ -93,14 +95,17 @@ class SubscriptionController: UICollectionViewController, UICollectionViewDelega
                     self.posts.sort(by: { (p1, p2) -> Bool in
                         return p1.creationDate.compare(p2.creationDate) == .orderedDescending
                     })
+                    self.collectionView.refreshControl?.endRefreshing()
                     self.collectionView.collectionViewLayout.invalidateLayout()
                     self.collectionView.reloadData()
                     self.collectionView.collectionViewLayout.invalidateLayout()
                 }, withCancel: { (err) in
+                    self.collectionView.refreshControl?.endRefreshing()
                     print("Failed to fetch like info for post")
                 })
             })
         }) { (err) in
+            self.collectionView.refreshControl?.endRefreshing()
             print("Failed to fetch post: \(err.localizedDescription)")
         }
     }

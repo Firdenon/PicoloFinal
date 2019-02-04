@@ -104,12 +104,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                         self.posts.sort(by: { (p1, p2) -> Bool in
                             return p1.creationDate.compare(p2.creationDate) == .orderedDescending
                         })
-                        
+                        self.collectionView.refreshControl?.endRefreshing()
                         self.collectionView.collectionViewLayout.invalidateLayout()
                         self.collectionView.reloadData()
                         self.collectionView.collectionViewLayout.invalidateLayout()
                         
                     }, withCancel: { (err) in
+                        self.collectionView.refreshControl?.endRefreshing()
                         print("Failed to fetch like info for post")
                     })
                 } else {
@@ -124,6 +125,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 }
             })
         }) { (err) in
+            self.collectionView.refreshControl?.endRefreshing()
             print("Failed to fetch post: \(err.localizedDescription)")
         }
     }
