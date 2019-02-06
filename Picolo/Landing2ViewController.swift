@@ -42,9 +42,15 @@ class Landing2ViewController: UIViewController {
         view.addSubview(textLabel)
         view.addSubview(textView)
         
-        image.setAnchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 167, paddingLeft: 74, paddingBottom: 457, paddingRight: 74)
-        textLabel.setAnchor(top: image.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 91, paddingLeft: 61.5, paddingBottom: 0, paddingRight: 61.5)
-        textView.setAnchor(top: textLabel.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 61.5, paddingBottom: 172, paddingRight: 61.5)
+        image.setAnchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 227, height: 188)
+        image.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        image.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100 ).isActive = true
+        
+        textLabel.setAnchor(top: image.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        textLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        textView.setAnchor(top: textLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        textView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
     }
     
