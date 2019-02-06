@@ -53,10 +53,14 @@ class Landing3ViewController: UIViewController {
         self.view.addSubview(textLabel)
         self.view.addSubview(continueButton)
         
-        image.setAnchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 144, paddingLeft: 92, paddingBottom: 434, paddingRight: 92)
-        textView.setAnchor(top: image.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 68, paddingLeft: 50, paddingBottom: 0, paddingRight: 50)
-        textLabel.setAnchor(top: textView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 50, paddingBottom: 0, paddingRight: 50)
-        continueButton.setAnchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 20, paddingBottom: 125, paddingRight: 20)
+        image.setAnchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: 191,height: 234)
+        image.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        image.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100).isActive = true
+        
+        textView.setAnchor(top: image.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: 0, height: 100)
+        textLabel.setAnchor(top: textView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        continueButton.setAnchor(top: textLabel.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        continueButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
     override func didReceiveMemoryWarning() {

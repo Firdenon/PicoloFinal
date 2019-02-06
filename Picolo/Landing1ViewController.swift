@@ -13,7 +13,7 @@ class Landing1ViewController: UIViewController {
     let titleLabel : UILabel = {
         let tl = UILabel()
         tl.text = "What is PicColo ?"
-        tl.font = UIFont(name: "Avenir-medium",size: 18)
+        tl.font = UIFont(name: "Avenir-medium",size: 28)
         tl.textAlignment = .center
         tl.textColor = UIColor.orange
         return tl
@@ -47,9 +47,14 @@ class Landing1ViewController: UIViewController {
         view.addSubview(image)
         view.addSubview(textView)
         
-        titleLabel.setAnchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 145, paddingLeft: 78, paddingBottom: 0, paddingRight: 78)
-        image.setAnchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 34, paddingLeft: 78, paddingBottom: 417, paddingRight: 78)
-        textView.setAnchor(top: image.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 63, paddingLeft: 59, paddingBottom: 125, paddingRight: 59)
+        titleLabel.setAnchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -180).isActive = true
+        
+        image.setAnchor(top: titleLabel.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 10, paddingRight: 0, width: 205,height: 178)
+        image.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        textView.setAnchor(top: image.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: 0,height: 170)
     }
     
     override func didReceiveMemoryWarning() {

@@ -52,7 +52,7 @@ class HomePostDetail: UIViewController{
     var titleLable:UILabel = {
         let tl = UILabel()
         tl.text = "title"
-        tl.font = UIFont(name: "Avenir-medium", size: 15)
+        tl.font = UIFont(name: "Avenir-medium", size: 14)
         tl.textColor = UIColor.black
         return tl
     }()
