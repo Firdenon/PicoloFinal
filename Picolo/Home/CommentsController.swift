@@ -101,12 +101,7 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
         let cv = UIView()
         cv.backgroundColor = .white
         cv.frame = CGRect(x: 0, y: 0, width: 100, height: 80)
-
-        let submitButton = UIButton(type: .system)
-        submitButton.setTitle("Send", for: .normal)
-        submitButton.setTitleColor(.black, for: .normal)
-        submitButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        submitButton.addTarget(self, action: #selector(handleSubmit), for: .touchUpInside)
+        
         cv.addSubview(submitButton)
         submitButton.setAnchor(top: cv.topAnchor, left: nil, bottom: cv.safeAreaLayoutGuide.bottomAnchor, right: cv.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 50, height: 0)
 
@@ -121,9 +116,20 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
         return cv
     }()
     
+    let submitButton: UIButton = {
+        let sb = UIButton(type: .system)
+        sb.setTitle("Send", for: .normal)
+        sb.setTitleColor(UIColor.lightGray, for: .normal)
+        sb.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        sb.isEnabled = false
+        sb.addTarget(self, action: #selector(handleSubmit), for: .touchUpInside)
+        return sb
+    }()
+    
     let commenTextfield: UITextField = {
         let tx = UITextField()
         tx.placeholder = "Enter Comment"
+        tx.addTarget(self, action: #selector(textfieldIsEditing), for: .editingChanged)
         return tx
     }()
     
@@ -134,18 +140,31 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
             present(navLogin, animated: true, completion: nil)
             return
         }
-        
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let postId = self.post?.id ?? ""
         let values = ["text":commenTextfield.text ?? "", "creationDate":Date().timeIntervalSince1970, "uid":uid] as [String:Any]
         Database.database().reference().child("comments").child(postId).childByAutoId().updateChildValues(values) { (err, ref) in
             if let err = err {
                 print("Failed to insert comment: \(err.localizedDescription)")
+                self.view.endEditing(true)
                 return
             }
             print("Succesfully inserted comment")
+            self.commenTextfield.text = ""
+            self.commenTextfield.resignFirstResponder()
         }
         
+    }
+    
+    @objc func textfieldIsEditing() {
+        let isTrue = commenTextfield.text?.count ?? 0 > 0
+        if isTrue {
+            submitButton.isEnabled = true
+            submitButton.setTitleColor(UIColor.rgb(red: 255, green: 150, blue: 123), for: .normal)
+        } else {
+            submitButton.isEnabled = false
+            submitButton.setTitleColor(UIColor.lightGray, for: .normal)
+        }
     }
     
     override var inputAccessoryView: UIView? {

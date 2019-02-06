@@ -126,6 +126,7 @@ class HomePostDetail: UIViewController{
     }()
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if photoImageView.image != nil {
             arButton.isEnabled = true
         }
@@ -145,6 +146,13 @@ class HomePostDetail: UIViewController{
     @objc func handelLike() {
         print("liked")
         guard let postId = post?.id else {return}
+        
+        if Auth.auth().currentUser == nil {
+            let loginView = LoginController()
+            let navLogin = UINavigationController(rootViewController: loginView)
+            present(navLogin, animated: true, completion: nil)
+            return
+        }
         
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let values = [uid:post?.hasLiked == true ? 0 : 1]
@@ -199,7 +207,12 @@ class HomePostDetail: UIViewController{
     }()
     
     @objc func handleComment() {
-        print("handle Comment")
+        if Auth.auth().currentUser == nil {
+            let loginView = LoginController()
+            let navLogin = UINavigationController(rootViewController: loginView)
+            present(navLogin, animated: true, completion: nil)
+            return
+        }
         
         let commentsController = CommentsController(collectionViewLayout: UICollectionViewFlowLayout())
         commentsController.post = post
@@ -249,7 +262,6 @@ class HomePostDetail: UIViewController{
     }
     
     @objc func tapImageDetail(){
-        print("1")
         let vc = HomePostImagePreview()
         vc.post = post
         navigationController?.pushViewController(vc, animated: true)
@@ -258,7 +270,6 @@ class HomePostDetail: UIViewController{
     }
     
     @objc func goToAR() {
-        print("go to AR")
         let arScene = HomePostDetailARSCN()
         arScene.post = post
         navigationController?.pushViewController(arScene, animated: true)
