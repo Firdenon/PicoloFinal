@@ -23,11 +23,43 @@ class SubscriptionController: UICollectionViewController, UICollectionViewDelega
         }
     }
     
+    let mask: UIView = {
+        
+        let height = UIScreen.main.bounds.height
+        let width = UIScreen.main.bounds.width
+        
+        let boardImage: UIImageView = {
+            let iv = UIImageView()
+            iv.image = #imageLiteral(resourceName: "Group 4").withRenderingMode(.alwaysOriginal)
+            return iv
+        }()
+        
+        let boardTitle: UILabel = {
+            let lb = UILabel()
+            lb.text = "You are not follow anyone. Let's follow!" + "\n" + "It would be nice if you" + "\n" + "connected with each other."
+            lb.font = UIFont(name:"Avenir-medium",size:18)
+            lb.textColor = UIColor.rgb(red: 255, green: 150, blue: 123)
+            lb.numberOfLines = 0
+            lb.textAlignment = .center
+            return lb
+        }()
+        
+        let ms = UIView()
+        
+        ms.addSubview(boardImage)
+        boardImage.setAnchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 172, height: 169)
+        boardImage.centerXAnchor.constraint(equalTo: ms.centerXAnchor).isActive = true
+        boardImage.centerYAnchor.constraint(equalTo: ms.centerYAnchor, constant: -130).isActive = true
+        
+        ms.addSubview(boardTitle)
+        boardTitle.setAnchor(top: boardImage.bottomAnchor, left: ms.leftAnchor, bottom: nil, right: ms.rightAnchor, paddingTop: 30, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width:0 , height: 100)
+        
+        ms.backgroundColor = .white
+        return ms
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("Bner")
-        
         collectionView.backgroundColor = .white
         collectionView.register(SubscriptionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         collectionView.register(SubscriptionPost.self, forCellWithReuseIdentifier: cellId)
@@ -41,7 +73,6 @@ class SubscriptionController: UICollectionViewController, UICollectionViewDelega
             layout.cellPadding = 10
             layout.numberOfColumns = 2
         }
-        
         fetchAllPost()
     }
     
@@ -111,6 +142,13 @@ class SubscriptionController: UICollectionViewController, UICollectionViewDelega
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if self.posts.count == 0 {
+            self.collectionView.backgroundView = mask
+        } else {
+            self.collectionView.backgroundView = nil
+        }
+        
         return posts.count
     }
     
@@ -157,7 +195,12 @@ extension SubscriptionController: PinterestLayoutDelegate {
     }
     
     func collectionView(collectionView: UICollectionView, sizeForSectionHeaderViewForSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: 180)
+        
+        if posts.count == 0 {
+            return CGSize.zero
+        } else {
+            return CGSize(width: view.frame.width, height: 180)
+        }
     }
     
 }

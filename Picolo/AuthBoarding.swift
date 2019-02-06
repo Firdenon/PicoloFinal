@@ -54,8 +54,9 @@ class AuthBoarding: UIViewController {
         view.backgroundColor = .white
         
         view.addSubview(boardImage)
-        boardImage.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 170, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 205, height: 178)
+        boardImage.setAnchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 205, height: 178)
         boardImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        boardImage.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -130).isActive = true
         
         view.addSubview(boardTitle)
         boardTitle.setAnchor(top: boardImage.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 30, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width:0 , height: 100)

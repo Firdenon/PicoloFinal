@@ -203,7 +203,12 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         view.backgroundColor = .white
         view.addSubview(photoButton)
         photoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        photoButton.setAnchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 100, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 140, height: 140)
+        
+        if UIDevice.isScreen4inch() {
+             photoButton.setAnchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 40, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 140, height: 140)
+        } else {
+             photoButton.setAnchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 100, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 140, height: 140)
+        }
         setupInputField()
     }
     

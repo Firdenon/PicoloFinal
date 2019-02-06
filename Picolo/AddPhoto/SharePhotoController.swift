@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class SharePhotoController: UIViewController {
+class SharePhotoController: UIViewController, UITextFieldDelegate {
     
     var selectedImage: UIImage? {
         didSet{
@@ -24,16 +24,24 @@ class SharePhotoController: UIViewController {
         return iv
     }()
     
-    let textView: UITextView = {
-        let tv = UITextView()
-        tv.font = UIFont.systemFont(ofSize: 14)
+    let textView: UITextField = {
+        let tv = UITextField()
+        tv.font = UIFont(name: "Avenir-medium", size: 23)
+        tv.placeholder = "Your title here"
         return tv
     }()
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else {return true}
+        let count = text.count + string.count - range.length
+        return count <= 16
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(handleShare))
+        textView.delegate = self
         setupImageAndTextView()
     }
     
@@ -45,7 +53,23 @@ class SharePhotoController: UIViewController {
         containerView.addSubview(imageView)
         imageView.setAnchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 0, width: 84, height: 0)
         containerView.addSubview(textView)
-        textView.setAnchor(top: containerView.topAnchor, left: imageView.rightAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingTop: 10, paddingLeft: 8, paddingBottom: 0, paddingRight: 10)
+        textView.setAnchor(top: containerView.topAnchor, left: imageView.rightAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingTop: 10, paddingLeft: 15, paddingBottom: 10, paddingRight: 10)
+    }
+    
+    fileprivate func loadingMask() {
+        let alert = UIAlertController(title: nil, message: "Uploading...", preferredStyle: .alert)
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.startAnimating();
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    fileprivate func disableLoadingMask() {
+        if let vc = self.presentedViewController, vc is UIAlertController {
+            dismiss(animated: false, completion: nil)
+        }
     }
     
     @objc func handleShare() {
@@ -54,17 +78,22 @@ class SharePhotoController: UIViewController {
         guard let uploadData = image.jpegData(compressionQuality: 0.5) else {return}
         navigationItem.rightBarButtonItem?.isEnabled = false
         let filename = NSUUID().uuidString
+        
+        loadingMask()
+        
         let storageRef = Storage.storage().reference().child("posts").child(filename)
         storageRef.putData(uploadData, metadata: nil) { (metadata, err) in
             if let err = err {
                 print("Failed to upload post image: \(err.localizedDescription)")
                 self.navigationItem.rightBarButtonItem?.isEnabled = true
+                self.disableLoadingMask()
                 return
             }
             storageRef.downloadURL(completion: { (url, err) in
                 if let err = err {
                     self.navigationItem.rightBarButtonItem?.isEnabled = true
                     print("Failed to fetch donwload URL: \(err.localizedDescription)")
+                    self.disableLoadingMask()
                     return
                 }
                 guard let imageUrlString = url?.absoluteString else {return}
@@ -96,9 +125,11 @@ class SharePhotoController: UIViewController {
             moreRef.updateChildValues(likeValue, withCompletionBlock: { (err, ref) in
                 if let err = err {
                     print("Failed to add likeCount: \(err.localizedDescription)")
+                    self.navigationItem.rightBarButtonItem?.isEnabled = true
                     return
                 } else {
                     print("Successfully saved post to DB")
+                    self.disableLoadingMask()
                     self.dismiss(animated: true, completion: nil)
                     NotificationCenter.default.post(name: SharePhotoController.updateFeedNotificationName, object: nil)
                 }

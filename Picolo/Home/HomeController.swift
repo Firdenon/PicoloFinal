@@ -36,9 +36,15 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         refresControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         collectionView.refreshControl = refresControl
         if let layout = collectionView?.collectionViewLayout as? PinterestLayout {
-            layout.delegate = self
-            layout.cellPadding = 10
-            layout.numberOfColumns = 2
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                layout.numberOfColumns = 3
+                layout.delegate = self
+                layout.cellPadding = 5
+            } else {
+                layout.numberOfColumns = 2
+                layout.delegate = self
+                layout.cellPadding = 5
+            }
         }
         setupNavItems()
         fetchAllPost()
@@ -159,7 +165,15 @@ extension HomeController: PinterestLayoutDelegate {
     func collectionView(collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath, withWidth: CGFloat) -> CGFloat {
         let imageHeight = posts[indexPath.item].imageHeight
         let imageWidth = posts[indexPath.item].imageWidth
-        let lebaryangditentukan:CGFloat = (375 / 2) - 20
+        let screenWidth = UIScreen.main.bounds.width
+        var lebaryangditentukan: CGFloat = 0
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            lebaryangditentukan = (screenWidth / 3) - 10
+        } else {
+            lebaryangditentukan = (screenWidth / 2) - 10
+        }
+        
         let x = imageWidth / lebaryangditentukan
         let panjang = imageHeight / x
         return panjang

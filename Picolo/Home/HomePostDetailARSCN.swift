@@ -25,12 +25,6 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
                 
             }
             image = imagePost.image
-//            photoImageView.loadImage(urlString: imageURL)
-//            titleLable.text = post?.title
-//            guard let usernameText = post?.user.username else {return}
-//            usernameLabel.text = "by " + (usernameText)
-//            guard let profileImageUrl = post?.user.profileImageUrl else {return}
-//            profileImageView.loadImage(urlString: profileImageUrl)
         }
     }
     
@@ -77,9 +71,6 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
-        
         sceneView.delegate = self
         view.addSubview(sceneView)
         view.addSubview(instructionLabel)

@@ -54,7 +54,7 @@ class UserProfileViewController: UICollectionViewController{
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerId")
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "first")
+        collectionView.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: "first")
         collectionView.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: cellId)
         if let layout = collectionView?.collectionViewLayout as? PinterestLayout {
             layout.delegate = self
@@ -177,17 +177,18 @@ class UserProfileViewController: UICollectionViewController{
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfilePhotoCell
-        let firstCell = collectionView.dequeueReusableCell(withReuseIdentifier: "first", for: indexPath)
+        let firstCell = collectionView.dequeueReusableCell(withReuseIdentifier: "first", for: indexPath) as! UserProfilePhotoCell
         
         if currentLoginId == userId || userId == nil {
             if indexPath.row == 0 {
-                firstCell.backgroundColor = .lightGray
-                firstCell.layer.shadowColor = UIColor.black.cgColor
-                firstCell.layer.shadowOffset = CGSize(width: 0, height: 0.1)
-                firstCell.layer.shadowRadius = 2.0
-                firstCell.layer.shadowOpacity = 0.5
-                firstCell.layer.masksToBounds = false
-                firstCell.clipsToBounds = false
+//                firstCell.backgroundColor = .lightGray
+//                firstCell.layer.shadowColor = UIColor.black.cgColor
+//                firstCell.layer.shadowOffset = CGSize(width: 0, height: 0.1)
+//                firstCell.layer.shadowRadius = 2.0
+//                firstCell.layer.shadowOpacity = 0.5
+//                firstCell.layer.masksToBounds = false
+//                firstCell.clipsToBounds = false
+                firstCell.photoImageView.image = #imageLiteral(resourceName: "Group 5")
                 return firstCell
             } else {
                 cell.post = posts[indexPath.item - 1]
@@ -382,7 +383,7 @@ extension UserProfileViewController: PinterestLayoutDelegate {
         
         if currentLoginId == userId || userId == nil {
             if indexPath.row == 0 {
-                return (375 / 2)
+                return (375 / 2) - 5
             } else {
                 let imageHeight = posts[indexPath.item - 1].imageHeight
                 let imageWidth = posts[indexPath.item - 1].imageWidth
