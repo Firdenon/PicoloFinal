@@ -58,7 +58,7 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
     
     let backButton: UIButton = {
         let btn = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
-        btn.setImage(#imageLiteral(resourceName: "Group 2"), for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "backbuttonAR"), for: .normal)
         btn.addTarget(self, action: #selector(back), for: .touchUpInside)
         return btn
     }()

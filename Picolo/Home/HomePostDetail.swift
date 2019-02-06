@@ -97,7 +97,7 @@ class HomePostDetail: UIViewController{
     let photoImageView: CustomImageView = {
         let iv = CustomImageView()
         iv.contentMode = .scaleAspectFit
-        iv.backgroundColor = .lightGray
+        iv.backgroundColor = .white
         iv.clipsToBounds = true
         return iv
     }()
