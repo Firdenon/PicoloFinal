@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class SharePhotoController: UIViewController, UITextFieldDelegate {
+class SharePhotoController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     var selectedImage: UIImage? {
         didSet{
@@ -31,10 +31,33 @@ class SharePhotoController: UIViewController, UITextFieldDelegate {
         return tv
     }()
     
+    let descriptionTextView : UITextView = {
+        let tv = UITextView()
+        tv.font = UIFont(name: "Avenir-medium", size: 14)
+        tv.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        tv.text = "Description (optional)"
+        tv.textColor = .lightGray
+        return tv
+    }()
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else {return true}
         let count = text.count + string.count - range.length
         return count <= 16
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Description (optional)"
+            textView.textColor = UIColor.lightGray
+        }
     }
     
     override func viewDidLoad() {
@@ -42,6 +65,7 @@ class SharePhotoController: UIViewController, UITextFieldDelegate {
         view.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(handleShare))
         textView.delegate = self
+        descriptionTextView.delegate = self
         setupImageAndTextView()
     }
     
@@ -54,6 +78,9 @@ class SharePhotoController: UIViewController, UITextFieldDelegate {
         imageView.setAnchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 0, width: 84, height: 0)
         containerView.addSubview(textView)
         textView.setAnchor(top: containerView.topAnchor, left: imageView.rightAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingTop: 10, paddingLeft: 15, paddingBottom: 10, paddingRight: 10)
+        
+        view.addSubview(descriptionTextView)
+        descriptionTextView.setAnchor(top: containerView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 150)
     }
     
     fileprivate func loadingMask() {
@@ -74,6 +101,7 @@ class SharePhotoController: UIViewController, UITextFieldDelegate {
     
     @objc func handleShare() {
         guard let caption = textView.text, caption.count > 0 else {return}
+        guard let description = descriptionTextView.text, descriptionTextView.text != "Description (optional)" else {return}
         guard let image = selectedImage else {return}
         guard let uploadData = image.jpegData(compressionQuality: 0.5) else {return}
         navigationItem.rightBarButtonItem?.isEnabled = false
@@ -108,10 +136,13 @@ class SharePhotoController: UIViewController, UITextFieldDelegate {
     fileprivate func saveToDatabaseWithImageUrl(imageUrl: String) {
         guard let postImage = selectedImage else {return}
         guard let caption = textView.text else {return}
+        guard let description = descriptionTextView.text else {return}
         guard let uid = Auth.auth().currentUser?.uid else {return}
+        
         let userPostRef = Database.database().reference().child("posts").child(uid)
         let ref = userPostRef.childByAutoId()
-        let values = ["imageUrl":imageUrl, "caption":caption, "imgWidth":postImage.size.width, "imgHeight":postImage.size.height, "creationDate":Date().timeIntervalSince1970] as [String : Any]
+        let values = ["imageUrl":imageUrl, "caption":caption, "description":description, "imgWidth":postImage.size.width, "imgHeight":postImage.size.height, "creationDate":Date().timeIntervalSince1970] as [String : Any]
+        
         ref.updateChildValues(values) { (err, ref) in
             if let err = err {
                 self.navigationItem.rightBarButtonItem?.isEnabled = true
