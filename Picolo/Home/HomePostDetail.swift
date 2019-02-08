@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import PinterestLayout
 
 class HomePostDetail: UIViewController{
     
@@ -90,7 +91,7 @@ class HomePostDetail: UIViewController{
         tv.isEditable = false
         tv.isScrollEnabled = false
         tv.isSelectable = false
-        tv.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus aliquam nisl at tortor egestas vestibulum. Mauris egestas dui id nisl viverra finibus. Sed finibus, justo eu scelerisque interdum, enim lorem congue est, ac sagittis diam velit in erat. Vivamus ac sagittis augue. Phasellus dapibus ligula facilisis hendrerit porttitor. Sed eget convallis sapien. In hac habitasse platea dictumst."
+        tv.text = "Hi, I made this Art. Hope you Guys love this! Give a Like and Comment! that would be nice for me."
         return tv
     }()
     
@@ -224,8 +225,11 @@ class HomePostDetail: UIViewController{
         super.viewDidLoad()
         //Mark Tap Recognizer
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapImageDetail))
+        let tapUser = UITapGestureRecognizer(target: self, action: #selector(tapUploader))
         photoImageView.isUserInteractionEnabled = true
         photoImageView.addGestureRecognizer(tap)
+        usernameLabel.isUserInteractionEnabled = true
+        usernameLabel.addGestureRecognizer(tapUser)
         //mark View
         view.backgroundColor = .white
         view.addSubview(titleLable)
@@ -237,7 +241,7 @@ class HomePostDetail: UIViewController{
         
         view.addSubview(likeButton)
         view.addSubview(commentButton)
-        view.addSubview(commentButton2)
+//        view.addSubview(commentButton2)
         
         view.addSubview(likeLable)
         view.addSubview(commentLable)
@@ -251,11 +255,11 @@ class HomePostDetail: UIViewController{
         likeButton.setAnchor(top: profileImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 10, paddingBottom: 0, paddingRight: 0)
         
         commentButton.setAnchor(top: profileImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 101, paddingBottom: 0, paddingRight: 0)
-        commentButton2.setAnchor(top: profileImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 101, paddingBottom: 0, paddingRight: 0)
+//        commentButton2.setAnchor(top: profileImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 101, paddingBottom: 0, paddingRight: 0)
         
         likeLable.setAnchor(top: profileImageView.bottomAnchor, left: likeButton.rightAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 10, paddingBottom: 0, paddingRight: 0)
         
-        descriptionText.setAnchor(top: commentButton2.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 103, paddingRight: 20)
+        descriptionText.setAnchor(top: commentButton.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 103, paddingRight: 20)
         
         fetchLikeCount()
         
@@ -273,6 +277,14 @@ class HomePostDetail: UIViewController{
         let arScene = HomePostDetailARSCN()
         arScene.post = post
         navigationController?.pushViewController(arScene, animated: true)
+        
+    }
+    
+    @objc func tapUploader(){
+        guard let uid = post?.user.uid else {return}
+        let userProfileController = UserProfileViewController(collectionViewLayout: PinterestLayout())
+        userProfileController.userId = uid
+        navigationController?.pushViewController(userProfileController, animated: true)
         
     }
 }

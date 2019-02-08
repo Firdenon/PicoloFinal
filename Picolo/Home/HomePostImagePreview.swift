@@ -33,6 +33,7 @@ class HomePostImagePreview: UIViewController{
         super.viewDidLoad()
         view.backgroundColor = .black
         
+        NotificationCenter.default.addObserver(self, selector: #selector(screenshotTaken), name: UIApplication.userDidTakeScreenshotNotification, object: nil)
         
         
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swiped))
@@ -71,5 +72,10 @@ class HomePostImagePreview: UIViewController{
         self.navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @objc func screenshotTaken(){
+        print("Screenshot!")
+    }
+    
     
 }
