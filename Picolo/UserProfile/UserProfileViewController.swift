@@ -244,7 +244,6 @@ class UserProfileViewController: UICollectionViewController{
     
     fileprivate func fetchUser() {
         let uid = userId ?? (Auth.auth().currentUser?.uid ?? "")
-        //guard let uid = Auth.auth().currentUser?.uid else {return}
         Database.fetchUserWithUid(uid: uid) { (user) in
             self.user = user
             DispatchQueue.main.async {
@@ -380,21 +379,22 @@ extension UserProfileViewController: PinterestLayoutDelegate {
     func collectionView(collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath, withWidth: CGFloat) -> CGFloat {
         
         let panjang: CGFloat
+        let screenWidth = UIScreen.main.bounds.width
         
         if currentLoginId == userId || userId == nil {
             if indexPath.row == 0 {
-                return (375 / 2) - 5
+                return (screenWidth / 2) - 5
             } else {
                 let imageHeight = posts[indexPath.item - 1].imageHeight
                 let imageWidth = posts[indexPath.item - 1].imageWidth
-                let lebaryangditentukan:CGFloat = (375 / 2) - 20
+                let lebaryangditentukan:CGFloat = (screenWidth / 2) - 20
                 let x = imageWidth / lebaryangditentukan
                 panjang = imageHeight / x
             }
         } else {
             let imageHeight = posts[indexPath.item].imageHeight
             let imageWidth = posts[indexPath.item].imageWidth
-            let lebaryangditentukan:CGFloat = (375 / 2) - 20
+            let lebaryangditentukan:CGFloat = (screenWidth / 2) - 20
             let x = imageWidth / lebaryangditentukan
             panjang = imageHeight / x
         }
@@ -406,7 +406,7 @@ extension UserProfileViewController: PinterestLayoutDelegate {
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        self.header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerId", for: indexPath) as! UserProfileHeader
+        self.header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerId", for: indexPath) as? UserProfileHeader
         self.header!.user = self.user
         self.header!.followersCount = self.followersCount
         self.header!.followingsCount = self.followingCount

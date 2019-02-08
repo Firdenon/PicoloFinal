@@ -18,14 +18,16 @@ struct Post {
     let imageUrl: String
     let user: User
     let title: String
+    let description: String
     let creationDate: Date
-    
+   
     var hasLiked = false
     
     init(user:User, dictionary: [String:Any]) {
         self.user = user
         self.imageUrl = dictionary["imageUrl"] as? String ?? ""
         self.title = dictionary["caption"] as? String ?? ""
+        self.description = dictionary["description"] as? String ?? ""
         self.imageHeight = dictionary["imgHeight"] as? CGFloat ?? 0
         self.imageWidth = dictionary["imgWidth"] as? CGFloat ?? 0
         

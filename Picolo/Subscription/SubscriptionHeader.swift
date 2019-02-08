@@ -10,6 +10,11 @@ import UIKit
 
 class SubscriptionHeader: UICollectionViewCell {
     
+    let collectionView : UICollectionView = {
+        let cv = UICollectionView()
+        return cv
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
