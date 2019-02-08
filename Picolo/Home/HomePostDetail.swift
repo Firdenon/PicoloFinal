@@ -245,7 +245,14 @@ class HomePostDetail: UIViewController{
         view.addSubview(likeLable)
         view.addSubview(commentLable)
         
-        photoImageView.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width : view.frame.width, height: ((post?.imageHeight)!) * (view.frame.width / ((post?.imageHeight)!)))
+        guard let imageHeight = post?.imageHeight else {return}
+        guard let imageWidth = post?.imageWidth else {return}
+        let screenWidth = UIScreen.main.bounds.width
+        let x = imageWidth / screenWidth
+        let panjang = imageHeight / x
+        
+        
+        photoImageView.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width : view.frame.width, height: panjang + 10)
         
         profileImageView.setAnchor(top: photoImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop:20, paddingLeft: 20, paddingBottom: 0, paddingRight: 0,width: 50,height: 50)
         profileImageView.layer.cornerRadius = 50 / 2
