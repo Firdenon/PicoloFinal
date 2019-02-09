@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class HomePostImagePreview: UIViewController{
+class HomePostImagePreview: UIViewController, UIScrollViewDelegate{
     
     var post: Post?{
         didSet{
@@ -29,21 +29,38 @@ class HomePostImagePreview: UIViewController{
         return iv
     }()
     
+    var scrollView:UIScrollView = {
+        let sv = UIScrollView()
+        sv.minimumZoomScale = 0.5
+        sv.maximumZoomScale = 10.0
+        sv.alwaysBounceHorizontal = false
+        sv.alwaysBounceVertical = false
+        sv.showsVerticalScrollIndicator = true
+        return sv
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
         
         NotificationCenter.default.addObserver(self, selector: #selector(screenshotTaken), name: UIApplication.userDidTakeScreenshotNotification, object: nil)
-        
+        scrollView.delegate = self
         
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swiped))
         let tapRecog = UITapGestureRecognizer(target: self, action: #selector(tapped))
         swipeGesture.direction = .down
         photoImageView.isUserInteractionEnabled = true
         photoImageView.addGestureRecognizer(tapRecog)
+        scrollView.isUserInteractionEnabled = true
+        scrollView.addGestureRecognizer(tapRecog)
         //photoImageView.addGestureRecognizer(swipeGesture)
-        view.addSubview(photoImageView)
-        photoImageView.setAnchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        
+        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height)
+        
+        view.addSubview(scrollView)
+        scrollView.addSubview(photoImageView)
+        scrollView.setAnchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        photoImageView.setAnchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +92,10 @@ class HomePostImagePreview: UIViewController{
     
     @objc func screenshotTaken(){
         print("Screenshot!")
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return photoImageView
     }
     
     

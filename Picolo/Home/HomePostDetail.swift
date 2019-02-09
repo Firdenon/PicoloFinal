@@ -233,6 +233,7 @@ class HomePostDetail: UIViewController{
         photoImageView.addGestureRecognizer(tap)
         usernameLabel.isUserInteractionEnabled = true
         usernameLabel.addGestureRecognizer(tapUser)
+        
         //mark View
         view.backgroundColor = .white
         view.addSubview(titleLable)
@@ -256,7 +257,8 @@ class HomePostDetail: UIViewController{
         let panjang = imageHeight / x
         
         
-        photoImageView.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width : view.frame.width, height: panjang + 10)
+        photoImageView.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width : view.frame.width, height: (imageHeight) * (view.frame.width / (imageHeight)))
+        
         
         profileImageView.setAnchor(top: photoImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop:20, paddingLeft: 20, paddingBottom: 0, paddingRight: 0,width: 50,height: 50)
         profileImageView.layer.cornerRadius = 50 / 2
@@ -275,7 +277,7 @@ class HomePostDetail: UIViewController{
         
         likeLable.setAnchor(top: profileImageView.bottomAnchor, left: likeButton.rightAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 10, paddingBottom: 0, paddingRight: 0)
         
-        descriptionText.setAnchor(top: commentButton.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 103, paddingRight: 20)
+        descriptionText.setAnchor(top: commentButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 0, paddingRight: 20)
         
         fetchLikeCount()
         
