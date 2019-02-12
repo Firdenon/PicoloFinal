@@ -20,28 +20,40 @@ class HomePostImagePreview: UIViewController, UIScrollViewDelegate{
         }
     }
     
+    
     let photoImageView: CustomImageView = {
         let iv = CustomImageView()
         iv.contentMode = .scaleAspectFit
         iv.frame = CGRect.zero
-        iv.backgroundColor = .black
-        iv.clipsToBounds = true
+        iv.backgroundColor = .blue
+        iv.clipsToBounds = false
         return iv
     }()
     
     var scrollView:UIScrollView = {
         let sv = UIScrollView()
-        sv.minimumZoomScale = 0.5
-        sv.maximumZoomScale = 10.0
-        sv.alwaysBounceHorizontal = false
-        sv.alwaysBounceVertical = false
-        sv.showsVerticalScrollIndicator = true
+        sv.minimumZoomScale = 1.0
+        sv.maximumZoomScale = 3.0
+        sv.isScrollEnabled = true
+        sv.clipsToBounds = true
+        sv.bounces = true
+        sv.bouncesZoom = true
+        sv.canCancelContentTouches = true
+        sv.delaysContentTouches = true
+        sv.autoresizesSubviews = true
+        sv.clearsContextBeforeDrawing = true
+        sv.isDirectionalLockEnabled = true
+        sv.isMultipleTouchEnabled = true
         return sv
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        
+        var vHeight = self.view.frame.height
+        var vWidth = self.view.frame.width
+        scrollView.frame = CGRect(x: 0, y: 0, width: vWidth, height: vHeight)
         
         NotificationCenter.default.addObserver(self, selector: #selector(screenshotTaken), name: UIApplication.userDidTakeScreenshotNotification, object: nil)
         scrollView.delegate = self
@@ -61,6 +73,9 @@ class HomePostImagePreview: UIViewController, UIScrollViewDelegate{
         scrollView.addSubview(photoImageView)
         scrollView.setAnchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
         photoImageView.setAnchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        photoImageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+        photoImageView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor).isActive = true
+        photoImageView.contentMode = .scaleAspectFit
     }
     
     override func viewWillAppear(_ animated: Bool) {

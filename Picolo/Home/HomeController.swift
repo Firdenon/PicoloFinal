@@ -26,7 +26,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         let name = SharePhotoController.updateFeedNotificationName
-        self.title = "PICCOLO"
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: name, object: nil)
         
