@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         
-        var userDefaults = UserDefaults.standard
+        let userDefaults = UserDefaults.standard
         
         if !userDefaults.bool(forKey: "hasRunBefore") {
             

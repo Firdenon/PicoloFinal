@@ -18,6 +18,7 @@
 		5AF685E42202CEEF00E24A51 /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF685E32202CEEF00E24A51 /* LandingPageViewController.swift */; };
 		5AF685E62202D6E300E24A51 /* GlobalVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF685E52202D6E300E24A51 /* GlobalVariable.swift */; };
 		5AFD649821FF064D006990B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AFD649721FF064D006990B7 /* Assets.xcassets */; };
+		7006DF3922142536007F4145 /* FollowingListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7006DF3822142536007F4145 /* FollowingListController.swift */; };
 		7092BB7E21F810ED0092DD1E /* SubcriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB7D21F810ED0092DD1E /* SubcriptionController.swift */; };
 		7092BB8021F812A10092DD1E /* SubscriptionPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB7F21F812A10092DD1E /* SubscriptionPost.swift */; };
 		7092BB8221F815CF0092DD1E /* SubscriptionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB8121F815CF0092DD1E /* SubscriptionHeader.swift */; };
@@ -82,6 +83,7 @@
 		5AF685E32202CEEF00E24A51 /* LandingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageViewController.swift; sourceTree = "<group>"; };
 		5AF685E52202D6E300E24A51 /* GlobalVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariable.swift; sourceTree = "<group>"; };
 		5AFD649721FF064D006990B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7006DF3822142536007F4145 /* FollowingListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingListController.swift; sourceTree = "<group>"; };
 		7092BB7D21F810ED0092DD1E /* SubcriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcriptionController.swift; sourceTree = "<group>"; };
 		7092BB7F21F812A10092DD1E /* SubscriptionPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPost.swift; sourceTree = "<group>"; };
 		7092BB8121F815CF0092DD1E /* SubscriptionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionHeader.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				7092BB7D21F810ED0092DD1E /* SubcriptionController.swift */,
 				7092BB7F21F812A10092DD1E /* SubscriptionPost.swift */,
 				7092BB8121F815CF0092DD1E /* SubscriptionHeader.swift */,
+				7006DF3822142536007F4145 /* FollowingListController.swift */,
 			);
 			path = Subscription;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				7093CDA621E3C2AF00731FB8 /* PhotoSelectorController.swift in Sources */,
 				7093CDB321E4554000731FB8 /* CustomImageView.swift in Sources */,
 				7093CDAF21E4502200731FB8 /* Post.swift in Sources */,
+				7006DF3922142536007F4145 /* FollowingListController.swift in Sources */,
 				7092BB8421F854740092DD1E /* AuthBoarding.swift in Sources */,
 				7093CD6621E32F1200731FB8 /* SignUpController.swift in Sources */,
 				7092BB8621F991D20092DD1E /* CommentsController.swift in Sources */,

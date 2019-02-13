@@ -10,7 +10,14 @@ import UIKit
 import Firebase
 import PinterestLayout
 
-class SubscriptionController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class SubscriptionController: UICollectionViewController, UICollectionViewDelegateFlowLayout, SubscriptionHeaderDelegate {
+    
+    func allAction() {
+        let followingList = FollowingListController(collectionViewLayout: UICollectionViewFlowLayout())
+        followingList.users = userFollow
+        navigationController?.pushViewController(followingList, animated: true)
+    }
+    
     
     let cellId = "cellId"
     let headerId = "headerId"
@@ -22,6 +29,8 @@ class SubscriptionController: UICollectionViewController, UICollectionViewDelega
             self.collectionView.collectionViewLayout.invalidateLayout()
         }
     }
+    
+    var userFollow = [User]()
     
     let mask: UIView = {
         
@@ -81,6 +90,7 @@ class SubscriptionController: UICollectionViewController, UICollectionViewDelega
     @objc func handleRefresh() {
         print("Handle Refresh.....")
         posts.removeAll()
+        userFollow.removeAll()
         fetchAllPost()
     }
     
@@ -94,6 +104,10 @@ class SubscriptionController: UICollectionViewController, UICollectionViewDelega
             }
             userIdDict.forEach({ (key, value) in
                 Database.fetchUserWithUid(uid: key, completion: { (user) in
+                    self.userFollow.append(user)
+                    self.userFollow.sort(by: { (u1, u2) -> Bool in
+                        return u1.username.compare(u2.username) == .orderedAscending
+                    })
                     self.fetchPostWithUser(user: user)
                 })
             })
@@ -193,6 +207,8 @@ extension SubscriptionController: PinterestLayoutDelegate {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! SubscriptionHeader
+        header.user = userFollow
+        header.delegate = self
         return header
     }
     
@@ -201,7 +217,7 @@ extension SubscriptionController: PinterestLayoutDelegate {
         if posts.count == 0 {
             return CGSize.zero
         } else {
-            return CGSize(width: view.frame.width, height: 180)
+            return CGSize(width: view.frame.width, height: 90)
         }
     }
     
