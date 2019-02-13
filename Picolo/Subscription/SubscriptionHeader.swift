@@ -110,7 +110,7 @@ class SubscriptionHeaderCell: UICollectionViewCell {
     
     let imageView: CustomImageView = {
         let iv = CustomImageView()
-        iv.backgroundColor = .blue
+        iv.backgroundColor = .lightGray
         return iv
     }()
     

@@ -77,7 +77,6 @@ class SubscriptionController: UICollectionViewController, UICollectionViewDelega
         refresControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         collectionView.refreshControl = refresControl
         
-        self.title = "Following"
         
         if let layout = collectionView?.collectionViewLayout as? PinterestLayout {
             layout.delegate = self
