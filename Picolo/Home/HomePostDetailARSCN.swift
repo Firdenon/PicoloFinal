@@ -132,6 +132,7 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
             flagplane = false
             flagplace = false
             sceneView.autoenablesDefaultLighting = true
+            
         }
     }
     
@@ -161,7 +162,7 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         if anchor is ARPlaneAnchor && flagplane == false {
             
             DispatchQueue.main.async {
-                self.instructionLabel.text = "Plane Detected, Place Image"
+                self.instructionLabel.text = "Plane Detected, Tap to Place Image"
             }
             
             let planeAnchor = anchor as! ARPlaneAnchor
@@ -189,9 +190,9 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if flagplace == false {
+        if flagplace == false && flagplane == true {
             if let touch = touches.first{
-                instructionLabel.text = "Relocate The Image"
+                instructionLabel.text = "Yey! Now try to relocate The Image"
                 let touchLocation = touch.location(in: sceneView)
                 
                 let results = sceneView.hitTest(touchLocation, types: .existingPlaneUsingExtent)
