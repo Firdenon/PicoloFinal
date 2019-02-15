@@ -69,6 +69,8 @@ class SubscriptionController: UICollectionViewController, UICollectionViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = "Following"
         collectionView.backgroundColor = .white
         collectionView.register(SubscriptionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         collectionView.register(SubscriptionPost.self, forCellWithReuseIdentifier: cellId)
@@ -87,7 +89,6 @@ class SubscriptionController: UICollectionViewController, UICollectionViewDelega
     }
     
     @objc func handleRefresh() {
-        print("Handle Refresh.....")
         posts.removeAll()
         userFollow.removeAll()
         fetchAllPost()
@@ -216,7 +217,7 @@ extension SubscriptionController: PinterestLayoutDelegate {
         if posts.count == 0 {
             return CGSize.zero
         } else {
-            return CGSize(width: view.frame.width, height: 90)
+            return CGSize(width: view.frame.width, height: 100)
         }
     }
     

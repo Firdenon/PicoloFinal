@@ -25,7 +25,7 @@ class HomePostImagePreview: UIViewController, UIScrollViewDelegate{
         let iv = CustomImageView()
         iv.contentMode = .scaleAspectFit
         iv.frame = CGRect.zero
-        iv.backgroundColor = .blue
+        iv.backgroundColor = .black
         iv.clipsToBounds = false
         return iv
     }()
