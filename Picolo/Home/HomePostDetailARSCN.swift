@@ -159,7 +159,11 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if anchor is ARPlaneAnchor && flagplane == false {
-            instructionLabel.text = "Plane Detected, Place Image"
+            
+            DispatchQueue.main.async {
+                self.instructionLabel.text = "Plane Detected, Place Image"
+            }
+            
             let planeAnchor = anchor as! ARPlaneAnchor
             
             let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
@@ -200,6 +204,9 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
     //                cube.materials = [material]
                     
                     let imagePlane = SCNPlane(width: 0.5, height: 0.5)
+                    
+                    let width = Float(imagePlane.width)
+                    let height = Float(imagePlane.height)
     //                let imageMaterial = SCNMaterial()
     //                imageMaterial.diffuse.contents = imagePost
     //                imagePlane.materials = [imageMaterial]
@@ -212,6 +219,9 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
                     
                     let gridMaterial = SCNMaterial()
                     gridMaterial.diffuse.contents = image
+//                    gridMaterial.diffuse.contentsTransform = SCNMatrix4MakeScale(width, height, 0)
+                    gridMaterial.diffuse.wrapS = .repeat
+                    gridMaterial.diffuse.wrapT = .repeat
                     imagePlane.materials = [gridMaterial]
                     
     //                node.geometry = cube

@@ -27,7 +27,6 @@ class HomePostDetail: UIViewController{
                 usernameLabel.text = "by me"
             } else {
                 usernameLabel.text = "by " + (usernameText)
-                print(usernameLabel.text)
             }
             guard let profileImageUrl = post?.user.profileImageUrl else {return}
             profileImageView.loadImage(urlString: profileImageUrl){
@@ -140,15 +139,12 @@ class HomePostDetail: UIViewController{
         guard let postId = post?.id else {return}
         Database.database().reference().child("likeCount").child(postId).observeSingleEvent(of: .value) { (snapshot) in
             if let counts = snapshot.value as? [String: Any] {
-                print(counts)
                 self.likeCount = counts["likesCount"] as? Int
-                print("Like Count : \(self.likeCount)")
             }
         }
     }
     
     @objc func handelLike() {
-        print("liked")
         guard let postId = post?.id else {return}
         
         if Auth.auth().currentUser == nil {

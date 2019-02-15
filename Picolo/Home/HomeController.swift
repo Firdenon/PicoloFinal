@@ -24,6 +24,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = "PicColo"
+        
         self.hideKeyboardWhenTappedAround()
         let name = SharePhotoController.updateFeedNotificationName
         
@@ -56,7 +59,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     @objc func handleRefresh() {
-        print("Handle Refresh.....")
         posts.removeAll()
         fetchAllPost()
     }
