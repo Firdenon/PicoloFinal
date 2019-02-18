@@ -43,9 +43,11 @@ class LoginController: UIViewController {
     let emailTextfield: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Email"
+        tf.isSecureTextEntry = false
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
+        tf.keyboardType = .emailAddress
         tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
@@ -57,6 +59,7 @@ class LoginController: UIViewController {
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
+        tf.keyboardType = .default
         tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
@@ -92,6 +95,28 @@ class LoginController: UIViewController {
         return bt
     }()
     
+    func changeFieldBehaviour(isEnable: Bool){
+        if isEnable == true {
+            emailTextfield.isEnabled = isEnable
+            emailTextfield.textColor = .black
+            
+            passwordTextfield.isEnabled = isEnable
+            passwordTextfield.textColor = .black
+            
+            cancelButton.isEnabled = isEnable
+            signUpButton.isEnabled = isEnable
+        } else {
+            emailTextfield.isEnabled = isEnable
+            emailTextfield.textColor = .gray
+            
+            passwordTextfield.isEnabled = isEnable
+            passwordTextfield.textColor = .gray
+            
+            cancelButton.isEnabled = isEnable
+            signUpButton.isEnabled = isEnable
+        }
+    }
+    
     let cancelButton: UIButton = {
         let bt = UIButton(type: .system)
         bt.setImage(#imageLiteral(resourceName: "Chevron").withRenderingMode(.alwaysOriginal), for: .normal)
@@ -111,22 +136,29 @@ class LoginController: UIViewController {
         guard let email = emailTextfield.text else {return}
         guard let password = passwordTextfield.text else {return}
         loginButton.showLoading()
+        changeFieldBehaviour(isEnable: false)
+        
         Auth.auth().signIn(withEmail: email, password: password) { (user, err) in
             if let err = err {
                 print("Failed to Sign in with email: \(err.localizedDescription)")
                 self.loginButton.hideLoading()
+                self.changeFieldBehaviour(isEnable: true)
                 self.warningLabel.text = "Wrong email or password"
                 return
             }
             print("Succesfully logged back in with user: \(user?.user.uid ?? "")")
-            guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {return}
-            mainTabBarController.setupViewControllers()
+//            guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {
+//                print("Ke return di login")
+//                return
+//                
+//            }
+//            mainTabBarController.setupViewControllers()
             self.dismiss(animated: true, completion: nil)
         }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .default
     }
     
     override func viewDidLoad() {

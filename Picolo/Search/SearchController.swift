@@ -19,7 +19,7 @@ class SearchController: UICollectionViewController, UICollectionViewDelegateFlow
     
     lazy var searchBar: UISearchBar = {
         let sb = UISearchBar()
-        sb.placeholder = "Search"
+        sb.placeholder = "Search username"
         sb.barTintColor = .lightGray
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
         sb.delegate = self

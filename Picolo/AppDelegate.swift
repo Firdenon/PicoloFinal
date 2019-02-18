@@ -16,10 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
         FirebaseApp.configure()
-        
-        
         let userDefaults = UserDefaults.standard
         
         if !userDefaults.bool(forKey: "hasRunBefore") {
@@ -31,11 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } catch {
                 
             }
-            // Update the flag indicator
-            
-            //            userDefaults.synchronize() // This forces the app to update userDefaults
-            
-            // Run code here for the first launch
             window?.rootViewController = LandingPageViewController()
             window?.makeKeyAndVisible()
             window?.tintColor = UIColor.rgb(red: 255, green: 150, blue: 123)
@@ -46,48 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.makeKeyAndVisible()
             window?.tintColor = UIColor.rgb(red: 255, green: 150, blue: 123)
         }
-        
- 
-        
-        
-        
-//        window = UIWindow()
-//        window?.tintColor = UIColor.rgb(red: 255, green: 150, blue: 123)
-//        window?.rootViewController = MainTabBarController()
-//        self.window = UIWindow(frame: UIScreen.main.bounds)
-//        if let window = self.window {
-//            if let flagOpen = UserDefaults.standard.string(forKey: "flagOpen") {
-//                print("enter flagOpen:\(flagOpen)")
-//                if flagOpen != "1" {
-//
-//                    do {
-//                        try Auth.auth().signOut()
-//                    }catch {
-//
-//                    }
-//
-//                    window.rootViewController = LandingPageViewController()
-//                    window.makeKeyAndVisible()
-//                }
-//                else {
-//                    window.rootViewController = MainTabBarController()
-//                    window.makeKeyAndVisible()
-//                }
-//            } else {
-//
-//                do {
-//                    try Auth.auth().signOut()
-//                }catch {
-//
-//                }
-//
-//                window.rootViewController = LandingPageViewController()
-//                window.makeKeyAndVisible()
-//            }
-//        }
-        
-        
-        print(#function)
         return true
     }
 

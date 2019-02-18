@@ -24,7 +24,21 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         setupNavigationButtons()
         collectionView.register(PhotoSelectorCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.register(PhotoSelectorHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader , withReuseIdentifier: headerId)
-        fetchPhotos()
+        
+        PHPhotoLibrary.requestAuthorization { (status) in
+            switch status {
+            case .authorized :
+                self.collectionView.reloadData()
+                self.collectionView.collectionViewLayout.invalidateLayout()
+                self.fetchPhotos()
+            case .denied :
+                self.dismiss(animated: true, completion: nil)
+            case .restricted :
+                self.dismiss(animated: true, completion: nil)
+            default :
+                break
+            }
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

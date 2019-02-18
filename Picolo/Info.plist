@@ -25,7 +25,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>AR</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>nyoba</string>
+	<string>We like to see your photo</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

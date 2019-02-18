@@ -37,14 +37,16 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         photoButton.layer.cornerRadius = photoButton.frame.width / 2
         photoButton.layer.masksToBounds = true
         photoButton.layer.borderColor = UIColor.black.cgColor
-        photoButton.layer.borderWidth = 3
+        photoButton.layer.borderWidth = 1
         imageEdited = true
         handleTextInputChange()
         dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        imageEdited = false
+        if photoButton.image(for: .normal) == #imageLiteral(resourceName: "Blank Profile Picture") {
+            imageEdited = false
+        }
         handleTextInputChange()
         dismiss(animated: true, completion: nil)
     }
@@ -66,7 +68,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
-        tf.keyboardType = .alphabet
+        tf.keyboardType = .default
         tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
@@ -78,7 +80,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
-        tf.keyboardType = .alphabet
+        tf.keyboardType = .default
         tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
@@ -116,22 +118,56 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         return bt
     }()
     
+    func changeTextFieldBehaviour(isEnable: Bool) {
+        if isEnable == true {
+            photoButton.isEnabled = isEnable
+            
+            emailTextfield.isEnabled = isEnable
+            emailTextfield.textColor = .black
+            
+            userNameTextfield.isEnabled = isEnable
+            userNameTextfield.textColor = .black
+            
+            passwordTextfield.isEnabled = isEnable
+            passwordTextfield.textColor = .black
+            
+            alreadyHaveAccountButton.isEnabled = isEnable
+        } else {
+            photoButton.isEnabled = isEnable
+            emailTextfield.isEnabled = isEnable
+            emailTextfield.textColor = .gray
+            
+            userNameTextfield.isEnabled = isEnable
+            userNameTextfield.textColor = .gray
+            
+            passwordTextfield.isEnabled = isEnable
+            passwordTextfield.textColor = .gray
+            
+            alreadyHaveAccountButton.isEnabled = isEnable
+        }
+        
+    }
+    
     @objc func handleSignUp() {
         guard let email = emailTextfield.text, email.characters.count > 0 else {return}
         guard let userName = userNameTextfield.text, userName.characters.count > 0 else {return}
         guard let password = passwordTextfield.text, password.characters.count > 0 else {return}
         
+        warningLabel.text = ""
         signUpButton.isEnabled = false
         signUpButton.showLoading()
+        
+        changeTextFieldBehaviour(isEnable: false)
         
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if let error = error {
                 print("failed to create user: \(error)")
                 self.signUpButton.hideLoading()
+                self.changeTextFieldBehaviour(isEnable: true)
                 self.warningLabel.text = "\(error.localizedDescription)"
                 return
             }
-            print("succesfully created user:\(user?.user.uid)")
+            print("succesfully created user:\(user?.user.uid ?? "")")
             guard let image = self.photoButton.imageView?.image else {return}
             guard let uploaData = image.jpegData(compressionQuality: 0.3) else {return}
             let fileName = NSUUID().uuidString
@@ -140,6 +176,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
                 if let err = err {
                     print("Failed to upload Profile: \(err.localizedDescription)")
                     self.signUpButton.hideLoading()
+                    self.changeTextFieldBehaviour(isEnable: true)
                     self.warningLabel.text = "\(err.localizedDescription)"
                     return
                 }
@@ -147,6 +184,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
                     if let err = err {
                         print("Failed to fetch downloadUrl: \(err.localizedDescription)")
                         self.signUpButton.hideLoading()
+                        self.changeTextFieldBehaviour(isEnable: true)
                         self.warningLabel.text = "\(err.localizedDescription)"
                         return
                     }
@@ -159,6 +197,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
                         if let err = err {
                             print("Failed to save user info into db: \(err)")
                             self.signUpButton.hideLoading()
+                            self.changeTextFieldBehaviour(isEnable: true)
                             self.warningLabel.text = "\(err.localizedDescription)"
                             return
                         } else {
@@ -168,12 +207,13 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
                                 if let err = err {
                                     print("Failed to init followCount: \(err.localizedDescription)")
                                     self.signUpButton.hideLoading()
+                                    self.changeTextFieldBehaviour(isEnable: true)
                                     self.warningLabel.text = "\(err.localizedDescription)"
                                     return
                                 } else {
                                     print("Succesfuly save user info into db")
-                                    guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {return}
-                                    maintabBarController.setupViewControllers()
+//                                    guard let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {return}
+//                                    maintabBarController.setupViewControllers()
                                     self.dismiss(animated: true, completion: nil)
                                 }
                             })
