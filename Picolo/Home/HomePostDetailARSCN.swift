@@ -131,7 +131,7 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
                     self.landingAR1.isHidden = false
                 }
                 else {
-                    self.instructionLabel.text = "Detecting Plane"
+                    self.instructionLabel.text = "Detecting Vertical Plane"
                     self.flagplane = false
                     self.flagplace = false
                     self.sceneView.autoenablesDefaultLighting = true
