@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
+import PinterestLayout
 
 class FollowingListController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -24,6 +25,11 @@ class FollowingListController: UICollectionViewController, UICollectionViewDeleg
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let followUser = users[indexPath.row]
+        let userProfileController = UserProfileViewController(collectionViewLayout: PinterestLayout())
+        userProfileController.userId = followUser.uid
+        navigationController?.pushViewController(userProfileController, animated: true)
         
     }
     

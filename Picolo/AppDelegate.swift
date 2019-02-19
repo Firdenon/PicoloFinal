@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let userDefaults = UserDefaults.standard
         
         if !userDefaults.bool(forKey: "hasRunBefore") {
-            
+    
             print("The app is launching for the first time. Setting UserDefaults...")
             
             do {

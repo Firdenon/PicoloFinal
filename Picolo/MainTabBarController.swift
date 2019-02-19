@@ -17,6 +17,10 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tabBar.barTintColor = .white
+        tabBar.isTranslucent = false
+        
         self.delegate = self
         if Auth.auth().currentUser == nil {
             isLogin = false
@@ -25,7 +29,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
             isLogin = true
             setupViewControllers()
         }
-        print(#function)
     }
     
     override func viewWillAppear(_ animated: Bool) {

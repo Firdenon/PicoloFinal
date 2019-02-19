@@ -40,7 +40,6 @@ class UserProfileViewController: UICollectionViewController{
     
     var posts = [Post]() {
         didSet {
-            print("hello___")
             DispatchQueue.main.async {
                 self.collectionView.collectionViewLayout.invalidateLayout()
                 self.collectionView.reloadData()
@@ -58,7 +57,7 @@ class UserProfileViewController: UICollectionViewController{
         collectionView.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: cellId)
         if let layout = collectionView?.collectionViewLayout as? PinterestLayout {
             layout.delegate = self
-            layout.cellPadding = 10
+            layout.cellPadding = 5
             layout.numberOfColumns = 2
         }
         fetchUser()
@@ -69,9 +68,6 @@ class UserProfileViewController: UICollectionViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-//        fetchUser()
-//        setupNavBar()
-//        fetchFollowCount()
         collectionView.reloadData()
     }
     
@@ -171,9 +167,9 @@ class UserProfileViewController: UICollectionViewController{
         }
     }
     
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
+//    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        return 1
+//    }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfilePhotoCell
@@ -181,18 +177,10 @@ class UserProfileViewController: UICollectionViewController{
         
         if currentLoginId == userId || userId == nil {
             if indexPath.row == 0 {
-//                firstCell.backgroundColor = .lightGray
-//                firstCell.layer.shadowColor = UIColor.black.cgColor
-//                firstCell.layer.shadowOffset = CGSize(width: 0, height: 0.1)
-//                firstCell.layer.shadowRadius = 2.0
-//                firstCell.layer.shadowOpacity = 0.5
-//                firstCell.layer.masksToBounds = false
-//                firstCell.clipsToBounds = false
                 firstCell.photoImageView.image = #imageLiteral(resourceName: "Group 5")
                 return firstCell
             } else {
                 cell.post = posts[indexPath.item - 1]
-                //cell.labelTest.text = "\(indexPath.item)"
                 cell.backgroundColor = .lightGray
                 cell.layer.shadowColor = UIColor.black.cgColor
                 cell.layer.shadowOffset = CGSize(width: 0, height: 0.1)
@@ -200,11 +188,10 @@ class UserProfileViewController: UICollectionViewController{
                 cell.layer.shadowOpacity = 0.5
                 cell.layer.masksToBounds = false
                 cell.clipsToBounds = false
-                cell.layer.cornerRadius = 20
+                //cell.layer.cornerRadius = 20
             }
         } else {
             cell.post = posts[indexPath.item]
-            //cell.labelTest.text = "\(indexPath.item)"
             cell.backgroundColor = .lightGray
             cell.layer.shadowColor = UIColor.black.cgColor
             cell.layer.shadowOffset = CGSize(width: 0, height: 0.1)
@@ -212,10 +199,8 @@ class UserProfileViewController: UICollectionViewController{
             cell.layer.shadowOpacity = 0.5
             cell.layer.masksToBounds = false
             cell.clipsToBounds = false
-            cell.layer.cornerRadius = 20
+            //cell.layer.cornerRadius = 20
         }
-        
-        
         return cell
     }
     

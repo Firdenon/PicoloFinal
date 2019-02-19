@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import PinterestLayout
 
 protocol SubscriptionHeaderDelegate {
     func allAction()
+    func toFollowedUser(user: User)
 }
 
 class SubscriptionHeader: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -45,7 +47,7 @@ class SubscriptionHeader: UICollectionViewCell, UICollectionViewDelegate, UIColl
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
+        backgroundColor = .clear
         setupView()
     }
     
@@ -83,6 +85,12 @@ class SubscriptionHeader: UICollectionViewCell, UICollectionViewDelegate, UIColl
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let followUser = user[indexPath.row]
+        delegate?.toFollowedUser(user: followUser)
     }
     
     

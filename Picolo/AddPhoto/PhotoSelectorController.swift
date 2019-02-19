@@ -32,7 +32,22 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
                 self.collectionView.collectionViewLayout.invalidateLayout()
                 self.fetchPhotos()
             case .denied :
-                self.dismiss(animated: true, completion: nil)
+                let alertController = UIAlertController (title: "Photo Authorization", message: "Please authorized our apps to acces your photo's", preferredStyle: .alert)
+                let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+                    guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {return}
+                    if UIApplication.shared.canOpenURL(settingsUrl) {
+                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                            print("Settings opened: \(success)") // Prints true
+                        })
+                    }
+                }
+                alertController.addAction(settingsAction)
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { (success) in
+                    self.dismiss(animated: true, completion: nil)
+                })
+                alertController.addAction(cancelAction)
+                self.present(alertController, animated: true, completion: nil)
+                
             case .restricted :
                 self.dismiss(animated: true, completion: nil)
             default :

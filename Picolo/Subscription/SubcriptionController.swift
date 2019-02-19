@@ -11,6 +11,13 @@ import Firebase
 import PinterestLayout
 
 class SubscriptionController: UICollectionViewController, UICollectionViewDelegateFlowLayout, SubscriptionHeaderDelegate {
+   
+    func toFollowedUser(user: User) {
+        let userProfileController = UserProfileViewController(collectionViewLayout: PinterestLayout())
+        userProfileController.userId = user.uid
+        navigationController?.pushViewController(userProfileController, animated: true)
+    }
+    
     
     func allAction() {
         let followingList = FollowingListController(collectionViewLayout: UICollectionViewFlowLayout())
@@ -82,7 +89,7 @@ class SubscriptionController: UICollectionViewController, UICollectionViewDelega
         
         if let layout = collectionView?.collectionViewLayout as? PinterestLayout {
             layout.delegate = self
-            layout.cellPadding = 10
+            layout.cellPadding = 5
             layout.numberOfColumns = 2
         }
         fetchAllPost()

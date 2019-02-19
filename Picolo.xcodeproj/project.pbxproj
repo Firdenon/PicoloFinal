@@ -27,7 +27,6 @@
 		7092BB8821FA193D0092DD1E /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB8721FA193D0092DD1E /* CommentsCell.swift */; };
 		7092BB8A21FA1D610092DD1E /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB8921FA1D610092DD1E /* Comment.swift */; };
 		7092BB8C22081BC70092DD1E /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB8B22081BC70092DD1E /* LoadingButton.swift */; };
-		7092BB8E220ADD280092DD1E /* FirstCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092BB8D220ADD280092DD1E /* FirstCell.swift */; };
 		7093CD6421E32F1200731FB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD6321E32F1200731FB8 /* AppDelegate.swift */; };
 		7093CD6621E32F1200731FB8 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093CD6521E32F1200731FB8 /* SignUpController.swift */; };
 		7093CD6921E32F1200731FB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7093CD6721E32F1200731FB8 /* Main.storyboard */; };
@@ -92,7 +91,6 @@
 		7092BB8721FA193D0092DD1E /* CommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
 		7092BB8921FA1D610092DD1E /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		7092BB8B22081BC70092DD1E /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
-		7092BB8D220ADD280092DD1E /* FirstCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCell.swift; sourceTree = "<group>"; };
 		7093CD6021E32F1200731FB8 /* Picolo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picolo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7093CD6321E32F1200731FB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7093CD6521E32F1200731FB8 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -216,7 +214,6 @@
 			children = (
 				7093CD9721E3588500731FB8 /* UserProfileViewController.swift */,
 				7093CD9A21E35EFB00731FB8 /* UserProfileHeader.swift */,
-				7092BB8D220ADD280092DD1E /* FirstCell.swift */,
 				7093CDB021E451A700731FB8 /* UserProfilePhotoCell.swift */,
 			);
 			path = UserProfile;
@@ -524,7 +521,6 @@
 				5A697B0921E889EB0010C52C /* HomePostImagePreview.swift in Sources */,
 				7093CDBC21E4C1CF00731FB8 /* Firebase Utils.swift in Sources */,
 				5AF685E42202CEEF00E24A51 /* LandingPageViewController.swift in Sources */,
-				7092BB8E220ADD280092DD1E /* FirstCell.swift in Sources */,
 				5A697B0721E887D20010C52C /* HomePostDetailARSCN.swift in Sources */,
 				7093CDBA21E4BBC400731FB8 /* User.swift in Sources */,
 				7092BB7E21F810ED0092DD1E /* SubcriptionController.swift in Sources */,

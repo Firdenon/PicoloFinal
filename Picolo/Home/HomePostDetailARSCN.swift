@@ -124,15 +124,35 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         instructionLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         backButton.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 57, paddingLeft: 20, paddingBottom: 0, paddingRight: 0)
         resetButton.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 57, paddingLeft: 0, paddingBottom: 0, paddingRight: 20)
-        if !UserDefaults.standard.bool(forKey: "hasRunARBefore"){
-            landingAR1.isHidden = false
-        }
-        else {
-            instructionLabel.text = "Detecting Plane"
-            flagplane = false
-            flagplace = false
-            sceneView.autoenablesDefaultLighting = true
-            
+        
+        AVCaptureDevice.requestAccess(for: .video) { (res) in
+            if res {
+                if !UserDefaults.standard.bool(forKey: "hasRunARBefore"){
+                    self.landingAR1.isHidden = false
+                }
+                else {
+                    self.instructionLabel.text = "Detecting Plane"
+                    self.flagplane = false
+                    self.flagplace = false
+                    self.sceneView.autoenablesDefaultLighting = true
+                }
+            } else {
+                let alertController = UIAlertController (title: "Camera Authorization", message: "Please authorized our apps to acces your camera", preferredStyle: .alert)
+                let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+                    guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {return}
+                    if UIApplication.shared.canOpenURL(settingsUrl) {
+                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                            print("Settings opened: \(success)") // Prints true
+                        })
+                    }
+                }
+                alertController.addAction(settingsAction)
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { (success) in
+                    self.navigationController?.popViewController(animated: true)
+                })
+                alertController.addAction(cancelAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
     }
     

@@ -153,7 +153,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         cell.layer.shadowOpacity = 0.5
         cell.layer.masksToBounds = false
         cell.clipsToBounds = false
-        cell.layer.cornerRadius = 20
+        //cell.layer.cornerRadius = 20
         return cell
     }
     
@@ -165,6 +165,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 }
 
 extension HomeController: PinterestLayoutDelegate {
+    
     func collectionView(collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath, withWidth: CGFloat) -> CGFloat {
         let imageHeight = posts[indexPath.item].imageHeight
         let imageWidth = posts[indexPath.item].imageWidth
