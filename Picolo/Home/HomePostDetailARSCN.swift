@@ -35,7 +35,6 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
     
     var instructionLabel:UILabel = {
         let tl = UILabel()
-        tl.text = "Detecting Plane"
         tl.font = UIFont(name: "Avenir-medium", size: 18)
         tl.textAlignment = .center
         tl.backgroundColor = UIColor.white.withAlphaComponent(0.5)
@@ -60,38 +59,77 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
     let landingAR1: UIView = {
         let uiv = UIView()
         uiv.isHidden = true
-        uiv.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        uiv.backgroundColor = .white
         return uiv
     }()
     
     let landingAR2: UIView = {
         let uiv = UIView()
         uiv.isHidden = true
-        uiv.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        
+        uiv.backgroundColor = .white
         return uiv
     }()
     
-    let toAR2Btn: UIButton = {
+    let imageLanding1: UIImageView = {
+        let uiv = UIImageView()
+        uiv.image = UIImage(named: "LandingAR1")
+        uiv.contentMode = .scaleAspectFit
+        return uiv
+    }()
+    
+    let imageLanding2: UIImageView = {
+        let uiv = UIImageView()
+        uiv.image = UIImage(named: "LandingAR2")
+        uiv.contentMode = .scaleAspectFit
+        return uiv
+    }()
+    
+    lazy var toAR2Btn: UIButton = {
         let btn = UIButton()
-        btn.setTitle("Continue", for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "ContinueButtonAR"), for: .normal)
         btn.addTarget(self, action: #selector(toAR2), for: .touchUpInside)
         return btn
     }()
-    let toAR1Btn: UIButton = {
+    lazy var toAR1Btn: UIButton = {
         let btn = UIButton()
-        btn.setTitle("Back", for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "Back"), for: .normal)
         btn.addTarget(self, action: #selector(toAR1), for: .touchUpInside)
         return btn
     }()
-    let closeLandingAR: UIButton = {
+    lazy var closeLandingAR: UIButton = {
         let btn = UIButton()
-        btn.setTitle("Let's Go", for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "letsgoAR"), for: .normal)
         btn.addTarget(self, action: #selector(closeLanding), for: .touchUpInside)
         return btn
     }()
     
+    let textView1: UITextView = {
+        let tv = UITextView()
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.textAlignment = .center
+        tv.textColor = UIColor.orange
+        tv.font = UIFont(name:"Avenir-medium",size:18)
+        tv.isEditable = false
+        tv.isScrollEnabled = false
+        tv.isSelectable = false
+        tv.text = "PicColo is a showcase application where you can show and introduce your doujinshi’s artworks or Admiring the artworks and giving you a new opportunity to being enganged with other creators and enthusiasts."
+        
+        return tv
+    }()
     
+    let textView2: UITextView = {
+        let tv = UITextView()
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.textAlignment = .center
+        tv.textColor = UIColor.orange
+        tv.font = UIFont(name:"Avenir-medium",size:18)
+        tv.isEditable = false
+        tv.isScrollEnabled = false
+        tv.isSelectable = false
+        tv.text = "PicColo is a showcase application where you can show and introduce your doujinshi’s artworks or Admiring the artworks and giving you a new opportunity to being enganged with other creators and enthusiasts."
+        
+        return tv
+    }()
     
     var imagePost = CustomImageView()
     var image : UIImage?
@@ -113,25 +151,68 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         view.addSubview(instructionLabel)
         view.addSubview(backButton)
         view.addSubview(resetButton)
+        
         view.addSubview(landingAR1)
-        view.addSubview(landingAR2)
         landingAR1.addSubview(toAR2Btn)
+        landingAR1.addSubview(imageLanding1)
+        landingAR1.addSubview(textView1)
+        
+        view.addSubview(landingAR2)
         landingAR2.addSubview(toAR1Btn)
+        landingAR2.addSubview(imageLanding2)
         landingAR2.addSubview(closeLandingAR)
         
-        sceneView.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        sceneView.setAnchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
         instructionLabel.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 120, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
         instructionLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         backButton.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 57, paddingLeft: 20, paddingBottom: 0, paddingRight: 0)
         resetButton.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 57, paddingLeft: 0, paddingBottom: 0, paddingRight: 20)
         
+        landingAR1.setAnchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: view.frame.width, height: (view.frame.height/2) + 20)
+        landingAR1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        landingAR1.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        toAR2Btn.setAnchor(top: nil, left: nil, bottom: landingAR1.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 0)
+        toAR2Btn.centerXAnchor.constraint(equalTo: landingAR1.centerXAnchor).isActive = true
+//        toAR2Btn.centerYAnchor.constraint(equalTo: landingAR1.centerYAnchor).isActive = true
+        
+        imageLanding1.setAnchor(top: landingAR1.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: 200,height: 200)
+        imageLanding1.centerXAnchor.constraint(equalTo: landingAR1.centerXAnchor).isActive = true
+        
+        textView1.setAnchor(top: imageLanding1.bottomAnchor, left: landingAR1.leftAnchor, bottom: toAR2Btn.topAnchor, right: landingAR1.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        textView1.centerXAnchor.constraint(equalTo: landingAR1.centerXAnchor).isActive = true
+        
+        landingAR2.setAnchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: view.frame.width, height: (view.frame.height/2)+20)
+        landingAR2.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        landingAR2.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        imageLanding2.setAnchor(top: landingAR2.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: 200, height: 200)
+        imageLanding2.centerXAnchor.constraint(equalTo: landingAR2.centerXAnchor).isActive = true
+        
+        toAR1Btn.setAnchor(top: landingAR2.topAnchor, left: landingAR2.leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 0)
+        closeLandingAR.setAnchor(top: nil, left: nil, bottom: landingAR2.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 0)
+        closeLandingAR.centerXAnchor.constraint(equalTo: landingAR2.centerXAnchor).isActive = true
+        
+        
+        
+        
+        
         AVCaptureDevice.requestAccess(for: .video) { (res) in
             if res {
                 if !UserDefaults.standard.bool(forKey: "hasRunARBefore"){
-                    self.landingAR1.isHidden = false
+                    DispatchQueue.main.async {
+                        self.landingAR1.isHidden = false
+                        self.toAR2Btn.isHidden = false
+                        self.backButton.isHidden = true
+                        self.resetButton.isHidden = true
+                        self.instructionLabel.isHidden = false
+                        print(self.landingAR1.isHidden)
+                    }
                 }
                 else {
-                    self.instructionLabel.text = "Detecting Plane"
+                    DispatchQueue.main.async {
+                        self.instructionLabel.text = "Detecting Vertical Plane"
+                    }
                     self.flagplane = false
                     self.flagplace = false
                     self.sceneView.autoenablesDefaultLighting = true
@@ -212,7 +293,7 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if flagplace == false && flagplane == true {
             if let touch = touches.first{
-                instructionLabel.text = "Yey! Now try to relocate The Image"
+                instructionLabel.text = "Yey! Now try to drag The Image and Enjoy placing"
                 let touchLocation = touch.location(in: sceneView)
                 
                 let results = sceneView.hitTest(touchLocation, types: .existingPlaneUsingExtent)
@@ -289,7 +370,7 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
         DispatchQueue.main.async {
             
-            self.instructionLabel.text = "Detecting Plane"
+            self.instructionLabel.text = "Detecting Vertical Plane"
         }
         flagplane = false
         flagplace = false
@@ -311,6 +392,10 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
     @objc func closeLanding(){
         landingAR1.isHidden = true
         landingAR2.isHidden = true
+        backButton.isHidden = false
+        resetButton.isHidden = false
+        instructionLabel.isHidden = false
+        instructionLabel.text = "Detecting Vertical Plane"
         UserDefaults.standard.set("true", forKey: "hasRunARBefore")
     }
 }
