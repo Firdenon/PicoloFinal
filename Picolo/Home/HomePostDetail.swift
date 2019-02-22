@@ -102,6 +102,24 @@ class HomePostDetail: UIViewController{
         iv.contentMode = .scaleAspectFit
         iv.backgroundColor = .white
         iv.clipsToBounds = true
+        
+        
+        let view = UIView()
+        view.backgroundColor = UIColor.gray
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 10
+        iv.addSubview(view)
+        
+        view.setAnchor(top: nil, left: nil, bottom: iv.bottomAnchor, right: iv.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 10, paddingRight: 10, width: 40, height: 40)
+        
+        let imageView = UIImageView()
+        imageView.image = #imageLiteral(resourceName: "Zoom")
+        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = .clear
+        
+        view.addSubview(imageView)
+        imageView.setAnchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8)
+        
         return iv
     }()
     
@@ -241,7 +259,6 @@ class HomePostDetail: UIViewController{
         
         view.addSubview(likeButton)
         view.addSubview(commentButton)
-//        view.addSubview(commentButton2)
         
         view.addSubview(likeLable)
         view.addSubview(commentLable)
