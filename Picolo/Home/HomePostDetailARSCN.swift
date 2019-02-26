@@ -112,7 +112,7 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         tv.isEditable = false
         tv.isScrollEnabled = false
         tv.isSelectable = false
-        tv.text = "PicColo is a showcase application where you can show and introduce your doujinshi’s artworks or Admiring the artworks and giving you a new opportunity to being enganged with other creators and enthusiasts."
+        tv.text = "Make sure you are standing with maximum distance 1,5 meter from the wall"
         
         return tv
     }()
@@ -126,7 +126,7 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         tv.isEditable = false
         tv.isScrollEnabled = false
         tv.isSelectable = false
-        tv.text = "PicColo is a showcase application where you can show and introduce your doujinshi’s artworks or Admiring the artworks and giving you a new opportunity to being enganged with other creators and enthusiasts."
+        tv.text = "Find the wall and make sure your device in portrait mode. \nDon't use white wall, it is hard to detect"
         
         return tv
     }()
@@ -152,6 +152,9 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         view.addSubview(backButton)
         view.addSubview(resetButton)
         
+        var landingWidth = view.frame.width
+        var landingHeight = (view.frame.height / 2) + 20
+        
         view.addSubview(landingAR1)
         landingAR1.addSubview(toAR2Btn)
         landingAR1.addSubview(imageLanding1)
@@ -161,6 +164,7 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         landingAR2.addSubview(toAR1Btn)
         landingAR2.addSubview(imageLanding2)
         landingAR2.addSubview(closeLandingAR)
+        landingAR2.addSubview(textView2)
         
         sceneView.setAnchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
         instructionLabel.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 120, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
@@ -168,7 +172,7 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         backButton.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 57, paddingLeft: 20, paddingBottom: 0, paddingRight: 0)
         resetButton.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 57, paddingLeft: 0, paddingBottom: 0, paddingRight: 20)
         
-        landingAR1.setAnchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: view.frame.width, height: (view.frame.height/2) + 20)
+        landingAR1.setAnchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: landingWidth, height: landingHeight)
         landingAR1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         landingAR1.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
@@ -179,10 +183,10 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         imageLanding1.setAnchor(top: landingAR1.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: 200,height: 200)
         imageLanding1.centerXAnchor.constraint(equalTo: landingAR1.centerXAnchor).isActive = true
         
-        textView1.setAnchor(top: imageLanding1.bottomAnchor, left: landingAR1.leftAnchor, bottom: toAR2Btn.topAnchor, right: landingAR1.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        textView1.setAnchor(top: imageLanding1.bottomAnchor, left: landingAR1.leftAnchor, bottom: toAR2Btn.topAnchor, right: landingAR1.rightAnchor, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
         textView1.centerXAnchor.constraint(equalTo: landingAR1.centerXAnchor).isActive = true
         
-        landingAR2.setAnchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: view.frame.width, height: (view.frame.height/2)+20)
+        landingAR2.setAnchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: landingWidth, height: landingHeight)
         landingAR2.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         landingAR2.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
@@ -190,9 +194,17 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         imageLanding2.centerXAnchor.constraint(equalTo: landingAR2.centerXAnchor).isActive = true
         
         toAR1Btn.setAnchor(top: landingAR2.topAnchor, left: landingAR2.leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 0)
+        
+        textView2.setAnchor(top: imageLanding2.bottomAnchor, left: landingAR2.leftAnchor, bottom: nil, right: landingAR2.rightAnchor, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        textView2.centerXAnchor.constraint(equalTo: landingAR1.centerXAnchor).isActive = true
+        
         closeLandingAR.setAnchor(top: nil, left: nil, bottom: landingAR2.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 0)
         closeLandingAR.centerXAnchor.constraint(equalTo: landingAR2.centerXAnchor).isActive = true
-        
+//
+//
+//
+//
+//
         
         
         
