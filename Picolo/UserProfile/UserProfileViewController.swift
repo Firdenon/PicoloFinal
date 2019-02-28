@@ -248,8 +248,6 @@ class UserProfileViewController: UICollectionViewController{
             var post = Post(user: user, dictionary: dictionary)
             post.id = snapshot.key
             
-            guard let uid = Auth.auth().currentUser?.uid else {return}
-            
             Database.database().reference().child("likes").child(snapshot.key).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 if let value = snapshot.value as? Int, value == 1 {
