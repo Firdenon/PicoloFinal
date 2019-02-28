@@ -75,7 +75,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
     
     let passwordTextfield: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "Password"
+        tf.placeholder = "Password (Min 6 characters)"
         tf.isSecureTextEntry = true
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect

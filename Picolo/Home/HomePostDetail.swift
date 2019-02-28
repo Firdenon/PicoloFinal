@@ -168,6 +168,8 @@ class HomePostDetail: UIViewController{
         if Auth.auth().currentUser == nil {
             let loginView = LoginController()
             let navLogin = UINavigationController(rootViewController: loginView)
+            
+            //navigationController?.pushViewController(loginView, animated: true)
             present(navLogin, animated: true, completion: nil)
             return
         }
