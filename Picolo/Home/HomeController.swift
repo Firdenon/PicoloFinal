@@ -25,7 +25,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "PicColo"
+        self.navigationItem.title = "Pikoro"
         
         self.hideKeyboardWhenTappedAround()
         let name = SharePhotoController.updateFeedNotificationName
