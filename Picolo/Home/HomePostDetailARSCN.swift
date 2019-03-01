@@ -200,13 +200,7 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         
         closeLandingAR.setAnchor(top: nil, left: nil, bottom: landingAR2.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 0)
         closeLandingAR.centerXAnchor.constraint(equalTo: landingAR2.centerXAnchor).isActive = true
-//
-//
-//
-//
-//
-        
-        
+
         
         
         AVCaptureDevice.requestAccess(for: .video) { (res) in
