@@ -60,12 +60,13 @@ class HomePostImagePreview: UIViewController, UIScrollViewDelegate{
         
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swiped))
         let tapRecog = UITapGestureRecognizer(target: self, action: #selector(tapped))
-        swipeGesture.direction = .down
+        swipeGesture.direction = .left
         photoImageView.isUserInteractionEnabled = true
         photoImageView.addGestureRecognizer(tapRecog)
         scrollView.isUserInteractionEnabled = true
         scrollView.addGestureRecognizer(tapRecog)
-        //photoImageView.addGestureRecognizer(swipeGesture)
+        photoImageView.addGestureRecognizer(swipeGesture)
+        scrollView.addGestureRecognizer(swipeGesture)
         
         scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height)
         
@@ -96,6 +97,7 @@ class HomePostImagePreview: UIViewController, UIScrollViewDelegate{
     
     @objc func swiped(){
         print("Ke Swipe")
+        self.navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
     }
     
