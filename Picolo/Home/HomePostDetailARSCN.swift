@@ -39,6 +39,7 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         tl.textAlignment = .center
         tl.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         tl.textColor = UIColor.black
+        tl.numberOfLines = 2
         return tl
     }()
     
@@ -103,6 +104,13 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         return btn
     }()
     
+    lazy var ssButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(#imageLiteral(resourceName: "kameraAR").withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.addTarget(self, action: #selector(screenshot), for: .touchUpInside)
+        return btn
+    }()
+    
     let textView1: UITextView = {
         let tv = UITextView()
         tv.translatesAutoresizingMaskIntoConstraints = false
@@ -131,6 +139,7 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         return tv
     }()
     
+    
     var imagePost = CustomImageView()
     var image : UIImage?
     
@@ -151,6 +160,7 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         view.addSubview(instructionLabel)
         view.addSubview(backButton)
         view.addSubview(resetButton)
+        view.addSubview(ssButton)
         
         var landingWidth = view.frame.width
         var landingHeight = (view.frame.height / 2) + 20
@@ -167,10 +177,13 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         landingAR2.addSubview(textView2)
         
         sceneView.setAnchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
-        instructionLabel.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 120, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        instructionLabel.setAnchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 120, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
         instructionLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        backButton.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 57, paddingLeft: 20, paddingBottom: 0, paddingRight: 0)
-        resetButton.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 57, paddingLeft: 0, paddingBottom: 0, paddingRight: 20)
+        backButton.setAnchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 57, paddingLeft: 20, paddingBottom: 0, paddingRight: 0)
+        resetButton.setAnchor(top: view.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 57, paddingLeft: 0, paddingBottom: 0, paddingRight: 20)
+        ssButton.setAnchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 0)
+        ssButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
         
         landingAR1.setAnchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: landingWidth, height: landingHeight)
         landingAR1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -200,13 +213,7 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         
         closeLandingAR.setAnchor(top: nil, left: nil, bottom: landingAR2.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 0)
         closeLandingAR.centerXAnchor.constraint(equalTo: landingAR2.centerXAnchor).isActive = true
-//
-//
-//
-//
-//
-        
-        
+
         
         
         AVCaptureDevice.requestAccess(for: .video) { (res) in
@@ -218,6 +225,7 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
                         self.backButton.isHidden = true
                         self.resetButton.isHidden = true
                         self.instructionLabel.isHidden = false
+                        self.ssButton.isHidden = true
                         print(self.landingAR1.isHidden)
                     }
                 }
@@ -305,7 +313,7 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if flagplace == false && flagplane == true {
             if let touch = touches.first{
-                instructionLabel.text = "Yey! Now try to drag The Image and Enjoy placing"
+                instructionLabel.text = "Yey! Now try to drag The Image \nand Enjoy placing"
                 let touchLocation = touch.location(in: sceneView)
                 
                 let results = sceneView.hitTest(touchLocation, types: .existingPlaneUsingExtent)
@@ -388,6 +396,10 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         flagplace = false
     }
     
+    override var prefersStatusBarHidden: Bool{
+        return true
+    }
+    
     @objc func back(){
         print("back kepencet")
         navigationController?.popViewController(animated: true)
@@ -407,7 +419,154 @@ class HomePostDetailARSCN: UIViewController,ARSCNViewDelegate{
         backButton.isHidden = false
         resetButton.isHidden = false
         instructionLabel.isHidden = false
+        ssButton.isHidden = false
         instructionLabel.text = "Detecting Vertical Plane"
         UserDefaults.standard.set("true", forKey: "hasRunARBefore")
     }
+    
+    @objc func screenshot(){
+        
+//        DispatchQueue.main.async {
+//            self.ssWatermark.isHidden = false
+//            self.backButton.isHidden = true
+//            self.resetButton.isHidden = true
+//            self.instructionLabel.isHidden = true
+//            self.ssButton.isHidden = true
+//        }
+//        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)
+//        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+//        let image = sceneView.snapshot()
+//        UIGraphicsEndImageContext()
+//
+//        UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
+//
+//        DispatchQueue.main.async {
+//            self.ssWatermark.isHidden = true
+//            self.backButton.isHidden = false
+//            self.resetButton.isHidden = false
+//            self.instructionLabel.isHidden = false
+//            self.ssButton.isHidden = false
+        
+//        }
+        let image = sceneView.snapshot()
+        let previewScreenshot = PreviewScreenshot()
+        previewScreenshot.image = image
+        navigationController?.pushViewController(previewScreenshot, animated: true)
+//        let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+//
+//        activityController.completionWithItemsHandler = { (nil, completed, _, error) in
+//            if completed {
+//                print("completed")
+//            } else {
+//                print("cancled")
+//            }
+//        }
+//        present(activityController, animated: true) {
+//            print("presented")
+//        }
+//    }
+    }
+    
+}
+
+class PreviewScreenshot: UIViewController {
+    
+    var image: UIImage? {
+        didSet{
+            previewImage.image = image
+        }
+    }
+    
+    let previewImage: UIImageView = {
+        let uiv = UIImageView()
+        return uiv
+    }()
+    
+    let ssWatermark: UIImageView = {
+        let uiv = UIImageView()
+        uiv.image = UIImage(named: "ssWatermark")
+        uiv.contentMode = .scaleAspectFit
+        return uiv
+    }()
+    
+    let backButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(#imageLiteral(resourceName: "backbuttonAR"), for: .normal)
+        btn.addTarget(self, action: #selector(back), for: .touchUpInside)
+        return btn
+    }()
+    let saveButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(#imageLiteral(resourceName: "downloadAR"), for: .normal)
+        btn.addTarget(self, action: #selector(save), for: .touchUpInside)
+        return btn
+    }()
+    let shareButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(#imageLiteral(resourceName: "shareAR"), for: .normal)
+        btn.addTarget(self, action: #selector(share), for: .touchUpInside)
+        return btn
+    }()
+    var imageSS = UIImage()
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.addSubview(previewImage)
+        view.addSubview(ssWatermark)
+        previewImage.setAnchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        ssWatermark.setAnchor(top: nil, left: nil, bottom: previewImage.bottomAnchor, right: previewImage.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 10, paddingRight: 10,width: 100,height: 50)
+        
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        imageSS = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
+        
+        
+        view.addSubview(backButton)
+        view.addSubview(saveButton)
+        view.addSubview(shareButton)
+        backButton.setAnchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 57, paddingLeft: 20, paddingBottom: 0, paddingRight: 0)
+        shareButton.setAnchor(top: view.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 57, paddingLeft: 0, paddingBottom: 0, paddingRight: 20)
+        saveButton.setAnchor(top: view.topAnchor, left: nil, bottom: nil, right: shareButton.leftAnchor, paddingTop: 57, paddingLeft: 0, paddingBottom: 0, paddingRight: 20)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.isNavigationBarHidden = true
+        tabBarController?.tabBar.isHidden = true
+    }
+    
+    @objc func back(){
+        navigationController?.popViewController(animated: true)
+    }
+    @objc func share(){
+        print("share")
+        let activityController = UIActivityViewController(activityItems: [imageSS], applicationActivities: nil)
+        
+        activityController.completionWithItemsHandler = { (nil, completed, _, error) in
+            if completed {
+                print("completed")
+            } else {
+                print("cancled")
+            }
+        }
+        self.present(activityController, animated: true, completion: nil)
+    }
+    @objc func save(){
+        print("save")
+        UIImageWriteToSavedPhotosAlbum(imageSS, nil, nil, nil)
+        let alertController = UIAlertController(title:"Screenshot Saved!",message:nil,preferredStyle:.alert)
+        self.present(alertController,animated:true,completion:{Timer.scheduledTimer(withTimeInterval: 0.5, repeats:false, block: {_ in
+            self.dismiss(animated: true, completion: nil)})})
+    }
+    override var prefersStatusBarHidden: Bool{
+        return true
+    }
+    
 }

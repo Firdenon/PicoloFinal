@@ -245,10 +245,13 @@ class HomePostDetail: UIViewController{
         //Mark Tap Recognizer
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapImageDetail))
         let tapUser = UITapGestureRecognizer(target: self, action: #selector(tapUploader))
+        let tapImageUser = UITapGestureRecognizer(target: self, action: #selector(tapUploader))
         photoImageView.isUserInteractionEnabled = true
         photoImageView.addGestureRecognizer(tap)
         usernameLabel.isUserInteractionEnabled = true
         usernameLabel.addGestureRecognizer(tapUser)
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.addGestureRecognizer(tapImageUser)
         
         //mark View
         view.backgroundColor = .white
