@@ -19,7 +19,7 @@ class LoginController: UIViewController {
     
     let logoLabel: UILabel = {
         let lb = UILabel()
-        lb.text = "PicColo"
+        lb.text = "Pikoro"
         lb.font = UIFont(name: "Avenir-Black", size: 50)
         lb.textColor = UIColor.rgb(red: 255, green: 150, blue: 123)
         lb.textAlignment = .center
