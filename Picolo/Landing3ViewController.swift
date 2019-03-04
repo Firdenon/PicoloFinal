@@ -58,7 +58,7 @@ class Landing3ViewController: UIViewController {
         image.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100).isActive = true
         
         textView.setAnchor(top: image.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0,width: 0, height: 100)
-        textLabel.setAnchor(top: textView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        textLabel.setAnchor(top: textView.bottomAnchor, left: view.leftAnchor, bottom: continueButton.topAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 0)
         continueButton.setAnchor(top: textLabel.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
         continueButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }

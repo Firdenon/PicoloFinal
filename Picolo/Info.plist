@@ -23,9 +23,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>AR</string>
+	<string>for using Augmented Reality</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We like to see your photo</string>
+	<string>To upload your photo from Camera Rolls</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Save photo from AR</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
